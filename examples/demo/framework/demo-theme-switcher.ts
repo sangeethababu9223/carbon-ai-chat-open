@@ -15,9 +15,9 @@
 
 import '@carbon/web-components/es/components/dropdown/index.js';
 
+import { CarbonTheme, PublicConfig } from '@carbon/ai-chat';
 import { html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { CarbonTheme, PublicConfig } from '@carbon/ai-chat';
 
 @customElement('demo-theme-switcher')
 export class DemoThemeSwitcher extends LitElement {

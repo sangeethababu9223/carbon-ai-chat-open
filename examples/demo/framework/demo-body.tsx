@@ -13,156 +13,21 @@
  *
  */
 
-import '@carbon/web-components/es/components/ui-shell/index.js';
-import '@carbon/web-components/es/components/layer/index.js';
-import '@carbon/web-components/es/components/icon-button/index.js';
-import './framework/demo-version-switcher';
-import './framework/demo-layout-switcher';
-import './framework/demo-theme-switcher';
-import '@carbon/ai-chat/dist/web-components/cds-aichat-container/index.js';
-import '@carbon/ai-chat/dist/web-components/cds-aichat-custom-element/index.js';
-
-import {
-  BusEventViewChange,
-  ChatInstance,
-  CornersType,
-  MinimizeButtonIconType,
-  PublicConfig,
-  ViewType,
-} from '@carbon/ai-chat';
+import { BusEventViewChange, ChatInstance, PublicConfig, ViewType } from '@carbon/ai-chat';
 import rightPanelOpen from '@carbon/web-components/es/icons/right-panel--open/16.js';
-import { KeyPairs, Settings } from 'framework/types';
 import { css, html, LitElement, PropertyValues } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import React from 'react';
 import { DemoApp } from 'react/DemoApp';
 import { createRoot, Root } from 'react-dom/client';
 
-import { customSendMessage } from './customSendMessage';
+import { Settings } from './types';
+import { getSettings } from './utils';
 
-const urlParams = new URLSearchParams(window.location.search);
-const settings: Partial<Settings> = urlParams.has('settings') ? JSON.parse(urlParams.get('settings')) : {};
-const config: Partial<PublicConfig> = urlParams.has('config') ? JSON.parse(urlParams.get('config')) : {};
-
-let defaultConfig: PublicConfig = {
-  ...config,
-  messaging: {
-    customSendMessage,
-    ...config.messaging,
-  },
-};
-
-const defaultSettings: Settings = {
-  framework: 'react',
-  layout: 'float',
-  homescreen: 'none',
-  ...settings,
-};
-
-// eslint-disable-next-line default-case
-switch (defaultSettings.layout) {
-  case 'float':
-    defaultConfig = {
-      ...defaultConfig,
-      headerConfig: { ...defaultConfig.headerConfig, hideMinimizeButton: undefined },
-      themeConfig: { ...defaultConfig.themeConfig, corners: undefined },
-      layout: { ...defaultConfig.layout, showFrame: undefined },
-      element: undefined,
-      openChatByDefault: undefined,
-    };
-    break;
-  case 'sidebar':
-    defaultConfig = {
-      ...defaultConfig,
-      headerConfig: {
-        ...defaultConfig.headerConfig,
-        hideMinimizeButton: undefined,
-        minimizeButtonIconType: MinimizeButtonIconType.SIDE_PANEL_RIGHT,
-      },
-      themeConfig: { ...defaultConfig.themeConfig, corners: CornersType.SQUARE },
-      layout: { ...defaultConfig.layout, showFrame: undefined },
-      openChatByDefault: undefined,
-    };
-    break;
-  case 'fullscreen':
-    defaultConfig = {
-      ...defaultConfig,
-      headerConfig: { ...defaultConfig.headerConfig, hideMinimizeButton: true },
-      themeConfig: { ...defaultConfig.themeConfig, corners: CornersType.SQUARE },
-      layout: { ...defaultConfig.layout, showFrame: false },
-      openChatByDefault: true,
-    };
-    break;
-}
-
-function updateQueryParams(items: KeyPairs[]) {
-  // Get the current URL's search params
-  const urlParams = new URLSearchParams(window.location.search);
-
-  // Set or update the query parameter
-  items.forEach(({ key, value }) => {
-    urlParams.set(key, value);
-  });
-  // Update the URL without refreshing the page
-  window.location.search = urlParams.toString();
-}
-
-@customElement('demo-container')
-export class Demo extends LitElement {
-  @state()
-  settings: Settings = defaultSettings;
-
-  @state()
-  config: PublicConfig = defaultConfig;
-
-  firstUpdated() {
-    this.addEventListener('config-changed', this._onConfigChanged);
-    this.addEventListener('settings-changed', this._onSettingsChanged);
-  }
-
-  private _onSettingsChanged(event: CustomEvent) {
-    const settings = event.detail;
-    const config = {
-      ...this.config,
-    };
-    delete config.messaging.customSendMessage;
-    updateQueryParams([
-      { key: 'settings', value: JSON.stringify(settings) },
-      { key: 'config', value: JSON.stringify(config) },
-    ]);
-  }
-
-  private _onConfigChanged(event: CustomEvent) {
-    const settings = { ...this.settings };
-    const config = event.detail;
-    delete config.messaging.customSendMessage;
-    updateQueryParams([
-      { key: 'settings', value: JSON.stringify(settings) },
-      { key: 'config', value: JSON.stringify(config) },
-    ]);
-  }
-
-  render() {
-    return html`<slot name="demo-header"></slot> <slot name="demo-body"></slot>`;
-  }
-}
+const { defaultConfig, defaultSettings } = getSettings();
 
 /**
- * `DemoHeader` is a custom Lit element representing a header component.
- */
-@customElement('demo-header')
-export class DemoHeader extends LitElement {
-  render() {
-    return html`
-      <cds-header aria-label="Carbon AI Chat">
-        <cds-header-name href="javascript:void 0" prefix="Carbon">AI Chat</cds-header-name>
-      </cds-header>
-    `;
-  }
-}
-
-/**
- * `DemoHeader` is a custom Lit element representing a header component.
+ * `DemoBody` is a custom Lit element representing the body component.
  */
 @customElement('demo-body')
 export class DemoBody extends LitElement {
@@ -271,6 +136,16 @@ export class DemoBody extends LitElement {
 
   onBeforeRender = (instance: ChatInstance) => {
     this._instance = instance;
+
+    function customButtonHandler(event: any) {
+      const { customEventType, messageItem } = event;
+      // The 'custom_event_name' property comes from the button response type with button_type of custom_event.
+      if (customEventType === 'buttonItemClicked' && messageItem.custom_event_name === 'alert_button') {
+        // eslint-disable-next-line no-alert
+        window.alert(messageItem.user_defined.text);
+      }
+    }
+    this._instance.on({ type: 'messageItemCustom', handler: customButtonHandler });
   };
 
   openSideBar = () => {
@@ -341,8 +216,6 @@ export class DemoBody extends LitElement {
 // Register the custom element if not already defined
 declare global {
   interface HTMLElementTagNameMap {
-    'demo-container': Demo;
-    'demo-header': DemoHeader;
     'demo-body': DemoBody;
   }
 }
