@@ -12,7 +12,7 @@
     "analyze": "parcel build index.html --reporter @parcel/reporter-bundle-analyzer"
   },
   "dependencies": {
-    "@carbon/ai-chat": "*",
+    "@carbon/ai-chat": "latest",
     "lit": "^2.8.0"
   },
   "devDependencies": {

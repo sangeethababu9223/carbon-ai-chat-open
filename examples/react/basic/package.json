@@ -14,7 +14,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@carbon/ai-chat": "*"
+    "@carbon/ai-chat": "latest"
   },
   "devDependencies": {
     "@parcel/reporter-bundle-analyzer": "^2.12.0",
