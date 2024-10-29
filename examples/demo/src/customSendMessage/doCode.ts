@@ -13,7 +13,7 @@
  *
  */
 
-import { ChatInstance, GenericItem } from '@carbon/ai-chat';
+import { ChatInstance, MessageResponseTypes, TextItem } from '@carbon/ai-chat';
 
 import { doTextStreaming } from './doText';
 
@@ -56,9 +56,9 @@ function doCode(instance: ChatInstance) {
     output: {
       generic: [
         {
-          response_type: 'text',
+          response_type: MessageResponseTypes.TEXT,
           text: CODE,
-        } as GenericItem,
+        } as TextItem,
       ],
     },
   });

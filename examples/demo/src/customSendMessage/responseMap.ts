@@ -22,6 +22,7 @@ import { doCarousel } from './doCarousel';
 import { doCode, doCodeStreaming } from './doCode';
 import { doConversationalSearch, doConversationalSearchStreaming } from './doConversationalSearch';
 import { doDate } from './doDate';
+import { doError } from './doError';
 import { doGrid } from './doGrid';
 import { doHumanAgent } from './doHumanAgent';
 import { doIFrame } from './doIFrame';
@@ -38,15 +39,17 @@ const RESPONSE_MAP: Record<string, (instance: ChatInstance) => Promise<void> | v
   audio: doAudio,
   button: doButton,
   card: doCard,
-  // carousel: doCarousel,
+  carousel: doCarousel,
   code: doCode,
-  // 'code (stream)': doCodeStreaming,
+  'code (stream)': doCodeStreaming,
   'conversational search': doConversationalSearch,
   'conversational search (stream)': doConversationalSearchStreaming,
+  // Issues with React component
   // date: doDate,
   grid: doGrid,
-  // 'human agent': doHumanAgent,
+  'human agent': doHumanAgent,
   iframe: doIFrame,
+  'inline error': doError,
   image: doImage,
   'unordered list': doList,
   'option list': doOption,

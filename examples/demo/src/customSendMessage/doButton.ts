@@ -13,16 +13,16 @@
  *
  */
 
-import { ChatInstance, GenericItem } from '@carbon/ai-chat';
+import { ChatInstance, GenericItem, MessageResponseTypes, TextItem } from '@carbon/ai-chat';
 
 function doButton(instance: ChatInstance) {
   instance.messaging.addMessage({
     output: {
       generic: [
         {
-          response_type: 'text',
+          response_type: MessageResponseTypes.TEXT,
           text: 'Buttons can be used to either send content back to your assistant, open URLs, open a panel, or throw client side events to drive client side code.',
-        } as GenericItem,
+        } as TextItem,
         {
           response_type: 'button',
           label: 'Run some code',

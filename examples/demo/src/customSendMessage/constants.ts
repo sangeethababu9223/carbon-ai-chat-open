@@ -15,7 +15,9 @@
 
 const WELCOME_TEXT = `Welcome to this example of a custom backend.
 
-This backend is mocked entirely on the client side. It does **not** show all potential functionality.`;
+This backend is mocked entirely on the client side. It does **not** show all potential functionality.
+
+You can type **help** to see this message again.`;
 
 const TABLE = `
 | Lorem        | Ipsum      | Odor    | Amet      |
@@ -73,6 +75,6 @@ const CHART_DATA = JSON.stringify({
   },
 });
 
-const WORD_DELAY = 10;
+const WORD_DELAY = 50;
 
 export { WELCOME_TEXT, TEXT, WORD_DELAY, CHART_DATA, TABLE, ORDERED_LIST, UNORDERED_LIST };

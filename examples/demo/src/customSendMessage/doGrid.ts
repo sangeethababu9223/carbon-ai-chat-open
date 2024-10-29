@@ -13,16 +13,16 @@
  *
  */
 
-import { ChatInstance, GenericItem } from '@carbon/ai-chat';
+import { ChatInstance, GenericItem, MessageResponseTypes, TextItem } from '@carbon/ai-chat';
 
 function doGrid(instance: ChatInstance) {
   instance.messaging.addMessage({
     output: {
       generic: [
         {
-          response_type: 'text',
+          response_type: MessageResponseTypes.TEXT,
           text: '#### Grid alignment example:',
-        } as GenericItem,
+        } as TextItem,
         {
           rows: [
             {
@@ -163,9 +163,9 @@ function doGrid(instance: ChatInstance) {
           response_type: 'grid',
         } as unknown as GenericItem,
         {
-          response_type: 'text',
+          response_type: MessageResponseTypes.TEXT,
           text: '#### Grid Lendyr example:',
-        } as GenericItem,
+        } as TextItem,
         {
           rows: [
             {

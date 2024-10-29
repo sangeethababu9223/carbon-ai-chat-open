@@ -13,16 +13,15 @@
  *
  */
 
-import { ChatInstance, GenericItem } from '@carbon/ai-chat';
+import { ChatInstance, ConnectToAgentItem, MessageResponseTypes } from '@carbon/ai-chat';
 
 function doHumanAgent(instance: ChatInstance) {
   instance.messaging.addMessage({
     output: {
       generic: [
         {
-          response_type: 'text',
-          text: 'Rendering the chart component from [Carbon Labs](https://labs-canary.carbondesignsystem.com/?path=/docs/components-chart--chart).',
-        } as GenericItem,
+          response_type: MessageResponseTypes.CONNECT_TO_AGENT,
+        } as ConnectToAgentItem,
       ],
     },
   });

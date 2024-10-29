@@ -13,7 +13,7 @@
  *
  */
 
-import { ChatInstance, GenericItem } from '@carbon/ai-chat';
+import { ChatInstance, MessageResponseTypes, OptionItem } from '@carbon/ai-chat';
 
 import { RESPONSE_MAP } from './responseMap';
 
@@ -23,16 +23,17 @@ function doOption(instance: ChatInstance) {
     output: {
       generic: [
         {
-          response_type: 'option',
-          title: 'Select a response to view it in action (button).',
-          options,
-          preference: 'button',
-        } as GenericItem,
-        /* {
-          response_type: 'option',
+          response_type: MessageResponseTypes.OPTION,
           title: 'Select a response to view it in action (dropdown).',
           options,
-        } as GenericItem, */
+        } as OptionItem,
+        {
+          response_type: MessageResponseTypes.OPTION,
+          title: 'Select a response to view it in action (button).',
+          description: 'If under 5 items, default is buttons. If over, moves to dropdown.',
+          options,
+          preference: 'button',
+        } as OptionItem,
       ],
     },
   });

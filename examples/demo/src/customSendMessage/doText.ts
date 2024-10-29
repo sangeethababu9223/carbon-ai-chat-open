@@ -13,7 +13,7 @@
  *
  */
 
-import { ChatInstance, GenericItem, StreamChunk } from '@carbon/ai-chat';
+import { ChatInstance, MessageResponseTypes, OptionItem, StreamChunk, TextItem } from '@carbon/ai-chat';
 import { sleep } from '../framework/utils';
 
 import { TEXT, WELCOME_TEXT, WORD_DELAY } from './constants';
@@ -28,7 +28,7 @@ async function doTextStreaming(instance: ChatInstance, text: string = TEXT) {
       // Each time you get a chunk back, you can call `addMessageChunk`.
       instance.messaging.addMessageChunk({
         partial_item: {
-          response_type: 'text',
+          response_type: MessageResponseTypes.TEXT,
           // The next chunk, the chat component will deal with appending these chunks.
           text: `${word} `,
           streaming_metadata: {
@@ -37,7 +37,7 @@ async function doTextStreaming(instance: ChatInstance, text: string = TEXT) {
             // appear above message item 2, be sure to seed it with a chunk first, even if its empty to start.
             id: '1',
           },
-        } as GenericItem,
+        } as TextItem,
         streaming_metadata: {
           // This is the id of the entire message response.
           response_id: responseID,
@@ -52,7 +52,7 @@ async function doTextStreaming(instance: ChatInstance, text: string = TEXT) {
   // This requires ALL the concatenated final text. If you want to append text, run a post processing safety check, or anything
   // else that mutates the data, you can do so here.
   const completeItem = {
-    response_type: 'text',
+    response_type: MessageResponseTypes.TEXT,
     text,
     streaming_metadata: {
       // This is the id of the item inside the response.
@@ -88,15 +88,14 @@ function doWelcomeText(instance: ChatInstance) {
     output: {
       generic: [
         {
-          response_type: 'text',
+          response_type: MessageResponseTypes.TEXT,
           text: WELCOME_TEXT,
-        } as GenericItem,
+        } as TextItem,
         {
-          response_type: 'option',
+          response_type: MessageResponseTypes.OPTION,
           title: 'Select a response to view it in action.',
           options,
-          preference: 'button',
-        } as GenericItem,
+        } as OptionItem,
       ],
     },
   });
@@ -107,9 +106,9 @@ function doText(instance: ChatInstance, text: string = TEXT) {
     output: {
       generic: [
         {
-          response_type: 'text',
+          response_type: MessageResponseTypes.TEXT,
           text,
-        } as GenericItem,
+        } as TextItem,
       ],
     },
   });

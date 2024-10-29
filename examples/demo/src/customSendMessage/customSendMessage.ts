@@ -23,10 +23,12 @@ async function customSendMessage(
   requestOptions: CustomSendMessageOptions,
   instance: ChatInstance,
 ) {
-  if (request.input.text in RESPONSE_MAP) {
-    await RESPONSE_MAP[request.input.text](instance);
-  } else {
-    doWelcomeText(instance);
+  if (request.input.message_type !== 'event') {
+    if (request.input.text in RESPONSE_MAP) {
+      await RESPONSE_MAP[request.input.text](instance);
+    } else {
+      doWelcomeText(instance);
+    }
   }
 }
 

@@ -13,16 +13,16 @@
  *
  */
 
-import { ChatInstance, GenericItem } from '@carbon/ai-chat';
+import { ChatInstance, GenericItem, MessageResponseTypes, TextItem } from '@carbon/ai-chat';
 
 function doCarousel(instance: ChatInstance) {
   instance.messaging.addMessage({
     output: {
       generic: [
         {
-          response_type: 'text',
+          response_type: MessageResponseTypes.TEXT,
           text: 'Please select one item you would like to order:',
-        } as GenericItem,
+        } as TextItem,
         {
           items: [
             {

@@ -13,31 +13,31 @@
  *
  */
 
-import { ChatInstance, GenericItem } from '@carbon/ai-chat';
+import { ChatInstance, IFrameItem, MessageResponseTypes, TextItem } from '@carbon/ai-chat';
 
 function doIFrame(instance: ChatInstance) {
   instance.messaging.addMessage({
     output: {
       generic: [
         {
-          response_type: 'text',
+          response_type: MessageResponseTypes.TEXT,
           text: 'You can show an iframe either in a hero card that opens up a panel, or inline.',
-        } as GenericItem,
+        } as TextItem,
         {
           source: 'https://web-chat.assistant.test.watson.cloud.ibm.com/assets/iframe-example.html',
-          response_type: 'iframe',
+          response_type: MessageResponseTypes.IFRAME,
           image_url: 'https://live.staticflickr.com/540/18795217173_39e0b63304_c.jpg',
           description: 'An example page to test url unfurling and iframe permissions for the iframe response type.',
           title: 'IFrame example panel',
-        } as GenericItem,
+        } as IFrameItem,
         {
           source: 'https://web-chat.assistant.test.watson.cloud.ibm.com/assets/iframe-example.html',
-          response_type: 'iframe',
+          response_type: MessageResponseTypes.IFRAME,
           image_url: 'https://live.staticflickr.com/540/18795217173_39e0b63304_c.jpg',
           description: 'An example page to test url unfurling and iframe permissions for the iframe response type.',
           title: 'An inline display of an iframe',
           display: 'inline',
-        } as GenericItem,
+        } as IFrameItem,
       ],
     },
   });

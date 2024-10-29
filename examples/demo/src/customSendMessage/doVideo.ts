@@ -13,7 +13,7 @@
  *
  */
 
-import { ChatInstance, GenericItem } from '@carbon/ai-chat';
+import { ChatInstance, MessageResponseTypes, VideoItem } from '@carbon/ai-chat';
 
 function doVideo(instance: ChatInstance) {
   instance.messaging.addMessage({
@@ -21,15 +21,15 @@ function doVideo(instance: ChatInstance) {
       generic: [
         {
           source: 'https://vimeo.com/118761396',
-          response_type: 'video',
+          response_type: MessageResponseTypes.VIDEO,
           dimensions: {
-            base_height: '126',
+            base_height: 126,
           },
-        } as GenericItem,
+        } as VideoItem,
         {
           source: 'https://www.youtube.com/watch?v=y_6hQOUx-dg',
-          response_type: 'video',
-        } as GenericItem,
+          response_type: MessageResponseTypes.VIDEO,
+        } as VideoItem,
       ],
     },
   });

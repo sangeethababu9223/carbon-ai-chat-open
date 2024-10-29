@@ -13,24 +13,18 @@
  *
  */
 
-import { ChatInstance, MessageResponseTypes, TextItem, UserDefinedItem } from '@carbon/ai-chat';
+import { ChatInstance, InlineErrorItem, MessageResponseTypes } from '@carbon/ai-chat';
 
-import { CHART_DATA } from './constants';
-
-function doUserDefined(instance: ChatInstance) {
+function doError(instance: ChatInstance) {
   instance.messaging.addMessage({
     output: {
       generic: [
         {
-          response_type: MessageResponseTypes.USER_DEFINED,
-          user_defined: {
-            type: 'chart',
-            chart_data: CHART_DATA,
-          },
-        } as UserDefinedItem,
+          response_type: MessageResponseTypes.INLINE_ERROR,
+        } as InlineErrorItem,
       ],
     },
   });
 }
 
-export { doUserDefined };
+export { doError };

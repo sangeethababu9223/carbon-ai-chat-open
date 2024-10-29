@@ -13,7 +13,7 @@
  *
  */
 
-import { ChatInstance, GenericItem } from '@carbon/ai-chat';
+import { ChatInstance, GenericItem, ImageItem, MessageResponseTypes, TextItem } from '@carbon/ai-chat';
 
 function doImage(instance: ChatInstance) {
   instance.messaging.addMessage({
@@ -24,37 +24,38 @@ function doImage(instance: ChatInstance) {
           source:
             'https://news-cdn.softpedia.com/images/news2/Picture-of-the-Day-Real-Life-Simba-and-Mufasa-Caught-on-Camera-in-Tanzania-392687-2.jpg',
           description: 'The image description (optional)',
-          response_type: 'image',
-        } as GenericItem,
+          response_type: MessageResponseTypes.IMAGE,
+        } as ImageItem,
         {
-          response_type: 'text',
+          response_type: MessageResponseTypes.TEXT,
           text: 'And now just an image by itself.',
-        } as GenericItem,
+        } as TextItem,
         {
           source: 'https://onlinejpgtools.com/images/examples-onlinejpgtools/mouse.jpg',
-          response_type: 'image',
-        } as GenericItem,
+          response_type: MessageResponseTypes.IMAGE,
+        } as ImageItem,
         {
-          response_type: 'text',
+          response_type: MessageResponseTypes.TEXT,
           text: 'You can also use an image as a button.',
-        } as GenericItem,
+        } as TextItem,
         {
-          response_type: 'text',
+          response_type: MessageResponseTypes.TEXT,
           text: 'This is a **url** button:',
-        } as GenericItem,
+        } as TextItem,
         {
           url: 'https://v10.carbondesignsystem.com/',
           kind: 'link',
           label: 'Carbon Design System',
           target: '_blank',
-          image_url: 'https://news-cdn.softpedia.com/images/news2/Picture-of-the-Day-Real-Life-Simba-and-Mufasa-Caught-on-Camera-in-Tanzania-392687-2.jpg',
+          image_url:
+            'https://news-cdn.softpedia.com/images/news2/Picture-of-the-Day-Real-Life-Simba-and-Mufasa-Caught-on-Camera-in-Tanzania-392687-2.jpg',
           button_type: 'url',
           response_type: 'button',
         } as unknown as GenericItem,
         {
-          response_type: 'text',
+          response_type: MessageResponseTypes.TEXT,
           text: 'This is a **post_back** button:',
-        } as GenericItem,
+        } as TextItem,
         {
           label: 'Return a card',
           value: {
@@ -62,14 +63,15 @@ function doImage(instance: ChatInstance) {
               text: 'card',
             },
           },
-          image_url: 'https://news-cdn.softpedia.com/images/news2/Picture-of-the-Day-Real-Life-Simba-and-Mufasa-Caught-on-Camera-in-Tanzania-392687-2.jpg',
+          image_url:
+            'https://news-cdn.softpedia.com/images/news2/Picture-of-the-Day-Real-Life-Simba-and-Mufasa-Caught-on-Camera-in-Tanzania-392687-2.jpg',
           button_type: 'post_back',
           response_type: 'button',
         } as unknown as GenericItem,
         {
-          response_type: 'text',
+          response_type: MessageResponseTypes.TEXT,
           text: 'This is a **show_panel** button:',
-        } as GenericItem,
+        } as TextItem,
         {
           kind: 'secondary',
           panel: {
@@ -94,17 +96,19 @@ function doImage(instance: ChatInstance) {
             title: 'Tanya panel',
             show_animations: false,
           },
-          image_url: 'https://news-cdn.softpedia.com/images/news2/Picture-of-the-Day-Real-Life-Simba-and-Mufasa-Caught-on-Camera-in-Tanzania-392687-2.jpg',
+          image_url:
+            'https://news-cdn.softpedia.com/images/news2/Picture-of-the-Day-Real-Life-Simba-and-Mufasa-Caught-on-Camera-in-Tanzania-392687-2.jpg',
           button_type: 'show_panel',
           response_type: 'button',
         } as unknown as GenericItem,
         {
-          response_type: 'text',
+          response_type: MessageResponseTypes.TEXT,
           text: 'This is a **custom_event** button:',
-        } as GenericItem,
+        } as TextItem,
         {
           kind: 'tertiary',
-          image_url: 'https://news-cdn.softpedia.com/images/news2/Picture-of-the-Day-Real-Life-Simba-and-Mufasa-Caught-on-Camera-in-Tanzania-392687-2.jpg',
+          image_url:
+            'https://news-cdn.softpedia.com/images/news2/Picture-of-the-Day-Real-Life-Simba-and-Mufasa-Caught-on-Camera-in-Tanzania-392687-2.jpg',
           button_type: 'custom_event',
           user_defined: {
             text: 'Alert from a picture!',
