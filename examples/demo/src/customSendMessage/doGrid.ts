@@ -22,7 +22,7 @@ function doGrid(instance: ChatInstance) {
         {
           response_type: 'text',
           text: '#### Grid alignment example:',
-        },
+        } as GenericItem,
         {
           rows: [
             {
@@ -161,11 +161,11 @@ function doGrid(instance: ChatInstance) {
             },
           ],
           response_type: 'grid',
-        },
+        } as unknown as GenericItem,
         {
           response_type: 'text',
           text: '#### Grid Lendyr example:',
-        },
+        } as GenericItem,
         {
           rows: [
             {
@@ -230,7 +230,7 @@ function doGrid(instance: ChatInstance) {
             },
           ],
           response_type: 'grid',
-        },
+        } as unknown as GenericItem,
       ],
     },
   });

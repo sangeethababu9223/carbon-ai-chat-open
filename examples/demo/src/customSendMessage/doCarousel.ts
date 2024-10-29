@@ -22,7 +22,7 @@ function doCarousel(instance: ChatInstance) {
         {
           response_type: 'text',
           text: 'Please select one item you would like to order:',
-        },
+        } as GenericItem,
         {
           items: [
             {
@@ -123,7 +123,7 @@ function doCarousel(instance: ChatInstance) {
             },
           ],
           response_type: 'carousel',
-        },
+        } as unknown as GenericItem,
       ],
     },
   });

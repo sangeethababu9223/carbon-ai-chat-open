@@ -14,7 +14,7 @@
  */
 
 import { ChatInstance, GenericItem, StreamChunk } from '@carbon/ai-chat';
-import { sleep } from 'framework/utils';
+import { sleep } from '../framework/utils';
 
 import { WORD_DELAY } from './constants';
 
@@ -199,7 +199,7 @@ async function doConversationalSearchStreaming(instance: ChatInstance, text: str
             // appear above message item 2, be sure to seed it with a chunk first, even if its empty to start.
             id: '1',
           },
-        } as GenericItem,
+        } as unknown as GenericItem,
         streaming_metadata: {
           // This is the id of the entire message response.
           response_id: responseID,

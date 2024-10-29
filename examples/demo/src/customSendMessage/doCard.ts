@@ -108,7 +108,7 @@ function doCard(instance: ChatInstance) {
             },
           ],
           response_type: 'card',
-        },
+        } as unknown as GenericItem,
       ],
     },
   });

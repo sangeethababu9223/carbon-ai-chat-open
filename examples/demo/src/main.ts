@@ -13,6 +13,7 @@
  *
  */
 
+import './styles.css';
 import '@carbon/web-components/es/components/ui-shell/index.js';
 import '@carbon/web-components/es/components/layer/index.js';
 import '@carbon/web-components/es/components/icon-button/index.js';
@@ -25,8 +26,8 @@ import '@carbon/ai-chat/dist/web-components/cds-aichat-container/index.js';
 import '@carbon/ai-chat/dist/web-components/cds-aichat-custom-element/index.js';
 
 import { PublicConfig } from '@carbon/ai-chat';
-import { Settings } from 'framework/types';
-import { getSettings, updateQueryParams } from 'framework/utils';
+import { Settings } from './framework/types';
+import { getSettings, updateQueryParams } from './framework/utils';
 import { html, LitElement } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 

@@ -75,21 +75,6 @@ print(generate_lorem_ipsum(2))  # Generates 2 paragraphs of Lorem Ipsum text
 ` +
   '\n\n```';
 
-const CHART_DATA = JSON.stringify({
-  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {
-    values: [
-      { category: 'A', value: 20 },
-      { category: 'B', value: 40 },
-      { category: 'C', value: 60 },
-    ],
-  },
-  mark: 'bar',
-  encoding: {
-    x: { field: 'category', type: 'nominal', axis: { title: 'Category' } },
-    y: { field: 'value', type: 'quantitative', axis: { title: 'Value' } },
-  },
-});
 
 const WORD_DELAY = 40;
 
@@ -182,15 +167,11 @@ async function customSendMessage(
         instance.messaging.addMessage({
           output: {
             generic: [
-              /* {
-                response_type: 'text',
-                text: 'Rendering the chart component from [Carbon Labs](https://labs-canary.carbondesignsystem.com/?path=/docs/components-chart--chart).',
-              } as GenericItem, */
               {
                 response_type: 'user_defined',
                 user_defined: {
-                  type: 'chart',
-                  chart_data: CHART_DATA,
+                  type: 'my_unique_identifier',
+                  my_data: {},
                 },
               } as GenericItem,
             ],

@@ -13,12 +13,12 @@
  *
  */
 
-import { BusEventViewChange, ChatInstance, PublicConfig, ViewType } from '@carbon/ai-chat';
+import { BusEventType, BusEventViewChange, ChatInstance, PublicConfig, ViewType } from '@carbon/ai-chat';
 import rightPanelOpen from '@carbon/web-components/es/icons/right-panel--open/16.js';
 import { css, html, LitElement, PropertyValues } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import React from 'react';
-import { DemoApp } from 'react/DemoApp';
+import { DemoApp } from '../react/DemoApp';
 import { createRoot, Root } from 'react-dom/client';
 
 import { Settings } from './types';
@@ -145,7 +145,7 @@ export class DemoBody extends LitElement {
         window.alert(messageItem.user_defined.text);
       }
     }
-    this._instance.on({ type: 'messageItemCustom', handler: customButtonHandler });
+    this._instance.on({ type: 'messageItemCustom' as BusEventType, handler: customButtonHandler });
   };
 
   openSideBar = () => {

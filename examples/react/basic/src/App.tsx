@@ -13,6 +13,8 @@
  *
  */
 
+import './styles.css';
+
 import { BusEventUserDefinedResponse, ChatContainer, ChatInstance, PublicConfig } from '@carbon/ai-chat';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
@@ -33,7 +35,7 @@ function App() {
 function renderUserDefinedResponse(event: BusEventUserDefinedResponse, instance: ChatInstance) {
   // The event here will contain details for each user defined response that needs to be rendered.
 
-  if (event.data.message.user_defined?.type === 'chart') {
+  if (event.data.message.user_defined?.type === 'my_unique_identifier') {
     return <div className="padding">Any component you want.</div>;
   }
 

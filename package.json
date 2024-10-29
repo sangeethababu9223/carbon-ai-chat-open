@@ -13,8 +13,8 @@
   },
   "homepage": "https://github.com/carbon-design-system/carbon-ai-chat#readme",
   "workspaces": [
+    "examples/demo",
     "examples/react/basic",
-    "examples/web-components/basic",
-    "examples/demo"
+    "examples/web-components/basic"
   ]
 }

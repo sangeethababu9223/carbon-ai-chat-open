@@ -13,6 +13,8 @@
  *
  */
 
+import './styles.css';
+
 import '@carbon/ai-chat/dist/web-components/cds-aichat-container/index.js';
 
 import { html, LitElement } from 'lit';

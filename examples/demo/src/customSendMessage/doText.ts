@@ -14,7 +14,7 @@
  */
 
 import { ChatInstance, GenericItem, StreamChunk } from '@carbon/ai-chat';
-import { sleep } from 'framework/utils';
+import { sleep } from '../framework/utils';
 
 import { TEXT, WELCOME_TEXT, WORD_DELAY } from './constants';
 import { RESPONSE_MAP } from './responseMap';

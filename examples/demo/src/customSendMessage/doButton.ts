@@ -32,7 +32,7 @@ function doButton(instance: ChatInstance) {
           user_defined: {
             text: 'Alert!',
           },
-        } as GenericItem,
+        } as unknown as GenericItem,
         {
           response_type: 'button',
           label: 'Send a message',
@@ -42,7 +42,7 @@ function doButton(instance: ChatInstance) {
               text: 'button',
             },
           },
-        } as GenericItem,
+        } as unknown as GenericItem,
         {
           response_type: 'button',
           button_type: 'show_panel',
@@ -58,13 +58,13 @@ function doButton(instance: ChatInstance) {
               },
             ],
           },
-        } as GenericItem,
+        } as unknown as GenericItem,
         {
           response_type: 'button',
           button_type: 'url',
           label: 'Visit ibm.com',
           url: 'https://www.ibm.com',
-        } as GenericItem,
+        } as unknown as GenericItem,
       ],
     },
   });
