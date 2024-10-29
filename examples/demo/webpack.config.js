@@ -39,7 +39,8 @@ export default {
                 '@babel/plugin-proposal-decorators', {
                   "decoratorsBeforeExport": true
                 }
-              ]
+              ],
+              '@babel/plugin-proposal-class-properties'
             ],
           },
         },
