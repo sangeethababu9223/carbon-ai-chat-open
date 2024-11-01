@@ -1,0 +1,73 @@
+name: ci-check
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm install
+      - name: Run build
+        run: npm run build
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm install
+      - name: Check formatting of project files (staged)
+        if: ${{ github.event_name == 'pull_request' }}
+        run: npm run format:staged
+      - name: Check formatting of project files (non-staged)
+        if: ${{ github.event_name != 'pull_request' }}
+        run: npm run format
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm install
+      - name: Lint
+        run: npm run lint && npm run lint:styles
+
+  license:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm install
+      - name: License check
+        run: npm run lint:license
