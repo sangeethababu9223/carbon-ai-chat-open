@@ -1,7 +1,7 @@
 name: Question ❓
 description: Usage question or discussion about Carbon AI chat components.
 title: '[Question]: '
-labels: ['type: question ❓', 'status: needs triage 🕵️‍♀️']
+labels: ['status: grooming needed']
 body:
   - type: markdown
     attributes:
