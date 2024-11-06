@@ -39,13 +39,13 @@ repository. You might have heard this setup described as a
 As a result, we use two pieces of tooling to help us manage installing
 dependencies and publishing our packages. These include:
 
-- [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) for handling
+- [NPM workspaces](https://docs.npmjs.com/cli/v8/using-npm/workspaces) for handling
   dependencies across all packages
 - [Lerna](https://lerna.js.org/) for publishing packages, tagging versions, and
   more
 
 In order for you to install all the dependencies in this project, you'll need to
-[install Yarn](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) and run the following
+[install NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) and run the following
 command in your terminal:
 
 ```bash
