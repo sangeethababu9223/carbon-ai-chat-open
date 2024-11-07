@@ -9,7 +9,7 @@ body:
       value: '## Welcome!'
   - type: markdown
     attributes:
-      value: |
+      value:
         Use this template if you want to request a new feature, or a change to
         an existing feature. If you are reporting a bug or problem, please use
         the bug template instead.
@@ -17,28 +17,28 @@ body:
     id: problem
     attributes:
       label: The problem
-      description: |
-        Provide a clear and concise description of what the problem this new
+      description:
+        'Provide a clear and concise description of what the problem this new
         feature is trying to solve. (For example, I find it frustrating
         when...). Be sure to attach screenshots or videos to illustrate the
-        problem.
+        problem.'
     validations:
       required: true
   - type: textarea
     id: solution
     attributes:
       label: The solution
-      description: |
-        Provide a clear and concise description of what you would like to
+      description:
+        'Provide a clear and concise description of what you would like to
         happen instead. Be sure to attach screenshots or videos to illustrate
-        the solution if possible. Design specs are highly encouraged.
+        the solution if possible. Design specs are highly encouraged.'
     validations:
       required: true
   - type: textarea
     id: user-research
     attributes:
       label: Examples
-      description: |
+      description:
         Provide sample content, references, or audits of solutions solving the
         same problem in other applications/websites.
   - type: input
@@ -54,7 +54,6 @@ body:
         - 'with watsonx Orchestrate'
         - 'with watsonx Assistant'
         - 'with my own backend'
-      default: 'with my own backend'
   - type: dropdown
     id: blocker
     attributes:
@@ -62,7 +61,6 @@ body:
       options:
         - 'No'
         - 'Yes'
-      default: 'No'
   - type: dropdown
     id: priority
     attributes:
@@ -71,7 +69,6 @@ body:
         - 'High Priority = pressing release'
         - 'Medium Priority = upcoming release but is not pressing'
         - 'Low Priority = release date is not dependent on fix or not upcoming'
-      default: 'Medium Priority = upcoming release but is not pressing'
   - type: input
     id: date
     attributes:
@@ -89,18 +86,20 @@ body:
       description: 'What resources do you have to assist this effort?'
   - type: markdown
     attributes:
-      value: |
-        _Carbon is a collaborative system. We encourage teams to build
+      value:
+        '_Carbon is a collaborative system. We encourage teams to build
         components and submit them for integration as either add-ons or core
         components. To better understand our feature request process and what
-        happens after you submit this issue, [check out the
+        happends after you submit this issue, [check out the
         docs](https://github.com/carbon-design-system/carbon/blob/main/docs/guides/support.md#type-enhancement-)
-        on Github._
+        on Github._'
   - type: checkboxes
     id: terms
     attributes:
       label: Code of Conduct
       description: Please confirm the following
       options:
-        - label: "I agree to follow this project's [Code of Conduct](https://github.com/carbon-design-system/carbon/blob/f555616971a03fd454c0f4daea184adf41fff05b/.github/CODE_OF_CONDUCT.md)"
+        - label:
+            I agree to follow this project's [Code of
+            Conduct](https://github.com/carbon-design-system/carbon/blob/f555616971a03fd454c0f4daea184adf41fff05b/.github/CODE_OF_CONDUCT.md)
           required: true
