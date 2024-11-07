@@ -47,7 +47,7 @@ body:
       label: Application/PAL
       description: 'What application and/or PAL do you work on?'
   - type: dropdown
-    id: priority
+    id: backend
     attributes:
       label: How do you use AI Chat?
       options:
