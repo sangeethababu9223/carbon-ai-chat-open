@@ -54,6 +54,9 @@ body:
         - 'with watsonx Orchestrate'
         - 'with watsonx Assistant'
         - 'with my own backend'
+      default: 'with my own backend'
+      validations:
+        required: true
   - type: dropdown
     id: blocker
     attributes:
@@ -61,6 +64,7 @@ body:
       options:
         - 'No'
         - 'Yes'
+      default: 'No'
   - type: dropdown
     id: priority
     attributes:
@@ -69,6 +73,7 @@ body:
         - 'High Priority = pressing release'
         - 'Medium Priority = upcoming release but is not pressing'
         - 'Low Priority = release date is not dependent on fix or not upcoming'
+      default: 'Medium Priority = upcoming release but is not pressing'
   - type: input
     id: date
     attributes:
