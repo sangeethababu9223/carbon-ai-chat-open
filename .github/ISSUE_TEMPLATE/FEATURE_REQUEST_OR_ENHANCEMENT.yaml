@@ -49,11 +49,36 @@ body:
   - type: dropdown
     id: priority
     attributes:
+      label: How do you use AI Chat?
+      options:
+        - 'with watsonx Orchestrate'
+        - 'with watsonx Assistant'
+        - 'with my own backend'
+  - type: dropdown
+    id: blocker
+    attributes:
+      label: Is this a blocker to using AI Chat
+      options:
+        - 'No'
+        - 'Yes'
+  - type: dropdown
+    id: priority
+    attributes:
       label: Business priority
       options:
         - 'High Priority = pressing release'
         - 'Medium Priority = upcoming release but is not pressing'
         - 'Low Priority = release date is not dependent on fix or not upcoming'
+  - type: input
+    id: date
+    attributes:
+      label: When do you need this by?
+      description: 'We will take this into account when release planning, but do not guarantee a date based on requests'
+  - type: textarea
+    id: contacts
+    attributes:
+      label: Additional contacts
+      description: 'Provide name, email, slack'
   - type: input
     id: resources
     attributes:
