@@ -13,28 +13,28 @@
  *
  */
 
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default (env, args) => {
-  const { mode = 'development' } = args;
+  const { mode = "development" } = args;
   return {
     mode,
-    entry: './src/main.ts',
+    entry: "./src/main.ts",
     output: {
-      path: path.resolve(__dirname, 'dist'),
-      filename: 'bundle.js',
+      path: path.resolve(__dirname, "dist"),
+      filename: "bundle.js",
       clean: true,
     },
     resolve: {
       alias: {
-        lit: path.resolve(__dirname, '../../node_modules/lit'), // Ensure all references point to the same Lit instance
+        lit: path.resolve(__dirname, "../../node_modules/lit"), // Ensure all references point to the same Lit instance
       },
-      extensions: ['.ts', '.tsx', '.js', '.jsx', '.css'],
+      extensions: [".ts", ".tsx", ".js", ".jsx", ".css"],
     },
     module: {
       rules: [
@@ -42,38 +42,42 @@ export default (env, args) => {
           test: /\.(ts|tsx|js|jsx)$/, // Combine TypeScript and JavaScript files in one rule
           exclude: /node_modules/,
           use: {
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
-              presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
+              presets: [
+                "@babel/preset-env",
+                "@babel/preset-react",
+                "@babel/preset-typescript",
+              ],
               plugins: [
                 [
-                  '@babel/plugin-proposal-decorators',
+                  "@babel/plugin-proposal-decorators",
                   {
                     decoratorsBeforeExport: true,
                   },
                 ],
-                '@babel/plugin-transform-private-methods',
+                "@babel/plugin-transform-private-methods",
               ],
             },
           },
         },
         {
           test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
+          use: ["style-loader", "css-loader"],
         },
       ],
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './index.html',
-        inject: 'body',
+        template: "./index.html",
+        inject: "body",
       }),
     ],
-    devtool: 'source-map',
+    devtool: "source-map",
     devServer:
-      mode === 'development'
+      mode === "development"
         ? {
-            static: path.join(__dirname, 'dist'),
+            static: path.join(__dirname, "dist"),
             compress: true,
             port: 3001,
             hot: true,
