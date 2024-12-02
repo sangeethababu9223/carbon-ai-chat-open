@@ -13,10 +13,10 @@
  *
  */
 
-import { ChatInstance, MessageResponseTypes, TextItem } from '@carbon/ai-chat';
+import { ChatInstance, MessageResponseTypes, TextItem } from "@carbon/ai-chat";
 
-import { CODE } from './constants';
-import { doTextStreaming } from './doText';
+import { CODE } from "./constants";
+import { doTextStreaming } from "./doText";
 
 function doCode(instance: ChatInstance) {
   instance.messaging.addMessage({

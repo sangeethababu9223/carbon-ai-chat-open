@@ -84,7 +84,7 @@ ${TEXT}
 `;
 
 const CODE =
-  '\n```python\n' +
+  "\n```python\n" +
   `import random
 
 def generate_lorem_ipsum(paragraphs=1):
@@ -115,7 +115,7 @@ def generate_lorem_ipsum(paragraphs=1):
 # Example usage
 print(generate_lorem_ipsum(2))  # Generates 2 paragraphs of Lorem Ipsum text
 ` +
-  '\n\n```';
+  "\n\n```";
 
 const BLOCKQUOTE = `
 > Lorem **bold text** *italics text* ipsum odor amet, consectetuer adipiscing elit. \`alert("inline code");\` aliquet non platea elementum morbi porta accumsan. Tortor libero consectetur dapibus volutpat porta vestibulum.
@@ -139,21 +139,21 @@ ${UNORDERED_LIST}
 `;
 
 // eslint-disable-next-line prefer-template, no-useless-concat
-const MARKDOWN_WITH_SOURCE = MARKDOWN + '\n\n```\n' + MARKDOWN + '\n```';
+const MARKDOWN_WITH_SOURCE = MARKDOWN + "\n\n```\n" + MARKDOWN + "\n```";
 
 const CHART_DATA = JSON.stringify({
-  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  $schema: "https://vega.github.io/schema/vega-lite/v5.json",
   data: {
     values: [
-      { category: 'A', value: 20 },
-      { category: 'B', value: 40 },
-      { category: 'C', value: 60 },
+      { category: "A", value: 20 },
+      { category: "B", value: 40 },
+      { category: "C", value: 60 },
     ],
   },
-  mark: 'bar',
+  mark: "bar",
   encoding: {
-    x: { field: 'category', type: 'nominal', axis: { title: 'Category' } },
-    y: { field: 'value', type: 'quantitative', axis: { title: 'Value' } },
+    x: { field: "category", type: "nominal", axis: { title: "Category" } },
+    y: { field: "value", type: "quantitative", axis: { title: "Value" } },
   },
 });
 
