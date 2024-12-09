@@ -37,7 +37,7 @@
     "@commitlint/config-conventional": "^19.5.0",
     "babel-preset-carbon": "^0.0.14",
     "commander": "^12.1.0",
-    "eslint": "^8.53.0",
+    "eslint": "^9.0.0",
     "eslint-config-carbon": "3.10.0",
     "gitignore-to-glob": "^0.3.0",
     "globby": "^14.0.2",
