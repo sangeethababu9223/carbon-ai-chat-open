@@ -1,4 +1,4 @@
-import{B as _}from"./lit-element-ad691c32.js";import{d as a}from"./index-356e4a49.js";/**
+import{B as _}from"./lit-element-4f433c1b.js";import{d as a}from"./index-356e4a49.js";/**
  * @license
  * Copyright 2020 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
