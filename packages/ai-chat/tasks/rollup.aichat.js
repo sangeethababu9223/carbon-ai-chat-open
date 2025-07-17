@@ -47,18 +47,20 @@ const external = [
   ...Object.keys(pkg.dependencies || [])
 ].map(name => new RegExp(`^${name}(/.*)?`));
 
-const treeshake = {
+const treeshake = true;
+
+/*{
   // Treat modules as side-effect-free unless otherwise specified
-  /* moduleSideEffects: id => {
+  moduleSideEffects: id => {
     // Treat your own code as having side effects if necessary to prevent it from being removed.
     if (id.includes('src/') || id.includes('@carbon/web-components')) {
       return true;
     }
     // For external dependencies, be more specific or allow them all.
     return /node_modules/.test(id);
-  },*/
+  }
   // pureExternalModules: true, // Treat all external modules as pure
-};
+};*/
 
 /**
  * Simplified tsconfig for dts plugin.
@@ -136,8 +138,8 @@ async function runRollup() {
     {
       input: [
         path.join(paths.src, '/aiChatEntry.tsx'),
-        path.join(paths.src, '/web-components/cds-aichat-container.ts'),
-        path.join(paths.src, '/web-components/cds-aichat-custom-element.ts'),
+        path.join(paths.src, '/web-components/cds-aichat-container/index.ts'),
+        path.join(paths.src, '/web-components/cds-aichat-custom-element/index.ts'),
       ],
       output: {
         dir: path.join(paths.dist, '/es'),

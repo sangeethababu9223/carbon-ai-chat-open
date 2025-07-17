@@ -29,7 +29,7 @@ yarn add @carbon/ai-chat
 Render this component in your application, and provide the configuration options for the Carbon AI chat as a prop.
 
 ```typescript
-import "@carbon/ai-chat/dist/es/cds-aichat-container.js";
+import "@carbon/ai-chat/dist/es/web-components/cds-aichat-container/index.js";
 
 import { html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
@@ -65,7 +65,7 @@ If you don't want these behaviors, then provide your own `onViewChange` prop to 
 See {@link CdsAiChatCustomElementAttributes} for an explanation of the various accepted properties and attributes.
 
 ```typescript
-import "@carbon/ai-chat/dist/es/cds-aichat-custom-element.js";
+import "@carbon/ai-chat/dist/es/cds-aichat-custom-element/index.js";
 
 import { css, html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
@@ -96,7 +96,7 @@ export class MyApp extends LitElement {
 You can use the {@link CdsAiChatContainerAttributes.onBeforeRender} or {@link CdsAiChatContainerAttributes.onAfterRender} props to access the Carbon AI chat's instance if you need to call instance methods later. This example renders a button that toggles the Carbon AI chat open and only renders after the instance becomes available. Refer to the following example.
 
 ```typescript
-import "@carbon/ai-chat/dist/es/cds-aichat-container.js";
+import "@carbon/ai-chat/dist/es/web-components/cds-aichat-container/index.js";
 
 import { html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
@@ -132,7 +132,7 @@ This component is also capable of managing `user defined` responses. The Carbon 
 Then, you dynamically generate these slots to pass into the Carbon AI chat's web component and pass in your custom content to be displayed in the correct slot inside the Carbon AI chat. Refer to the following example.
 
 ```typescript
-import "@carbon/ai-chat/dist/es/cds-aichat-container.js";
+import "@carbon/ai-chat/dist/es/web-components/cds-aichat-container/index.js";
 
 import {
   BusEventType,
@@ -242,7 +242,7 @@ export class Demo extends LitElement {
 The web components will also take elements with a slot attribute matching {@link WriteableElementName} as slot items.
 
 ```typescript
-import "@carbon/ai-chat/dist/es/cds-aichat-container.js";
+import "@carbon/ai-chat/dist/es/web-components/cds-aichat-container/index.js";
 import { html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
 

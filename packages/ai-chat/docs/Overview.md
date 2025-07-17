@@ -42,7 +42,7 @@ The web component allows you to use the AI chat in your application. It offers h
 You can render this component anywhere in your application and provide the Carbon AI chat configuration options object as a prop.
 
 ```typescript
-import "@carbon/ai-chat/dist/es/web-components/cds-aichat-container.js";
+import "@carbon/ai-chat/dist/es/web-components/cds-aichat-container/index.js";
 
 import { html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";

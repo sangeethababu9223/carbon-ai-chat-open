@@ -8,7 +8,7 @@
  */
 
 import "./styles.css";
-import "@carbon/ai-chat/dist/es/cds-aichat-container.js";
+import "@carbon/ai-chat/dist/es/web-components/cds-aichat-container/index.js";
 
 import {
   BusEventType,

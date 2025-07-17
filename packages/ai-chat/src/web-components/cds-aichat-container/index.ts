@@ -11,19 +11,19 @@
  * This is the exposed web component for a basic floating chat.
  */
 
-import "../chat/web-components/internal/cds-aichat-internal";
+import "../../chat/web-components/internal/cds-aichat-internal";
 
 import { html, LitElement } from "lit";
 import { property, state } from "lit/decorators.js";
 
-import { carbonElement } from "../chat/web-components/decorators/customElement";
-import { PublicConfig } from "../types/config/PublicConfig";
-import { ChatInstance } from "../types/instance/ChatInstance";
+import { carbonElement } from "../../chat/web-components/decorators/customElement";
+import { PublicConfig } from "../../types/config/PublicConfig";
+import { ChatInstance } from "../../types/instance/ChatInstance";
 import {
   BusEventChunkUserDefinedResponse,
   BusEventType,
   BusEventUserDefinedResponse,
-} from "../types/events/eventBusTypes";
+} from "../../types/events/eventBusTypes";
 
 /**
  * The cds-aichat-container managing creating slotted elements for user_defined responses and writable elements.

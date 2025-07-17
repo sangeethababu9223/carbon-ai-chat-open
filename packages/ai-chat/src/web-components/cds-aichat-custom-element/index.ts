@@ -7,20 +7,20 @@
  *  @license
  */
 
-import "./cds-aichat-container";
+import "../cds-aichat-container";
 
 import { html, LitElement } from "lit";
 import { property, state } from "lit/decorators.js";
 
-import { carbonElement } from "../chat/web-components/decorators/customElement";
-import { PublicConfig } from "../types/config/PublicConfig";
-import { ChatInstance } from "../types/instance/ChatInstance";
+import { carbonElement } from "../../chat/web-components/decorators/customElement";
+import { PublicConfig } from "../../types/config/PublicConfig";
+import { ChatInstance } from "../../types/instance/ChatInstance";
 import {
   BusEventChunkUserDefinedResponse,
   BusEventType,
   BusEventUserDefinedResponse,
   BusEventViewChange,
-} from "../types/events/eventBusTypes";
+} from "../../types/events/eventBusTypes";
 
 /**
  * cds-aichat-custom-element will is a pass through to cds-aichat-container. It takes any user_defined and writeable element

@@ -13,36 +13,20 @@
   "exports": {
     ".": {
       "types": "./dist/types/aiChatEntry.d.ts",
-      "default": "./dist/es/aiChatEntry.js"
+      "import": "./dist/es/aiChatEntry.js"
     },
-    "./dist/es/cds-aichat-container.js": {
+     "./dist/es/web-components/cds-aichat-container/index.js": {
       "types": "./dist/types/aiChatEntry.d.ts",
-      "default": "./dist/es/web-components/cds-aichat-container.js"
-    },
-    "./dist/es/cds-aichat-custom-element.js": {
-      "types": "./dist/types/aiChatEntry.d.ts",
-      "default": "./dist/es/web-components/cds-aichat-custom-element.js"
-    },
-    "./dist/es/*": "./dist/es/*",
-    "./dist/web-components/cds-aichat-container/index.js": {
-      "types": "./dist/types/aiChatEntry.d.ts",
-      "default": "./dist/es/web-components/cds-aichat-container.js"
-    },
-    "./dist/web-components/cds-aichat-custom-element/index.js": {
-      "types": "./dist/types/aiChatEntry.d.ts",
-      "default": "./dist/es/web-components/cds-aichat-custom-element.js"
-    },
-    "./dist/es/web-components/cds-aichat-container/index.js": {
-      "types": "./dist/types/aiChatEntry.d.ts",
-      "default": "./dist/es/web-components/cds-aichat-container.js"
+      "import": "./dist/es/web-components/cds-aichat-container/index.js"
     },
     "./dist/es/web-components/cds-aichat-custom-element/index.js": {
       "types": "./dist/types/aiChatEntry.d.ts",
-      "default": "./dist/es/web-components/cds-aichat-custom-element.js"
-    }
+      "import": "./dist/es/web-components/cds-aichat-custom-element/index.js"
+    },
+    "./dist/es/*": "./dist/es/*"
   },
   "files": [
-    "dist/*"
+    "dist/es/*"
   ],
   "browserslist": [
     "> 0.5%",
