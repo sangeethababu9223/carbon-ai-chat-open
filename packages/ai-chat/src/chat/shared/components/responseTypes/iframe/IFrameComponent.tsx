@@ -7,7 +7,7 @@
  *  @license
  */
 
-import { Loading } from "@carbon/react";
+import Loading from "../../../../react/carbon/Loading";
 import React, { useCallback, useEffect, useState } from "react";
 
 import { useAriaAnnouncer } from "../../../hooks/useAriaAnnouncer";
@@ -119,7 +119,7 @@ function renderLoadingSpinner() {
   return (
     <MountChildrenOnDelay delay={1500}>
       <div className="WACIFrameComponent__StatusContainer">
-        <Loading withOverlay={false} />
+        <Loading active overlay={false} />
       </div>
     </MountChildrenOnDelay>
   );
