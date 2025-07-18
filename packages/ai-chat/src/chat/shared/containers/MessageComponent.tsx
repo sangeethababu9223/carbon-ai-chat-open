@@ -10,7 +10,7 @@
 import ChatBot from "@carbon/icons-react/es/ChatBot.js";
 import CheckmarkFilled from "@carbon/icons-react/es/CheckmarkFilled.js";
 import Headset from "@carbon/icons-react/es/Headset.js";
-import { Loading } from "@carbon/react";
+import Loading from "../../react/carbon/Loading";
 import cx from "classnames";
 import React, { KeyboardEvent, PureComponent } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
@@ -464,9 +464,10 @@ class MessageComponent extends PureComponent<
     } else if (fileStatus === FileStatusValue.UPLOADING) {
       element = (
         <Loading
-          withOverlay={false}
+          active
+          overlay={false}
           small
-          aria-label={languagePack.fileSharing_statusUploading}
+          assistiveText={languagePack.fileSharing_statusUploading}
         />
       );
       className = "WAC__message-status-file-uploading";

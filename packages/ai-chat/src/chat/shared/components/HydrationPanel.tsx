@@ -7,7 +7,7 @@
  *  @license
  */
 
-import { Loading } from "@carbon/react";
+import Loading from "../../react/carbon/Loading";
 import cx from "classnames";
 import React, { useContext } from "react";
 
@@ -89,8 +89,9 @@ function HydrationPanel({
               />
             )}
             <Loading
-              withOverlay={false}
-              aria-label={languagePack.window_ariaWindowLoading}
+              active
+              overlay={false}
+              assistiveText={languagePack.window_ariaWindowLoading}
             />
           </MountChildrenOnDelay>
         )}
