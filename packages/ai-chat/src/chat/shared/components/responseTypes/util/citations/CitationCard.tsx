@@ -10,10 +10,7 @@
 import { Tile } from "@carbon/react";
 import cx from "classnames";
 import React from "react";
-import {
-  CitationCardContent,
-  CitationType,
-} from "./CitationCardContent";
+import { CitationCardContent, CitationType } from "./CitationCardContent";
 import { ExpandToPanelCard } from "./ExpandToPanelCard";
 import {
   ConversationalSearchItemCitation,
