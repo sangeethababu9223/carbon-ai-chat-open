@@ -8,12 +8,7 @@
  */
 
 import { Theme } from "@carbon/react";
-import React, {
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useIntl } from "react-intl";
 import { useSelector } from "react-redux";
 

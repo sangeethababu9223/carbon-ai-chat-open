@@ -15,7 +15,12 @@ import { AppState } from "../../../../../types/state/AppState";
 import { MessageTypeComponentProps } from "../../../../../types/messaging/MessageTypeComponentProps";
 
 interface FooterButtonComponentsProps extends MessageTypeComponentProps {
-  renderMessageComponent: (props: MessageTypeComponentProps & { message: any; isNestedMessageItem: boolean }) => React.ReactNode;
+  renderMessageComponent: (
+    props: MessageTypeComponentProps & {
+      message: any;
+      isNestedMessageItem: boolean;
+    }
+  ) => React.ReactNode;
 }
 
 /**
@@ -34,7 +39,7 @@ function FooterButtonComponents(props: FooterButtonComponentsProps) {
           {props.renderMessageComponent({
             ...props,
             message: nestedLocalMessage,
-            isNestedMessageItem: true
+            isNestedMessageItem: true,
           })}
         </React.Fragment>
       );

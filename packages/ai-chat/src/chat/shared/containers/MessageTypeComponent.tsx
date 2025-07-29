@@ -505,7 +505,9 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
         fullMessage={originalMessage}
         isMessageForInput={isMessageForInput}
         requestFocus={requestInputFocus}
-        renderMessageComponent={(childProps) => <MessageTypeComponent {...childProps} />}
+        renderMessageComponent={(childProps) => (
+          <MessageTypeComponent {...childProps} />
+        )}
       />
     );
   }
@@ -551,7 +553,9 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
         fullMessage={originalMessage}
         isMessageForInput={isMessageForInput}
         requestFocus={requestInputFocus}
-        renderMessageComponent={(childProps) => <MessageTypeComponent {...childProps} />}
+        renderMessageComponent={(childProps) => (
+          <MessageTypeComponent {...childProps} />
+        )}
       />
     );
   }
@@ -564,7 +568,9 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
       <GridItemComponent
         localMessageItem={message}
         originalMessage={originalMessage}
-        renderMessageComponent={(childProps) => <MessageTypeComponent {...childProps} />}
+        renderMessageComponent={(childProps) => (
+          <MessageTypeComponent {...childProps} />
+        )}
       />
     );
   }

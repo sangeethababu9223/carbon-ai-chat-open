@@ -1248,7 +1248,9 @@ class MainWindow
               actions.setResponsePanelContent(null, false)
             );
           }}
-          renderMessageComponent={(childProps) => <MessageTypeComponent {...childProps} />}
+          renderMessageComponent={(childProps) => (
+            <MessageTypeComponent {...childProps} />
+          )}
         />
       </Suspense>
     );

@@ -58,7 +58,10 @@ function CardItemComponent(props: CardItemComponentProps) {
           !ignoreMaxWidth && item.max_width === WidthOptions.LARGE,
       })}
     >
-      <BodyWithFooterComponent {...props} renderMessageComponent={props.renderMessageComponent} />
+      <BodyWithFooterComponent
+        {...props}
+        renderMessageComponent={props.renderMessageComponent}
+      />
     </Tile>
   );
 }

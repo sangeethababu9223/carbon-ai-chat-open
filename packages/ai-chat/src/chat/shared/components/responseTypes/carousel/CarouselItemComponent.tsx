@@ -40,8 +40,13 @@ interface CarouselItemComponentProps extends HasRequestFocus {
 }
 
 function CarouselItemComponent(props: CarouselItemComponentProps) {
-  const { localMessageItem, fullMessage, isMessageForInput, requestFocus, renderMessageComponent } =
-    props;
+  const {
+    localMessageItem,
+    fullMessage,
+    isMessageForInput,
+    requestFocus,
+    renderMessageComponent,
+  } = props;
   const allMessageItemsByID = useSelector(
     (state: AppState) => state.allMessageItemsByID
   );

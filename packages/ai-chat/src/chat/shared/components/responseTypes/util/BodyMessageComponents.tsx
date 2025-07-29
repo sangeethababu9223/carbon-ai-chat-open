@@ -16,7 +16,12 @@ import { MessageTypeComponentProps } from "../../../../../types/messaging/Messag
 import { MessageResponseTypes } from "../../../../../types/messaging/Messages";
 
 interface BodyMessageComponentsProps extends MessageTypeComponentProps {
-  renderMessageComponent: (props: MessageTypeComponentProps & { message: any; isNestedMessageItem: boolean }) => React.ReactNode;
+  renderMessageComponent: (
+    props: MessageTypeComponentProps & {
+      message: any;
+      isNestedMessageItem: boolean;
+    }
+  ) => React.ReactNode;
 }
 
 /**
@@ -60,7 +65,7 @@ function BodyMessageComponents(props: BodyMessageComponentsProps) {
           {props.renderMessageComponent({
             ...props,
             message: nestedLocalMessage,
-            isNestedMessageItem: true
+            isNestedMessageItem: true,
           })}
         </div>
       );

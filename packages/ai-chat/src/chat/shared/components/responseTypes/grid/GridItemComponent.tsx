@@ -102,7 +102,9 @@ function GridItemComponent({
                   {cell.map((localMessageItemID, itemIndex) => {
                     const message = allMessageItemsByID[localMessageItemID];
                     return (
-                      <React.Fragment key={`item-${rowIndex}-${columnIndex}-${itemIndex}`}>
+                      <React.Fragment
+                        key={`item-${rowIndex}-${columnIndex}-${itemIndex}`}
+                      >
                         {renderMessageComponent({
                           message,
                           originalMessage,
