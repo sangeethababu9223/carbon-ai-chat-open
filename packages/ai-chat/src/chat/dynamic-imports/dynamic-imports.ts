@@ -85,6 +85,8 @@ const DYNAMIC_IMPORTS = {
   // Service imports (non-React components)
   HumanAgentService: () =>
     import("../shared/services/haa/HumanAgentServiceImpl"),
+  Table: () =>
+    import("../shared/components/responseTypes/table/TableContainer"),
 };
 
 function lazyChat() {
@@ -127,6 +129,10 @@ function lazyCarousel() {
   return React.lazy(DYNAMIC_IMPORTS.Carousel);
 }
 
+function lazyTable() {
+  return React.lazy(DYNAMIC_IMPORTS.Table);
+}
+
 export {
   lazyChat,
   lazyHomeScreenContainer,
@@ -134,6 +140,7 @@ export {
   lazyCatastrophicError,
   lazyTourComponent,
   lazyCarousel,
+  lazyTable,
   lazyMediaPlayer,
   lazyIFramePanel,
   lazyViewSourcePanel,
