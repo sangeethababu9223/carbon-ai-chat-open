@@ -44,14 +44,6 @@ body:
       label: Application / product
       description: "What application, product, or Carbon local system do you work on?"
   - type: dropdown
-    id: backend
-    attributes:
-      label: How do you use AI Chat?
-      options:
-        - 'with watsonx Orchestrate'
-        - 'with watsonx Assistant'
-        - 'with my own backend'
-  - type: dropdown
     id: blocker
     attributes:
       label: Is this a blocker to using AI Chat

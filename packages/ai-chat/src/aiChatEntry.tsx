@@ -70,14 +70,14 @@ export { CornersType } from "./types/config/CornersType";
 
 export {
   BusEvent,
-  BusEventAgentAreAnyAgentsOnline,
-  BusEventAgentEndChat,
-  BusEventAgentPreEndChat,
-  BusEventAgentPreReceive,
-  BusEventAgentPreSend,
-  BusEventAgentPreStartChat,
-  BusEventAgentReceive,
-  BusEventAgentSend,
+  BusEventHumanAgentAreAnyAgentsOnline,
+  BusEventHumanAgentEndChat,
+  BusEventHumanAgentPreEndChat,
+  BusEventHumanAgentPreReceive,
+  BusEventHumanAgentPreSend,
+  BusEventHumanAgentPreStartChat,
+  BusEventHumanAgentReceive,
+  BusEventHumanAgentSend,
   BusEventChatReady,
   BusEventChunkUserDefinedResponse,
   BusEventClosePanelButtonClicked,
@@ -138,7 +138,7 @@ export {
 export {
   AdditionalDataToAgent,
   AgentAvailability,
-  AgentsOnlineStatus,
+  HumanAgentsOnlineStatus,
   ConnectingErrorInfo,
   DisconnectedErrorInfo,
   EndChatInfo,
@@ -156,7 +156,7 @@ export {
 
 export {
   MessageHistory,
-  AgentProfile,
+  ResponseUserProfile,
   AudioItem,
   BaseMessageInput,
   ButtonItem,
@@ -166,8 +166,8 @@ export {
   CarouselItem,
   Chunk,
   CompleteItemChunk,
-  ConnectToAgentItem,
-  ConnectToAgentItemTransferInfo,
+  ConnectToHumanAgentItem,
+  ConnectToHumanAgentItemTransferInfo,
   ConversationalSearchItem,
   ConversationalSearchItemCitation,
   DateItem,
@@ -208,7 +208,7 @@ export {
   WithBodyAndFooter,
   WithWidthOptions,
   SingleOption,
-  AgentMessageType,
+  HumanAgentMessageType,
   ChainOfThoughtStep,
   ChainOfThoughtStepStatus,
   GenericItemMessageFeedbackOptions,
@@ -219,6 +219,7 @@ export {
   PartialResponse,
   MessageHistoryFeedback,
   SearchResult,
+  UserType,
 } from "./types/messaging/Messages";
 
 export { HistoryItem } from "./types/messaging/History";
