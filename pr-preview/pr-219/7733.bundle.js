@@ -1,3 +1,0 @@
-/*! For license information please see 7733.bundle.js.LICENSE.txt */
-"use strict";(self.webpackChunk_carbon_ai_chat_examples_demo=self.webpackChunk_carbon_ai_chat_examples_demo||[]).push([[7733],{7733:function(e,t,r){r.r(t),r.d(t,{defaultMarkdown:function(){return u},parseMarkdown:function(){return l}});var a=r(3983),n=r(9191),s=r(2879),i=r(3149);const u=new a.A({html:!0,breaks:!0,linkify:!0}).use(n,{leftDelimiter:"{{",rightDelimiter:"}}",allowedAttributes:["target","rel","class","id"]}).use(s.A).use(i.A);function l(e){return u.parse(e,{})}}}]);
-//# sourceMappingURL=7733.bundle.js.map
