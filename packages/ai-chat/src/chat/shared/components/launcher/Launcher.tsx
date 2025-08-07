@@ -9,7 +9,7 @@
 
 /* eslint-disable react/no-danger */
 
-import CDSButton from "@carbon/web-components/es-custom/components/button/button";
+import CDSButton from "@carbon/web-components/es-custom/components/button/button.js";
 import ArrowUpLeft24 from "@carbon/icons/es/arrow--up-left/24.js";
 import AiLaunch from "@carbon/icons-react/es/AiLaunch.js";
 // import ArrowUpLeft from "@carbon/icons-react/es/ArrowUpLeft.js";
