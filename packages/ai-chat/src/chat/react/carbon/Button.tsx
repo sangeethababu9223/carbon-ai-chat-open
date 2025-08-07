@@ -9,7 +9,11 @@
 
 import { createComponent } from "@lit/react";
 import React from "react";
-import { BUTTON_KIND } from "@carbon/web-components/es/components/button/defs.js";
+import {
+  BUTTON_KIND,
+  BUTTON_TYPE,
+  BUTTON_SIZE,
+} from "@carbon/web-components/es/components/button/defs.js";
 // Export the actual class for the component that will *directly* be wrapped with React.
 import CarbonButtonElement from "@carbon/web-components/es-custom/components/button/button.js";
 
@@ -20,4 +24,4 @@ const Button = createComponent({
 });
 
 export default Button;
-export { BUTTON_KIND }
+export { BUTTON_KIND, BUTTON_TYPE, BUTTON_SIZE };

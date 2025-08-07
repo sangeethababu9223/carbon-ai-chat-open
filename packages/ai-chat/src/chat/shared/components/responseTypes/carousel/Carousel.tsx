@@ -27,8 +27,8 @@ import {
   AppState,
   ChatWidthBreakpoint,
 } from "../../../../../types/state/AppState";
-const ChevronLeft = carbonIconToReact(ChevronLeft16)
-const ChevronRight = carbonIconToReact(ChevronRight16)
+const ChevronLeft = carbonIconToReact(ChevronLeft16);
+const ChevronRight = carbonIconToReact(ChevronRight16);
 
 const SWIPER_MODULES = [A11y, Navigation];
 // This object holds the left margin value for received messages.
