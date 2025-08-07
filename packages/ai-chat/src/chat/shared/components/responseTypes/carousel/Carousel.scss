@@ -83,3 +83,7 @@ button.WACCarouselContainer__NavigationButton > svg {
 .WACCarouselContainer--oneSlide {
   max-inline-size: chatTheme.$CARD-max-width;
 }
+cds-custom-button::part(button) {
+  --cds-custom-layout-size-height-local: 32px;
+  color: currentcolor;
+}
