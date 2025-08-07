@@ -10,10 +10,10 @@ The repository for this work is located at [https://github.com/carbon-design-sys
 
 You need to follow the following steps for access.
 
-*Sometimes the first time the SSO session doesn't correctly get updated with the new permissions until you shutdown your browser completely and log back in.*
+_Sometimes the first time the SSO session doesn't correctly get updated with the new permissions until you shutdown your browser completely and log back in._
 
 1. Visit [AccessHub](https://ibm-support.saviyntcloud.com/ECMv6/request/requestHome) and request for access to "Carbon Design System internal repository access"
-2. Once you received confirmation of access, onboard your public GitHub account to IBM's Github Enterprise Cloud (GHEC) account at https://gh-user-map.opensource.dal.dev.cirrus.ibm.com/
+2. Once you received confirmation of access, onboard your public GitHub account to IBM's Github Enterprise Cloud (GHEC) account at [https://gh-user-map.opensource.dal.dev.cirrus.ibm.com/](https://gh-user-map.opensource.dal.dev.cirrus.ibm.com/)
 3. See [https://github.com/orgs/carbon-design-system/sso](https://github.com/orgs/carbon-design-system/sso) to initiate SSO login to the Github Enterprise Cloud
 4. See [https://github.com/carbon-design-system/carbon-ai-chat](https://github.com/carbon-design-system/carbon-ai-chat) to validate access.
 
