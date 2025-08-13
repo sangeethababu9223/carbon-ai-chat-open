@@ -7,7 +7,10 @@
  *  @license
  */
 import CDSButton from "@carbon/web-components/es-custom/components/button/button.js";
-import Button, { BUTTON_KIND, BUTTON_TYPE } from "../../../react/carbon/Button.js";
+import Button, {
+  BUTTON_KIND,
+  BUTTON_TYPE,
+} from "../../../react/carbon/Button.js";
 import ArrowUpLeft24 from "@carbon/icons/es/arrow--up-left/24.js";
 import { carbonIconToReact } from "../../utils/carbonIcon";
 import ChatLaunch from "@carbon/icons-react/es/ChatLaunch.js";
@@ -34,7 +37,6 @@ import { animateWithClass } from "../../utils/animationUtils";
 import { IS_MOBILE } from "../../utils/browserUtils";
 import { doFocusRef } from "../../utils/domUtils";
 import { getLauncherButtonAriaLabel } from "./launcherUtils";
-import { ButtonKindEnum } from "../../../../types/utilities/carbonTypes";
 
 const ArrowUpLeft = carbonIconToReact(ArrowUpLeft24);
 

@@ -65,31 +65,22 @@
 // round as well.
 .WACLauncher__ButtonContainer.WACLauncher__ButtonContainer--round.WACLauncherComplex__SmallLauncherContainer {
   .WACLauncher__Button {
-  &::part(button) {
-    // height: 160px;
-    // width: 160px;
-    // right: -80px;
-    // border-top-left-radius: 80px;
-    // border-top-right-radius: 80px;
-    // padding-bottom: 60px;
-    // border-bottom-left-radius: 80px;
-    // border-bottom-right-radius: 80px;
-    // padding-left: 0px;
-    // padding-right: 60px;
-    // padding-top: 0px;
-    // bottom: -80px;
-    height: 100%;
-    width: 100%;
-    width: 50%;
+    &::part(button) {
+      block-size: 100%;
+      inline-size: 100%;
+    }
   }
 }
-}
-.WACLauncher__ButtonContainer.WACLauncher__ButtonContainer--round:not(.WACLauncherComplex__SmallLauncherContainer)
+
+.WACLauncher__ButtonContainer.WACLauncher__ButtonContainer--round:not(
+    .WACLauncherComplex__SmallLauncherContainer
+  )
   .WACLauncher__Button {
   &::part(button) {
     border-radius: 28px;
   }
 }
+
 .WACLauncher__ButtonContainer.WACLauncher__ButtonContainer--round
   .WACLauncher__Button {
   @media screen and (prefers-reduced-motion: reduce) {

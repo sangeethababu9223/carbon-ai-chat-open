@@ -6,7 +6,13 @@
  *
  *  @license
  */
-import Button, {BUTTON_KIND, BUTTON_TYPE, BUTTON_SIZE, BUTTON_TOOLTIP_ALIGNMENT, BUTTON_TOOLTIP_POSITION} from "../../../react/carbon/Button";
+import Button, {
+  BUTTON_KIND,
+  BUTTON_TYPE,
+  BUTTON_SIZE,
+  BUTTON_TOOLTIP_ALIGNMENT,
+  BUTTON_TOOLTIP_POSITION,
+} from "../../../react/carbon/Button";
 import Send16 from "@carbon/icons/es/send/16.js";
 import SendFilled16 from "@carbon/icons/es/send--filled/16.js";
 import { carbonIconToReact } from "../../utils/carbonIcon";
@@ -39,17 +45,13 @@ import { ListenerList } from "../../utils/ListenerList";
 import { isValidForUpload } from "../../utils/miscUtils";
 import TextArea from "../responseTypes/text/TextArea";
 import { InstanceInputElement } from "../../../../types/instance/ChatInstance";
-import {
-  ButtonKindEnum,
-  ButtonSizeEnum,
-} from "../../../../types/utilities/carbonTypes";
+import { ButtonSizeEnum } from "../../../../types/utilities/carbonTypes";
 import { BusEventType } from "../../../../types/events/eventBusTypes";
 import { OverlayPanelName } from "../OverlayPanel";
 import { makeTestId, PageObjectId } from "../../utils/PageObjectId";
 
 const Send = carbonIconToReact(Send16);
 const SendFilled = carbonIconToReact(SendFilled16);
-
 
 /**
  * The size of the gap between input changes before we indicate that the user has stopped typing.
@@ -508,11 +510,19 @@ function Input(props: InputProps, ref: Ref<InputFunctions>) {
               aria-label={input_buttonLabel}
               disabled={showDisabledSend}
               tooltip-text={input_buttonLabel}
-              tooltipAlignment={isRTL ? "start" as BUTTON_TOOLTIP_ALIGNMENT : "end" as BUTTON_TOOLTIP_ALIGNMENT}
+              tooltipAlignment={
+                isRTL
+                  ? ("start" as BUTTON_TOOLTIP_ALIGNMENT)
+                  : ("end" as BUTTON_TOOLTIP_ALIGNMENT)
+              }
               tooltipPosition={"top" as BUTTON_TOOLTIP_POSITION}
               data-testid={makeTestId(PageObjectId.INPUT_SEND, testIdPrefix)}
             >
-            {hasValidInput ? <SendFilled slot="icon"/> : <Send slot="icon"/>}
+              {hasValidInput ? (
+                <SendFilled slot="icon" />
+              ) : (
+                <Send slot="icon" />
+              )}
             </Button>
           </div>
         </div>

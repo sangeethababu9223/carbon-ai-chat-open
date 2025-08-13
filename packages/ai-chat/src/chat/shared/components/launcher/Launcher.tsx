@@ -27,7 +27,6 @@ import HasIntl from "../../../../types/utilities/HasIntl";
 import { HasRequestFocus } from "../../../../types/utilities/HasRequestFocus";
 import { doFocusRef } from "../../utils/domUtils";
 import { getLauncherButtonAriaLabel } from "./launcherUtils";
-import { ButtonKindEnum } from "../../../../types/utilities/carbonTypes";
 import { LanguagePack } from "../../../../types/instance/apiTypes";
 import { PageObjectId } from "../../utils/PageObjectId";
 
