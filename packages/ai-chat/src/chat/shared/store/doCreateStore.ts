@@ -9,7 +9,6 @@
 
 import merge from "lodash-es/merge.js";
 import { createStore, Store } from "redux";
-
 import { NODE_ENV } from "../environmentVariables";
 import { ServiceManager } from "../services/ServiceManager";
 import { AppConfig } from "../../../types/state/AppConfig";
@@ -65,7 +64,6 @@ function doCreateStore(
   };
 
   const botName = getBotName(themeState.useAITheme, config);
-
   const initialState: AppState = {
     ...DEFAULT_MESSAGE_STATE,
     notifications: [],
