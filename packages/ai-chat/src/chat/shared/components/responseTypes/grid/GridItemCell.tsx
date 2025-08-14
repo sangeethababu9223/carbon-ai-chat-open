@@ -53,7 +53,7 @@ function GridItemCell({
   const appConfig = useSelector((state: AppState) => state.config);
   const inputState = useSelector(selectInputState);
   const allMessageItemsByID = useSelector(
-    (state: AppState) => state.allMessageItemsByID
+    (state: AppState) => state.allMessageItemsByID,
   );
 
   const { horizontal_alignment, vertical_alignment } = localMessageItem.item;
@@ -65,10 +65,10 @@ function GridItemCell({
       const width = isPixelValue ? columnWidthString : undefined;
       const flex = isPixelValue ? undefined : Number(columnWidthString);
       const alignItems = getFlexAlignment(
-        cellData?.horizontal_alignment || horizontal_alignment
+        cellData?.horizontal_alignment || horizontal_alignment,
       );
       const justifyContent = getFlexAlignment(
-        cellData?.vertical_alignment || vertical_alignment
+        cellData?.vertical_alignment || vertical_alignment,
       );
 
       cellRef.current.style.setProperty("inline-size", width);
@@ -76,7 +76,7 @@ function GridItemCell({
       cellRef.current.style.setProperty("align-items", alignItems);
       cellRef.current.style.setProperty(
         "text-align",
-        cellData?.horizontal_alignment || horizontal_alignment
+        cellData?.horizontal_alignment || horizontal_alignment,
       );
       cellRef.current.style.setProperty("justify-content", justifyContent);
     }
@@ -120,7 +120,7 @@ function GridItemCell({
  * Returns the CSS flex alignment for the given horizontal/vertical alignment value;
  */
 function getFlexAlignment(
-  value: HorizontalCellAlignment | VerticalCellAlignment
+  value: HorizontalCellAlignment | VerticalCellAlignment,
 ) {
   switch (value) {
     case "bottom":

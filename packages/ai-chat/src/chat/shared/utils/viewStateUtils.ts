@@ -16,7 +16,7 @@ import { AppState, ViewState, ViewType } from "../../../types/state/AppState";
  */
 function constructViewState(
   newView: ViewType | Partial<ViewState>,
-  appState: AppState
+  appState: AppState,
 ): ViewState {
   const { viewState } = appState.persistedToBrowserStorage.launcherState;
 

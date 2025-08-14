@@ -95,7 +95,7 @@ function AppContainer({
 }: AppContainerProps) {
   const languagePack = useSelector((state: AppState) => state.languagePack);
   const cssVariableOverrides = useSelector(
-    (state: AppState) => state.cssVariableOverrides
+    (state: AppState) => state.cssVariableOverrides,
   );
   const theme = useSelector((state: AppState) => state.theme);
   const config = useSelector((state: AppState) => state.config);
@@ -136,7 +136,7 @@ function AppContainer({
     // Add the listener for detecting page visibilities changes.
     const visibilityListener = () => {
       dispatch(
-        actions.setIsBrowserPageVisible(document.visibilityState === "visible")
+        actions.setIsBrowserPageVisible(document.visibilityState === "visible"),
       );
     };
     document.addEventListener("visibilitychange", visibilityListener);
@@ -240,7 +240,7 @@ function MainContainer(props: MainContainerProps) {
   // We always render the launcher (unless state.launcher.config.is_on is set to false), but we hide it with CSS
   // if the main Carbon AI Chat window is open.
   const showLauncher = useSelector(
-    (state: AppState) => state.launcher.config.is_on
+    (state: AppState) => state.launcher.config.is_on,
   );
 
   const mainWindowRef = useRef<MainWindowFunctions>();

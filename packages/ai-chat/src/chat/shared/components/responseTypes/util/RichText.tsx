@@ -82,7 +82,7 @@ function RichText(props: RichTextProps) {
     }) => {
       return intl.formatMessage(
         { id: "table_paginationSupplementalText" },
-        { pagesCount: count }
+        { pagesCount: count },
       );
     };
 
@@ -97,7 +97,7 @@ function RichText(props: RichTextProps) {
     }) => {
       return intl.formatMessage(
         { id: "table_paginationStatus" },
-        { start, end, count }
+        { start, end, count },
       );
     };
 

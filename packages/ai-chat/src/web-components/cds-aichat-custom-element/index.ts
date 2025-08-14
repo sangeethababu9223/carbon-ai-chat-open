@@ -123,13 +123,13 @@ class ChatCustomElement extends LitElement {
 
   private defaultViewChangeHandler = (
     event: BusEventViewChange,
-    instance: ChatInstance
+    instance: ChatInstance,
   ) => {
     if (event.newViewState.mainWindow) {
       // restore original
       this.updateHostSize(
         this._originalStyles.width,
-        this._originalStyles.height
+        this._originalStyles.height,
       );
       instance.elements.getMainWindow().removeClassName("HideWebChat");
     } else {
@@ -141,7 +141,7 @@ class ChatCustomElement extends LitElement {
   };
 
   private userDefinedHandler = (
-    event: BusEventUserDefinedResponse | BusEventChunkUserDefinedResponse
+    event: BusEventUserDefinedResponse | BusEventChunkUserDefinedResponse,
   ) => {
     const { slot } = event.data;
     if (!this._userDefinedSlotNames.includes(slot)) {
@@ -180,10 +180,10 @@ class ChatCustomElement extends LitElement {
         .element=${this}
       >
         ${this._writeableElementSlots.map(
-          (slot) => html`<div slot=${slot}><slot name=${slot}></slot></div>`
+          (slot) => html`<div slot=${slot}><slot name=${slot}></slot></div>`,
         )}
         ${this._userDefinedSlotNames.map(
-          (slot) => html`<div slot=${slot}><slot name=${slot}></slot></div>`
+          (slot) => html`<div slot=${slot}><slot name=${slot}></slot></div>`,
         )}
       </cds-aichat-container>
     `;

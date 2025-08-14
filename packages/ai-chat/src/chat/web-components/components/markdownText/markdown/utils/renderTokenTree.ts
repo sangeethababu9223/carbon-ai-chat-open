@@ -160,7 +160,7 @@ function extractTextContent(node: TokenTree): string {
  */
 function renderTokenTree(
   node: TokenTree,
-  options: RenderTokenTreeOptions
+  options: RenderTokenTreeOptions,
 ): TemplateResult {
   const { token, children } = node;
   const { context, dark, sanitize } = options;
@@ -210,10 +210,13 @@ function renderTokenTree(
   const tag = token.tag;
 
   // Convert markdown-it attributes (array of [key, value]) into an object.
-  const rawAttrs = (token.attrs || []).reduce((acc, [key, value]) => {
-    acc[key] = value;
-    return acc;
-  }, {} as Record<string, string>);
+  const rawAttrs = (token.attrs || []).reduce(
+    (acc, [key, value]) => {
+      acc[key] = value;
+      return acc;
+    },
+    {} as Record<string, string>,
+  );
 
   // If sanitizing, filter out any unsafe attributes (e.g., onclick, javascript: URLs).
   let attrs = rawAttrs;
@@ -225,7 +228,7 @@ function renderTokenTree(
         });
         const element = fragment.firstChild as Element | null;
         return element?.getAttribute(key) !== null;
-      })
+      }),
     );
   }
 
@@ -267,7 +270,7 @@ function renderTokenTree(
             parentChildren: children,
             currentIndex: index,
           },
-        })
+        }),
     )}`;
   }
 
@@ -285,7 +288,7 @@ function renderTokenTree(
     attrs,
     options,
     childContext,
-    node
+    node,
   );
 }
 
@@ -310,7 +313,7 @@ function renderWithStaticTag(
   attrs: Record<string, string>,
   options: RenderTokenTreeOptions,
   _context?: { isInThead?: boolean },
-  node?: TokenTree
+  node?: TokenTree,
 ): TemplateResult {
   // Handle root token specially - don't wrap in any container element
   if (token.type === "root") {

@@ -68,7 +68,7 @@ function Launcher(props: LauncherProps, ref: Ref<HasRequestFocus>) {
   const launcherAvatarURL = useSelector((state: AppState) =>
     state.theme.useAITheme
       ? undefined
-      : state.launcher.config.desktop.avatar_url_override
+      : state.launcher.config.desktop.avatar_url_override,
   );
   const useAITheme = useSelector((state: AppState) => state.theme.useAITheme);
 
@@ -92,7 +92,7 @@ function Launcher(props: LauncherProps, ref: Ref<HasRequestFocus>) {
   if (unreadHumanAgentCount !== 0) {
     ariaLabel += `. ${intl.formatMessage(
       { id: "icon_ariaUnreadMessages" },
-      { count: unreadHumanAgentCount }
+      { count: unreadHumanAgentCount },
     )}`;
   }
 
@@ -124,7 +124,7 @@ function Launcher(props: LauncherProps, ref: Ref<HasRequestFocus>) {
         className,
         {
           "WACLauncher__ButtonContainer--hidden": launcherHidden,
-        }
+        },
       )}
     >
       <Button

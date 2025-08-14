@@ -177,7 +177,7 @@ export interface EventHandlers {
  */
 export type EventBusHandler<T extends BusEvent = BusEvent> = (
   event: T,
-  instance: ChatInstance
+  instance: ChatInstance,
 ) => unknown;
 
 /**
@@ -277,7 +277,7 @@ interface ChatActions {
    */
   send: (
     message: MessageRequest | string,
-    options?: SendOptions
+    options?: SendOptions,
   ) => Promise<void>;
 
   /**
@@ -296,7 +296,7 @@ interface ChatActions {
    * This updates the map that can be used to override the values for CSS variables in the application.
    */
   updateCSSVariables: (
-    publicVars: Partial<Record<CSSVariable, string>>
+    publicVars: Partial<Record<CSSVariable, string>>,
   ) => void;
 
   /**

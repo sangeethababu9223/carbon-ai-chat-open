@@ -78,7 +78,7 @@ function GridItemComponent({
               );
             })}
           </div>
-        )
+        ),
       )}
     </div>
   );

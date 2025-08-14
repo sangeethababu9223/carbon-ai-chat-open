@@ -87,7 +87,7 @@ function ConversationalSearchText(props: ConversationalSearchTextProps) {
       const newHtml = await createHTMLWithHighlights(
         text,
         highlightCitation,
-        streamingState && !streamingState.isDone
+        streamingState && !streamingState.isDone,
       );
       setHtml(newHtml);
     }
@@ -133,7 +133,7 @@ const HIGHLIGHT_TOKEN_REGEXP = /@@\/?:wc-source:@@/g;
 async function createHTMLWithHighlights(
   text: string,
   highlightCitation: ConversationalSearchItemCitation,
-  streaming: boolean
+  streaming: boolean,
 ) {
   // Highlighting a citation is a bit messy. The back-end provides us with text ranges in the original search result
   // but those ranges don't pay attention to the structure of the content and thus it's possible for a range to
@@ -195,7 +195,7 @@ async function createHTMLWithHighlights(
         "An error occurred processing source highlights.",
         text,
         highlightCitation,
-        error
+        error,
       );
     }
   }
@@ -249,7 +249,7 @@ function insertHighlights(parent: Node, isInHighlight: boolean) {
         if (value) {
           child.setAttribute(
             name,
-            value.replaceAll(HIGHLIGHT_TOKEN_REGEXP, "")
+            value.replaceAll(HIGHLIGHT_TOKEN_REGEXP, ""),
           );
         }
       });
@@ -274,7 +274,7 @@ function addTextSegment(
   text: string,
   highlighted: boolean,
   parent: Node,
-  beforeChild: Node
+  beforeChild: Node,
 ) {
   if (text) {
     const textNode = document.createTextNode(text);

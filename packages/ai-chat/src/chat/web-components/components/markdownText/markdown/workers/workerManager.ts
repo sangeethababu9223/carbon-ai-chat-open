@@ -63,7 +63,7 @@ interface MarkdownWorkerOptions {
  * Otherwise, it falls back to synchronous in-thread parsing.
  */
 async function getMarkdownWorker(
-  options: MarkdownWorkerOptions
+  options: MarkdownWorkerOptions,
 ): Promise<TokenTree> {
   const {
     markdown,
@@ -119,13 +119,13 @@ async function getMarkdownWorker(
             // Worker failed, fall back to main thread
             if (debug) {
               console.log(
-                "Worker processing failed, falling back to main thread"
+                "Worker processing failed, falling back to main thread",
               );
             }
             try {
               const fallbackResult = await processInMainThread(
                 markdown,
-                lastTree
+                lastTree,
               );
               resolve(fallbackResult);
             } catch (error) {
@@ -151,7 +151,7 @@ async function getMarkdownWorker(
                     meta: null,
                   },
                   children: [],
-                }
+                },
               );
             }
           } else {
@@ -178,7 +178,7 @@ async function getMarkdownWorker(
 async function processInMainThread(
   markdown: string,
   lastTree?: TokenTree,
-  allowHtml?: boolean
+  allowHtml?: boolean,
 ): Promise<TokenTree> {
   // Parse markdown into tokens, build a tree, then diff it against the previous one
   const tokens = parseMarkdown(markdown, allowHtml);

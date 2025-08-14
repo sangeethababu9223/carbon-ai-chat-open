@@ -52,7 +52,7 @@ function TableContainer(props: TableContainerProps) {
 
     if (!isValid) {
       consoleError(
-        `Number of cells in the table header does not match the number of cells in one or more of the table rows. In order to render a table there needs to be the same number of columns in the table header and all of the table rows.`
+        `Number of cells in the table header does not match the number of cells in one or more of the table rows. In order to render a table there needs to be the same number of columns in the table header and all of the table rows.`,
       );
     }
     return isValid;
@@ -61,7 +61,7 @@ function TableContainer(props: TableContainerProps) {
   function getTablePaginationSupplementalText({ count }: { count: number }) {
     return intl.formatMessage(
       { id: "table_paginationSupplementalText" },
-      { pagesCount: count }
+      { pagesCount: count },
     );
   }
 
@@ -76,7 +76,7 @@ function TableContainer(props: TableContainerProps) {
   }) {
     return intl.formatMessage(
       { id: "table_paginationStatus" },
-      { start, end, count }
+      { start, end, count },
     );
   }
 

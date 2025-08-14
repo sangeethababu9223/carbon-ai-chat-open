@@ -72,7 +72,7 @@ export interface PublicConfig {
    * be used to create an instance of a {@link ServiceDesk} when the user attempts to connect to an agent.
    */
   serviceDeskFactory?: (
-    parameters: ServiceDeskFactoryParameters
+    parameters: ServiceDeskFactoryParameters,
   ) => Promise<ServiceDesk>;
 
   /**
@@ -267,7 +267,7 @@ export interface PublicConfigMessaging {
   customSendMessage?: (
     request: MessageRequest,
     requestOptions: CustomSendMessageOptions,
-    instance: ChatInstance
+    instance: ChatInstance,
   ) => Promise<void> | void;
 
   /**

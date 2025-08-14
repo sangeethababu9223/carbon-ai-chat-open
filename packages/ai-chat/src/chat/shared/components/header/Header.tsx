@@ -195,9 +195,8 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
   const publicConfig = useSelector((state: AppState) => state.config.public);
   const isRTL = document.dir === "rtl";
   const chatHeaderConfig = useSelector(
-    (state: AppState) => state.chatHeaderState.config
+    (state: AppState) => state.chatHeaderState.config,
   );
-
   const [overflowIsOpen, setOverflowIsOpen] = useState(false);
   const [confirmModelOpen, setConfirmModelOpen] = useState(false);
 
@@ -259,7 +258,7 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
 
   if (showCloseAndRestartButton && showRestartButton) {
     throw new Error(
-      "You cannot enable both the restart button and the close-and-restart buttons."
+      "You cannot enable both the restart button and the close-and-restart buttons.",
     );
   }
 

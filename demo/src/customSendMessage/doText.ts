@@ -102,7 +102,7 @@ const fullChainOfThought: ChainOfThoughtStep[] = [
 function returnChainOfStepByStatus(
   chainOfThought: ChainOfThoughtStep[],
   currentIndex: number,
-  state: ChainOfThoughtStepStatus
+  state: ChainOfThoughtStepStatus,
 ) {
   const currentChainOfThought = [];
 
@@ -137,7 +137,7 @@ async function doTextStreaming(
   cancellable = true,
   wordDelay = WORD_DELAY,
   userProfile?: ResponseUserProfile,
-  chainOfThought?: ChainOfThoughtStep[]
+  chainOfThought?: ChainOfThoughtStep[],
 ) {
   const responseID = crypto.randomUUID();
   const words = text.split(" ");
@@ -154,13 +154,13 @@ async function doTextStreaming(
       chainOfThoughtStreamingSteps[word] = returnChainOfStepByStatus(
         chainOfThought,
         i,
-        ChainOfThoughtStepStatus.PROCESSING
+        ChainOfThoughtStepStatus.PROCESSING,
       );
       chainOfThoughtStreamingSteps[word + stepWordAmount] =
         returnChainOfStepByStatus(
           chainOfThought,
           i,
-          ChainOfThoughtStepStatus.SUCCESS
+          ChainOfThoughtStepStatus.SUCCESS,
         );
     }
   }
@@ -297,7 +297,7 @@ function doText(
   instance: ChatInstance,
   text: string = MARKDOWN,
   userProfile?: ResponseUserProfile,
-  chainOfThought?: ChainOfThoughtStep[]
+  chainOfThought?: ChainOfThoughtStep[],
 ) {
   const genericItem = {
     response_type: MessageResponseTypes.TEXT,
@@ -364,7 +364,7 @@ function doText(
 function doTextWithHumanProfile(
   instance: ChatInstance,
   text: string = MARKDOWN,
-  responseUserProfile: ResponseUserProfile = defaultHumanUserProfile
+  responseUserProfile: ResponseUserProfile = defaultHumanUserProfile,
 ) {
   doText(instance, text, responseUserProfile);
 }
@@ -372,7 +372,7 @@ function doTextWithHumanProfile(
 function doTextWithNonWatsonBotProfile(
   instance: ChatInstance,
   text: string = MARKDOWN,
-  responseUserProfile: ResponseUserProfile = defaultAlternativeBotProfile
+  responseUserProfile: ResponseUserProfile = defaultAlternativeBotProfile,
 ) {
   doText(instance, text, responseUserProfile);
 }
@@ -381,7 +381,7 @@ async function doTextStreamingWithNonWatsonBotProfile(
   instance: ChatInstance,
   text: string = MARKDOWN,
   cancellable = true,
-  userProfile: ResponseUserProfile = defaultAlternativeBotProfile
+  userProfile: ResponseUserProfile = defaultAlternativeBotProfile,
 ) {
   return doTextStreaming(instance, text, cancellable, WORD_DELAY, userProfile);
 }
@@ -391,7 +391,7 @@ async function doTextChainOfThoughtStreaming(
   text: string = CHAIN_OF_THOUGHT_TEXT_STREAM,
   cancellable = true,
   userProfile?: ResponseUserProfile,
-  chainOfThought: ChainOfThoughtStep[] = fullChainOfThought
+  chainOfThought: ChainOfThoughtStep[] = fullChainOfThought,
 ) {
   doTextStreaming(
     instance,
@@ -399,7 +399,7 @@ async function doTextChainOfThoughtStreaming(
     cancellable,
     300,
     userProfile,
-    chainOfThought
+    chainOfThought,
   );
 }
 
@@ -407,7 +407,7 @@ function doTextChainOfThought(
   instance: ChatInstance,
   text: string = CHAIN_OF_THOUGHT_TEXT,
   userProfile?: ResponseUserProfile,
-  chainOfThought: ChainOfThoughtStep[] = fullChainOfThought
+  chainOfThought: ChainOfThoughtStep[] = fullChainOfThought,
 ) {
   doText(instance, text, userProfile, chainOfThought);
 }

@@ -15,7 +15,7 @@ test("smoke React", async ({ page }) => {
   // 2) Open the React chat widget, enter a message, confirm receipt of answer, close the chat.
   await page.getByTestId(PageObjectId.LAUNCHER).click();
   const close = page.getByTestId(
-    makeTestId(PageObjectId.CLOSE_CHAT, OverlayPanelName.MAIN)
+    makeTestId(PageObjectId.CLOSE_CHAT, OverlayPanelName.MAIN),
   );
   await expect(close).toBeVisible();
   await page
@@ -47,7 +47,7 @@ test("smoke web component", async ({ page }) => {
   // 3) Open the Web component chat widget, enter a message, confirm receipt of answer, close the chat.
   await page.getByTestId(PageObjectId.LAUNCHER).click();
   const close = page.getByTestId(
-    makeTestId(PageObjectId.CLOSE_CHAT, OverlayPanelName.MAIN)
+    makeTestId(PageObjectId.CLOSE_CHAT, OverlayPanelName.MAIN),
   );
   await expect(close).toBeVisible();
   await page

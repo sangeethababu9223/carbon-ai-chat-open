@@ -101,7 +101,7 @@ function LauncherComplex(props: LauncherComplexProps) {
         className,
         {
           "WACLauncher__ButtonContainer--hidden": launcherHidden,
-        }
+        },
       )}
       ref={launcherComplexRef}
     >

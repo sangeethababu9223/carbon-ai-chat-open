@@ -48,7 +48,7 @@ const ReactPlayerComponent = React.lazy(() =>
       exported = exported.default;
     }
     return { default: exported };
-  })
+  }),
 ) as React.LazyExoticComponent<typeof ReactPlayer>;
 
 /**
@@ -169,7 +169,7 @@ function MediaPlayerComponent({
     if (wrapperElementRef) {
       wrapperElementRef.current.style.setProperty(
         "padding-block-start",
-        paddingTop
+        paddingTop,
       );
     }
     if (skeletonRef) {

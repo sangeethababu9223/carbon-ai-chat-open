@@ -175,7 +175,7 @@ function createChatInstance({
       // Get date formatting for locale.
       const localePromise = loadLocale(newLocale);
       const languagePackPromise = loadLanguagePack(
-        serviceManager.store.getState().languagePack
+        serviceManager.store.getState().languagePack,
       );
 
       return Promise.all([localePromise, languagePackPromise]).then(
@@ -185,18 +185,18 @@ function createChatInstance({
           setIntl(serviceManager, localePack.name, languagePack);
           serviceManager.messageService.pendingLocale = true;
           serviceManager.messageService.localeIsExplicit = true;
-        }
+        },
       );
     },
 
     updateCSSVariables: (
       variables: Partial<Record<CSSVariable, string>>,
-      whiteLabelVariables?: WhiteLabelTheme
+      whiteLabelVariables?: WhiteLabelTheme,
     ): void => {
       debugLog("Called instance.updateCSSVariables", variables);
       return serviceManager.actions.updateCSSVariables(
         variables,
-        whiteLabelVariables
+        whiteLabelVariables,
       );
     },
 
@@ -208,7 +208,7 @@ function createChatInstance({
       return serviceManager.actions.send(
         message,
         MessageSendSource.INSTANCE_SEND,
-        options
+        options,
       );
     },
 
@@ -221,7 +221,7 @@ function createChatInstance({
       debugLog("Called instance.destroy");
       // Trigger an unmounting of all the components.
       serviceManager.store.dispatch(
-        actions.setAppStateValue("isDestroyed", true)
+        actions.setAppStateValue("isDestroyed", true),
       );
       serviceManager.container?.remove();
       instance = undefined;
@@ -230,26 +230,26 @@ function createChatInstance({
     updateInputFieldVisibility: (isVisible: boolean) => {
       debugLog("Called instance.updateInputFieldVisibility", isVisible);
       serviceManager.store.dispatch(
-        actions.updateInputState({ fieldVisible: isVisible }, false)
+        actions.updateInputState({ fieldVisible: isVisible }, false),
       );
     },
 
     updateInputIsDisabled: (isDisabled: boolean) => {
       debugLog("Called instance.updateInputIsDisabled", isDisabled);
       serviceManager.store.dispatch(
-        actions.updateInputState({ isReadonly: isDisabled }, false)
+        actions.updateInputState({ isReadonly: isDisabled }, false),
       );
     },
 
     updateBotUnreadIndicatorVisibility: (isVisible: boolean) => {
       debugLog("Called instance.updateBotUnreadIndicatorVisibility", isVisible);
       serviceManager.store.dispatch(
-        actions.setLauncherProperty("showUnreadIndicator", isVisible)
+        actions.setLauncherProperty("showUnreadIndicator", isVisible),
       );
     },
 
     changeView: async (
-      newView: ViewType | Partial<ViewState>
+      newView: ViewType | Partial<ViewState>,
     ): Promise<void> => {
       debugLog("Called instance.changeView", newView);
 
@@ -257,7 +257,7 @@ function createChatInstance({
 
       if (!wasRendered) {
         consoleError(
-          `You tried to call "changeView" without ever having called the "render" method. There is no view to change!`
+          `You tried to call "changeView" without ever having called the "render" method. There is no view to change!`,
         );
         issueWithNewView = true;
       }
@@ -267,7 +267,7 @@ function createChatInstance({
         if (!viewTypeValues.includes(newView)) {
           consoleError(
             `You tried to change the view but the view you specified is not a valid view name. Please use` +
-              ` the valid view names; ${viewTypeValues.join(", ")}.`
+              ` the valid view names; ${viewTypeValues.join(", ")}.`,
           );
           issueWithNewView = true;
         }
@@ -278,7 +278,7 @@ function createChatInstance({
             consoleError(
               `You tried to change the state of multiple views by providing an object, however you included the key` +
                 ` "${key}" within the object which is not a valid view name. Please use the valid view names; ` +
-                `${viewTypeValues.join(", ")}.`
+                `${viewTypeValues.join(", ")}.`,
             );
             issueWithNewView = true;
           }
@@ -288,7 +288,7 @@ function createChatInstance({
           "You tried to change the view but the view you provided was not a string or an object. You can either change" +
             ' to one of the supported views by providing a string, ex. "launcher" or "mainWindow". Or you can' +
             ' change the state of multiple views by providing an object, ex. { "launcher": true, "mainWindow": false,' +
-            " }. Please use one of these supported options."
+            " }. Please use one of these supported options.",
         );
         issueWithNewView = true;
       }
@@ -338,14 +338,14 @@ function createChatInstance({
           // and ignore / remove the updates for the background. This is following the same behavior as
           // updateCSSVariables which logs a warning and ignores updates for variables not supported in the AI theme.
           consoleWarn(
-            "The home screen background can not be changed when the AI theme is enabled."
+            "The home screen background can not be changed when the AI theme is enabled.",
           );
           delete homeScreenConfigClone.background;
         }
       }
 
       serviceManager.actions.updateHomeScreenConfig(
-        withoutEmptyStarters(homeScreenConfigClone)
+        withoutEmptyStarters(homeScreenConfigClone),
       );
     },
 
@@ -366,7 +366,7 @@ function createChatInstance({
     updateCustomMenuOptions: (options: CustomMenuOption[]) => {
       debugLog("Called instance.updateCustomMenuOptions", options);
       serviceManager.store.dispatch(
-        actions.setAppStateValue("customMenuOptions", options)
+        actions.setAppStateValue("customMenuOptions", options),
       );
     },
 
@@ -384,14 +384,14 @@ function createChatInstance({
       } else if (direction === "decrease") {
         if (store.getState().botMessageState.isLoadingCounter <= 0) {
           consoleError(
-            "You cannot decrease the loading counter when it is already <= 0"
+            "You cannot decrease the loading counter when it is already <= 0",
           );
           return;
         }
         store.dispatch(actions.addIsLoadingCounter(-1));
       } else {
         consoleError(
-          `[updateIsLoadingCounter] Invalid direction: ${direction}. Valid values are "increase" and "decrease".`
+          `[updateIsLoadingCounter] Invalid direction: ${direction}. Valid values are "increase" and "decrease".`,
         );
       }
     },
@@ -405,14 +405,14 @@ function createChatInstance({
       } else if (direction === "decrease") {
         if (store.getState().botMessageState.isHydratingCounter <= 0) {
           consoleError(
-            "You cannot decrease the hydrating counter when it is already <= 0"
+            "You cannot decrease the hydrating counter when it is already <= 0",
           );
           return;
         }
         store.dispatch(actions.addIsHydratingCounter(-1));
       } else {
         consoleError(
-          `[updateIsChatLoadingCounter] Invalid direction: ${direction}. Valid values are "increase" and "decrease".`
+          `[updateIsChatLoadingCounter] Invalid direction: ${direction}. Valid values are "increase" and "decrease".`,
         );
       }
     },
@@ -440,7 +440,7 @@ function createChatInstance({
     messaging: {
       addMessage: (
         message: MessageResponse,
-        options: AddMessageOptions = {}
+        options: AddMessageOptions = {},
       ) => {
         debugLog("Called instance.messaging.addMessage", message, options);
         serviceManager.messageService.messageLoadingManager.end();
@@ -450,13 +450,13 @@ function createChatInstance({
           null,
           {
             disableFadeAnimation: options?.disableFadeAnimation,
-          }
+          },
         );
       },
 
       addMessageChunk: async (
         chunk: StreamChunk,
-        options: AddMessageOptions = {}
+        options: AddMessageOptions = {},
       ) => {
         debugLog("Called instance.messaging.addMessageChunk", chunk, options);
         serviceManager.messageService.messageLoadingManager.end();
@@ -513,7 +513,7 @@ function createChatInstance({
  * fire amplitude events once.
  */
 function createWriteableElementsProxy(
-  serviceManager: ServiceManager
+  serviceManager: ServiceManager,
 ): Partial<WriteableElements> {
   const elementSet = new Set<WriteableElementName>();
 

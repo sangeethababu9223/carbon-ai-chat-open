@@ -21,7 +21,7 @@ async function doTableStreaming(instance: ChatInstance) {
   await doTextStreaming(
     instance,
     `A periodic table in markdown format.\n\n${TABLE}`,
-    true
+    true,
   );
 }
 

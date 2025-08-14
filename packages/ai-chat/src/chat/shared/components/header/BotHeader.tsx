@@ -98,18 +98,17 @@ function BotHeader(props: BotHeaderProps, ref: RefObject<HasRequestFocus>) {
   const languagePack = useLanguagePack();
   const homeScreenIsOn = useSelector(
     (state: AppState) =>
-      state.homeScreenConfig.is_on && state.homeScreenConfig.allow_return
+      state.homeScreenConfig.is_on && state.homeScreenConfig.allow_return,
   );
   const publicConfig = useSelector((state: AppState) => state.config.public);
   const customMenuOptions = useSelector(
-    (state: AppState) => state.customMenuOptions
+    (state: AppState) => state.customMenuOptions,
   );
   const { isConnectingOrConnected } = useSelector(
     selectHumanAgentDisplayState,
-    shallowEqual
+    shallowEqual,
   );
   const useAITheme = useSelector((state: AppState) => state.theme.useAITheme);
-
   const headerRef = useRef<HasRequestFocus>();
 
   const showRestartButton =
@@ -129,7 +128,7 @@ function BotHeader(props: BotHeaderProps, ref: RefObject<HasRequestFocus>) {
         handler();
       }
     },
-    [customMenuOptions, onToggleHomeScreen, allowHomeScreen]
+    [customMenuOptions, onToggleHomeScreen, allowHomeScreen],
   );
 
   let overflowItems = customMenuOptions?.map((option) => option.text);

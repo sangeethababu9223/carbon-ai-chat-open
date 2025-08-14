@@ -106,14 +106,14 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
   const feedbackDetailsRef = useRef<HTMLDivElement>();
   const agentDisplayState = useSelector(
     selectHumanAgentDisplayState,
-    shallowEqual
+    shallowEqual,
   );
   const humanAgentState = useSelector(
-    (state: AppState) => state.humanAgentState
+    (state: AppState) => state.humanAgentState,
   );
   const persistedHumanAgentState = useSelector(
     (state: AppState) =>
-      state.persistedToBrowserStorage.chatState.humanAgentState
+      state.persistedToBrowserStorage.chatState.humanAgentState,
   );
   const feedbackID = message.item.message_item_options?.feedback?.id;
   const feedbackPanelID = useUUID();
@@ -137,15 +137,15 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
 
   // Indicates if the negative or positive feedback buttons are marked as selected.
   const [isPositiveFeedbackSelected, setIsPositiveFeedbackSelected] = useState(
-    feedbackHistory && feedbackHistory.is_positive
+    feedbackHistory && feedbackHistory.is_positive,
   );
   const [isNegativeFeedbackSelected, setIsNegativeFeedbackSelected] = useState(
-    feedbackHistory && !feedbackHistory.is_positive
+    feedbackHistory && !feedbackHistory.is_positive,
   );
 
   // Indicates if details have been submitted.
   const [isFeedbackSubmitted, setIsFeedbackSubmitted] = useState(
-    Boolean(feedbackHistory)
+    Boolean(feedbackHistory),
   );
 
   /**
@@ -153,7 +153,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
    */
   function renderSpecificMessage(
     localMessageItem: LocalMessageItem,
-    message: Message
+    message: Message,
   ) {
     if (isRequest(message)) {
       return renderRequest(localMessageItem, message as MessageRequest);
@@ -182,7 +182,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
    */
   function renderRequest(
     localMessageItem: LocalMessageItem,
-    originalMessage: MessageRequest
+    originalMessage: MessageRequest,
   ) {
     const messageItem = localMessageItem.item;
 
@@ -201,7 +201,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
               aria-label={props.languagePack.fileSharing_fileIcon}
             />
           )}
-          {/* The use of the heading role here is a compromise to enable the use of the 
+          {/* The use of the heading role here is a compromise to enable the use of the
               next/previous heading hotkeys in JAWS to enable a screen reader user an easier ability to navigate
               messages. */}
           <span role="heading" aria-level={2}>
@@ -219,91 +219,91 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
    */
   function renderResponse(
     localMessageItem: LocalMessageItem,
-    message: MessageResponse
+    message: MessageResponse,
   ) {
     if (renderAsUserDefinedMessage(localMessageItem.item)) {
       // Render all invalid components as a user defined response
       return renderUserDefinedResponse(
         localMessageItem as LocalMessageItem<any>,
-        message
+        message,
       );
     }
 
     const responseType = localMessageItem.item.response_type;
     const withHuman = Boolean(
       message.message_options?.response_user_profile?.user_type ===
-        UserType.HUMAN || localMessageItem.item.agent_message_type
+        UserType.HUMAN || localMessageItem.item.agent_message_type,
     );
     switch (responseType) {
       case MessageResponseTypes.TEXT:
         return renderText(
           localMessageItem as LocalMessageItem<TextItem>,
           message,
-          withHuman
+          withHuman,
         );
       case MessageResponseTypes.IMAGE:
         return renderImage(localMessageItem as LocalMessageItem<ImageItem>);
       case MessageResponseTypes.OPTION:
         return renderOption(
           localMessageItem as LocalMessageItem<OptionItem>,
-          message
+          message,
         );
       case MessageResponseTypes.CONNECT_TO_HUMAN_AGENT:
         return renderConnectToHumanAgent(
           localMessageItem as LocalMessageItem<ConnectToHumanAgentItem>,
-          message as MessageResponse
+          message as MessageResponse,
         );
       case MessageResponseTypes.INLINE_ERROR:
         return renderInlineError(
-          localMessageItem as LocalMessageItem<InlineErrorItem>
+          localMessageItem as LocalMessageItem<InlineErrorItem>,
         );
       case MessageResponseTypes.IFRAME:
         return renderIFrameMessage(
-          localMessageItem as LocalMessageItem<IFrameItem>
+          localMessageItem as LocalMessageItem<IFrameItem>,
         );
       case MessageResponseTypes.VIDEO:
         return renderVideoMessage(
-          localMessageItem as LocalMessageItem<VideoItem>
+          localMessageItem as LocalMessageItem<VideoItem>,
         );
       case MessageResponseTypes.AUDIO:
         return renderAudioMessage(
-          localMessageItem as LocalMessageItem<AudioItem>
+          localMessageItem as LocalMessageItem<AudioItem>,
         );
       case MessageResponseTypes.DATE:
         return renderDateMessage(
-          localMessageItem as LocalMessageItem<DateItem>
+          localMessageItem as LocalMessageItem<DateItem>,
         );
       case MessageResponseTypes.CONVERSATIONAL_SEARCH:
         return renderConversationalSearchMessage(
           localMessageItem as LocalMessageItem<ConversationalSearchItem>,
-          message as MessageResponse
+          message as MessageResponse,
         );
       case MessageResponseTypes.TABLE:
         return renderTable(localMessageItem as LocalMessageItem<TableItem>);
       case MessageResponseTypes.CARD:
         return renderCard(
           localMessageItem as LocalMessageItem<CardItem>,
-          message as MessageResponse
+          message as MessageResponse,
         );
       case MessageResponseTypes.CAROUSEL:
         return renderCarouselMessage(
           localMessageItem as LocalMessageItem<CarouselItem>,
-          message as MessageResponse
+          message as MessageResponse,
         );
       case MessageResponseTypes.BUTTON:
         return renderButtonItem(
           localMessageItem as LocalMessageItem<ButtonItem>,
-          message as MessageResponse
+          message as MessageResponse,
         );
       case MessageResponseTypes.GRID:
         return renderGrid(
           localMessageItem as LocalMessageItem<GridItem>,
-          message as MessageResponse
+          message as MessageResponse,
         );
       default:
         return renderUserDefinedResponse(
           localMessageItem as LocalMessageItem<TextItem>,
-          message
+          message,
         );
     }
   }
@@ -311,13 +311,13 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
   function renderText(
     message: LocalMessageItem<TextItem>,
     originalMessage: MessageResponse,
-    removeHTML: boolean
+    removeHTML: boolean,
   ) {
     if (props.isNestedMessageItem) {
       return renderRichText(
         message,
         removeHTML,
-        originalMessage as MessageResponse
+        originalMessage as MessageResponse,
       );
     }
 
@@ -327,7 +327,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
         {renderRichText(
           message,
           removeHTML,
-          originalMessage as MessageResponse
+          originalMessage as MessageResponse,
         )}
       </div>
     );
@@ -336,7 +336,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
   function renderRichText(
     localMessageItem: LocalMessageItem<TextItem>,
     removeHTML: boolean,
-    originalMessage?: MessageResponse
+    originalMessage?: MessageResponse,
   ) {
     return (
       <StreamingRichText
@@ -354,7 +354,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
 
   function renderOption(
     message: LocalMessageItem<OptionItem>,
-    originalMessage: Message
+    originalMessage: Message,
   ) {
     const {
       languagePack,
@@ -458,7 +458,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
 
   function renderUserDefinedResponse(
     message: LocalMessageItem,
-    originalMessage: MessageResponse
+    originalMessage: MessageResponse,
   ) {
     const { serviceManager } = props;
     return (
@@ -477,7 +477,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
 
   function renderConnectToHumanAgent(
     message: LocalMessageItem,
-    originalMessage: MessageResponse
+    originalMessage: MessageResponse,
   ) {
     const {
       languagePack,
@@ -505,7 +505,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
 
   function renderCard(
     message: LocalMessageItem<CardItem>,
-    originalMessage: MessageResponse
+    originalMessage: MessageResponse,
   ) {
     const { isMessageForInput, requestInputFocus } = props;
     return (
@@ -523,7 +523,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
 
   function renderConversationalSearchMessage(
     localMessageItem: LocalMessageItem<ConversationalSearchItem>,
-    fullMessage: MessageResponse
+    fullMessage: MessageResponse,
   ) {
     const { scrollElementIntoView, doAutoScroll } = props;
     return (
@@ -541,7 +541,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
 
   function renderButtonItem(
     message: LocalMessageItem<ButtonItem>,
-    originalMessage: MessageResponse
+    originalMessage: MessageResponse,
   ) {
     const { isMessageForInput, requestInputFocus } = props;
     return (
@@ -556,7 +556,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
 
   function renderCarouselMessage(
     message: LocalMessageItem<CarouselItem>,
-    originalMessage: MessageResponse
+    originalMessage: MessageResponse,
   ) {
     const { isMessageForInput, requestInputFocus } = props;
     return (
@@ -574,7 +574,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
 
   function renderGrid(
     message: LocalMessageItem<GridItem>,
-    originalMessage: MessageResponse
+    originalMessage: MessageResponse,
   ) {
     return (
       <GridItemComponent
@@ -608,7 +608,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
   }) {
     return intl.formatMessage(
       { id: "chainOfThought_stepTitle" },
-      { stepNumber, stepTitle }
+      { stepNumber, stepTitle },
     );
   }
 
@@ -617,7 +617,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
    */
   function renderChainOfThought(
     localMessageItem: LocalMessageItem,
-    message: MessageResponse
+    message: MessageResponse,
   ) {
     const chainOfThought = message.message_options?.chain_of_thought;
     if (!chainOfThought || props.isNestedMessageItem) {
@@ -643,7 +643,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
    */
   function renderFeedback(
     localMessageItem: LocalMessageItem,
-    message: MessageResponse
+    message: MessageResponse,
   ) {
     const feedbackOptions =
       localMessageItem.item.message_item_options?.feedback || {};
@@ -682,7 +682,7 @@ function MessageTypeComponent(props: MessageTypeComponentProps) {
           },
         };
         serviceManager.store.dispatch(
-          actions.mergeMessageHistory(localMessageItem.fullMessageID, history)
+          actions.mergeMessageHistory(localMessageItem.fullMessageID, history),
         );
       }
     }

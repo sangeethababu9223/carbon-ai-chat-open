@@ -67,7 +67,7 @@ function tableTemplate(tableElement: TableElement) {
           (header) =>
             html`<cds-custom-table-header-cell
               >${header}</cds-custom-table-header-cell
-            >`
+            >`,
         )}
       </cds-custom-table-header-row>
     </cds-custom-table-head>`;
@@ -82,9 +82,9 @@ function tableTemplate(tableElement: TableElement) {
           html`<cds-custom-table-row id=${row.id}
             >${row.cells.map(
               (cell) =>
-                html`<cds-custom-table-cell>${cell}</cds-custom-table-cell>`
+                html`<cds-custom-table-cell>${cell}</cds-custom-table-cell>`,
             )}</cds-custom-table-row
-          >`
+          >`,
       )}
     </cds-custom-table-body>`;
   }
