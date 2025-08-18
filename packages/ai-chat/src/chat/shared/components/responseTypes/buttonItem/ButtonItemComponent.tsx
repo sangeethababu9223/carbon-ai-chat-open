@@ -35,6 +35,8 @@ interface ButtonItemComponentProps extends HasRequestFocus {
  * This component determines the button response type to render.
  */
 function ButtonItemComponent(props: ButtonItemComponentProps) {
+  console.log('in here???');
+  
   switch (props.localMessageItem.item.button_type) {
     case ButtonItemType.URL:
       return (
