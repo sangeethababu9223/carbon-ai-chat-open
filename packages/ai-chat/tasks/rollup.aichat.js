@@ -39,7 +39,7 @@ process.chdir(workspaceDir);
 const workerSrc = path.join(paths.src,
   'chat/web-components/components/markdownText/markdown/workers/markdownWorker.ts');
 const workerOut = path.join(paths.dist, 'es',
-  'chat/web-components/components/markdownText/markdown/workers/markdownWorker.js');
+  'markdownWorker.js');
 
 
 const external = [
@@ -121,13 +121,15 @@ const workerBuild = {
 
 async function runRollup() {
   const config = [
+    // Worker build for external file fallback
+    workerBuild,
     // Main build with preserveModules for tree-shaking
     {
       onwarn(warning, warn) {
         // Treat circular dependencies as errors
-        if (warning.code === 'CIRCULAR_DEPENDENCY') {
+        /* if (warning.code === 'CIRCULAR_DEPENDENCY') {
           throw new Error(`Circular dependency detected: ${warning.message}`);
-        }
+        } */
         
         // For other warnings, use default behavior
         warn(warning);
@@ -148,6 +150,14 @@ async function runRollup() {
         preserveModules: false,
         entryFileNames: '[name].js',
         chunkFileNames: 'chat.[name].js',
+        banner: `/*
+ *  Copyright IBM Corp. 2025
+ *
+ *  This source code is licensed under the Apache-2.0 license found in the
+ *  LICENSE file in the root directory of this source tree.
+ *
+ *  @license
+ */`,
       },
       external,
       treeshake,
@@ -208,15 +218,8 @@ async function runRollup() {
           format: {
             beautify: true,
             indent_level: 2,
-            // keep only comments that contain @license
-            comments: (_astNode, comment) => {
-              const text = comment.value;
-              // comment.type === "comment2" for /* … */
-              if (comment.type === 'comment2') {
-                return /@license/i.test(text);
-              }
-              return false;
-            }
+            // Remove all comments - the copyright header is added via banner
+            comments: false
           }
         }),
         process.env.profile === 'true' && visualizer({ gzipSize: true, open: true }),

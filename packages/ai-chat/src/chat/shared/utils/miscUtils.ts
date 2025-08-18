@@ -18,6 +18,7 @@ import { FileUpload } from "../../../types/state/AppState";
 import { FileStatusValue, WA_CONSOLE_PREFIX } from "./constants";
 import { resolveOrTimeout } from "./lang/promiseUtils";
 import { OnErrorData, OnErrorType } from "../../../types/config/PublicConfig";
+import { watsonx } from "../../../types/messaging/Messages";
 
 /**
  * A global flag to indicate if we want to show debug messages in the browser console. This is generally set from
@@ -55,7 +56,7 @@ function debugLog(message: string, ...args: any[]) {
 function debugStackTrace(message: string, ...args: any[]) {
   if (enableDebugStackTracesLog) {
     const stack = new Error(
-      'This is not an error; it is a stack trace used for debugging purposes. It is enabled by the "debugStackTraces: true" configuration option.'
+      'This is not an error; it is a stack trace used for debugging purposes. It is enabled by the "debugStackTraces: true" configuration option.',
     );
     debugLog(message, stack, ...args);
   } else {
@@ -136,7 +137,7 @@ function createDidCatchErrorData(
   component: string,
   error: Error,
   errorInfo: ErrorInfo,
-  isCatastrophicError?: boolean
+  isCatastrophicError?: boolean,
 ): OnErrorData {
   return {
     errorType: OnErrorType.RENDER,
@@ -181,9 +182,9 @@ function callOnError(onError: (data: OnErrorData) => void, data: OnErrorData) {
 function getBotName(useAITheme: boolean, config: AppConfig) {
   let botName;
   if (useAITheme) {
-    botName = "AI";
+    botName = watsonx;
   } else {
-    botName = config.public.botName || "watsonx";
+    botName = config.public.botName || watsonx;
   }
 
   return botName;
