@@ -7,7 +7,6 @@
  *  @license
  */
 
-// import { Button, ButtonKind } from "@carbon/react";
 import Button, { BUTTON_KIND } from "../../../../react/carbon/Button";
 import cx from "classnames";
 import React from "react";

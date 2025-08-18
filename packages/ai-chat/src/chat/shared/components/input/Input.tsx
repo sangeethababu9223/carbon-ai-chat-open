@@ -48,7 +48,6 @@ import { ListenerList } from "../../utils/ListenerList";
 import { isValidForUpload } from "../../utils/miscUtils";
 import TextArea from "../responseTypes/text/TextArea";
 import { InstanceInputElement } from "../../../../types/instance/ChatInstance";
-import { ButtonSizeEnum } from "../../../../types/utilities/carbonTypes";
 import { BusEventType } from "../../../../types/events/eventBusTypes";
 import { OverlayPanelName } from "../OverlayPanel";
 import { makeTestId, PageObjectId } from "../../utils/PageObjectId";
