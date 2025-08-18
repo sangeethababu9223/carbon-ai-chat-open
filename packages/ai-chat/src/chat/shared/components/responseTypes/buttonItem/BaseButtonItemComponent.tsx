@@ -8,7 +8,7 @@
  */
 
 // import { Button, ButtonKind } from "@carbon/react";
-import Button, {BUTTON_KIND} from "../../../../react/carbon/Button";
+import Button, { BUTTON_KIND } from "../../../../react/carbon/Button";
 import cx from "classnames";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -105,18 +105,18 @@ function BaseButtonItemComponent({
     );
   }
   const RenderIcon = renderIcon;
-
+  const buttonKind = getButtonKind(kind) || "primary";
   return (
     <Button
       className={cx("WACButtonItem", className)}
-      kind={getButtonKind(kind)}
+      kind={buttonKind as BUTTON_KIND}
       href={url}
       target={linkTarget}
       rel={url ? "noopener noreferrer" : undefined}
       disabled={disabled}
       onClick={onClick}
     >
-      <RenderIcon slot="icon"/>
+      {renderIcon && <RenderIcon slot="icon" />}
       {text}
     </Button>
   );
@@ -129,8 +129,12 @@ function getButtonKind(style: ButtonItemKind): BUTTON_KIND {
       return "ghost" as BUTTON_KIND;
     case ButtonItemKind.DEFAULT:
       return "primary" as BUTTON_KIND;
+    case ButtonItemKind.SECONDARY:
+      return "secondary" as BUTTON_KIND;
+    case ButtonItemKind.DANGER:
+      return "danger" as BUTTON_KIND;
     default:
-      return "ghost" as BUTTON_KIND;
+      return "primary" as BUTTON_KIND;
   }
 }
 
