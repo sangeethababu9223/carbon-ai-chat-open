@@ -12,7 +12,6 @@
 import CDSButton from "@carbon/web-components/es-custom/components/button/button.js";
 import AiLaunch from "@carbon/icons-react/es/AiLaunch.js";
 import ChatLaunch from "@carbon/icons-react/es/ChatLaunch.js";
-import { carbonIconToReact } from "../../utils/carbonIcon";
 import Button, { BUTTON_KIND, BUTTON_TYPE } from "../../../react/carbon/Button";
 import cx from "classnames";
 import React, { forwardRef, Ref, RefObject, useImperativeHandle } from "react";
