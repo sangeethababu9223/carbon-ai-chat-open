@@ -31,6 +31,7 @@ import {
   HomeScreenStarterButton,
 } from "../../../../types/config/HomeScreenConfig";
 import { OverlayPanelName } from "../OverlayPanel";
+import { ThemeType } from "../../../../types/config/PublicConfig";
 
 interface HomeScreenProps {
   isHydrated: boolean;
@@ -98,7 +99,7 @@ function HomeScreenComponent({
 
   const prevIsHydrated = usePrevious(isHydrated);
 
-  const useAITheme = useSelector((state: AppState) => state.theme.useAITheme);
+  const theme = useSelector((state: AppState) => state.theme.theme);
 
   const homeScreenWriteableElement =
     serviceManager.writeableElements[
@@ -112,13 +113,14 @@ function HomeScreenComponent({
     starters?.is_on && Boolean(starters.buttons?.length);
 
   const backgroundSolid =
-    !useAITheme && background === HomeScreenBackgroundType.SOLID;
+    theme !== ThemeType.CARBON_AI &&
+    background === HomeScreenBackgroundType.SOLID;
 
   const firstRender = isHydrated && !prevIsHydrated;
   return (
     <div
       className={cx("WACHomeScreen", {
-        "WACHomeScreen--backgroundAITheme": useAITheme,
+        "WACHomeScreen--backgroundAITheme": theme === ThemeType.CARBON_AI,
         "WACHomeScreen--hydrationComplete": isHydrated,
         "WACHomeScreen--firstRender": firstRender,
         "WACHomeScreen--backgroundSolid": backgroundSolid,

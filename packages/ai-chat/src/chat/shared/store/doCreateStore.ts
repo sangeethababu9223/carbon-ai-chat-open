@@ -15,6 +15,7 @@ import { AppConfig } from "../../../types/state/AppConfig";
 import { AppState, ThemeState } from "../../../types/state/AppState";
 import { IS_PHONE } from "../utils/browserUtils";
 import { CornersType } from "../utils/constants";
+import { ThemeType } from "../../../types/config/PublicConfig";
 import { withoutEmptyStarters } from "../utils/homeScreenUtils";
 import { getBotName } from "../utils/miscUtils";
 import { mergeCSSVariables } from "../utils/styleUtils";
@@ -42,27 +43,17 @@ function doCreateStore(
   config: AppConfig,
   serviceManager: ServiceManager,
 ): Store<AppState> {
-  // Determine the value for useAITheme.
-  let useAITheme;
-  if (config.public.themeConfig?.useAITheme !== undefined) {
-    // If a value is set in the public config then use that.
-    useAITheme = config.public.themeConfig?.useAITheme;
-  } else {
-    // If neither config is setting a value than use the default.
-    useAITheme = DEFAULT_THEME_STATE.useAITheme;
-  }
-
-  // The theme state uses a default for each property which can be overridden by the public config if specified. If a
-  // value for the property is not specified in the public config, then the default can be overridden by the remote
-  // config.
+  // The theme state uses a default for each property which can be overridden by the public config if specified.
   const themeState: ThemeState = {
     carbonTheme:
       config.public.themeConfig?.carbonTheme || DEFAULT_THEME_STATE.carbonTheme,
-    useAITheme,
+    theme: config.public.themeConfig?.theme || DEFAULT_THEME_STATE.theme,
     corners: getThemeCornersType(config),
+    whiteLabelTheme: config.public.themeConfig?.whiteLabelTheme,
   };
 
-  const botName = getBotName(themeState.useAITheme, config);
+  const botName = getBotName(themeState.theme, config);
+
   const initialState: AppState = {
     ...DEFAULT_MESSAGE_STATE,
     notifications: [],
@@ -79,13 +70,13 @@ function doCreateStore(
     chatWidthBreakpoint: null,
     chatWidth: null,
     chatHeight: null,
-    // Any IBM set variables will override variables coming from remote. We keep this in redux so we can track the
-    // current state of the theming variables as they are updated and merged at different times.
     cssVariableOverrides: mergeCSSVariables(
       {},
-      {},
+      themeState.theme === ThemeType.WHITE_LABEL
+        ? themeState.whiteLabelTheme || {}
+        : {},
       themeState.carbonTheme,
-      themeState.useAITheme,
+      themeState.theme,
     ),
     isHydrated: false,
     // The language pack will start as English. If a different language pack is provided or updated, it will be
@@ -186,7 +177,7 @@ function getThemeCornersType(config: AppConfig) {
 }
 
 function getLayoutState(config: AppConfig): LayoutConfig {
-  if (config.public.themeConfig?.useAITheme) {
+  if (config.public.themeConfig?.theme === ThemeType.CARBON_AI) {
     return {
       showFrame: config.public.layout?.showFrame ?? true,
       hasContentMaxWidth: config.public.layout?.hasContentMaxWidth ?? true,

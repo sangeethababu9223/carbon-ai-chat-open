@@ -22,8 +22,9 @@ import {
   ConversationalSearchItem,
   ConversationalSearchItemCitation,
 } from "../../../../../types/messaging/Messages";
-import { processMarkdown } from "../../../../web-components/components/markdownText/markdown/markdownToHTML";
+
 import { RichText } from "../util/RichText";
+import { markdownToHTML } from "../../../../web-components/components/markdownText/src/markdownProcessor";
 
 const ChevronUp = carbonIconToReact(ChevronUp16);
 const ChevronDown = carbonIconToReact(ChevronDown16);
@@ -193,7 +194,7 @@ async function createHTMLWithHighlights(
     text = pieces.join("");
   }
 
-  const afterMarkdownHTML = await processMarkdown(text, streaming);
+  const afterMarkdownHTML = markdownToHTML(text, streaming);
 
   if (ranges) {
     try {
