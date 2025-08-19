@@ -93,7 +93,7 @@ function HomeScreenComponent({
 
   const { showBackToBot } = useSelector(
     (state: AppState) =>
-      state.persistedToBrowserStorage.chatState.homeScreenState
+      state.persistedToBrowserStorage.chatState.homeScreenState,
   );
 
   const prevIsHydrated = usePrevious(isHydrated);

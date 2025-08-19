@@ -29,9 +29,13 @@ function templateToString(result: TemplateResult): string {
  * to anchor tags to make links using the auto-linker feature of the markdown library. Existing anchor tags are left
  * unchanged.
  */
-async function processMarkdown(value: string, sanitzeHTML = false) {
-  const tokenTree = await getMarkdownWorker(value, undefined);
-  const html = templateToString(renderTokenTree(tokenTree, sanitzeHTML));
+async function processMarkdown(value: string, streaming = false) {
+  const tokenTree = await getMarkdownWorker({
+    markdown: value,
+    lastTree: undefined,
+  });
+  const template = renderTokenTree(tokenTree, { sanitize: true, streaming });
+  const html = templateToString(template);
   return html;
 }
 

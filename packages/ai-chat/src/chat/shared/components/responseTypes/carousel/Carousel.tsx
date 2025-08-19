@@ -11,15 +11,10 @@ import Button, { BUTTON_KIND } from "../../../../react/carbon/Button";
 import ChevronLeft16 from "@carbon/icons/es/chevron--left/16.js";
 import ChevronRight16 from "@carbon/icons/es/chevron--right/16.js";
 import { carbonIconToReact } from "../../../utils/carbonIcon";
-import React, { MutableRefObject, ReactElement, useState } from "react";
+import React, { MutableRefObject, ReactElement, useState, Suspense } from "react";
 import { useIntl } from "react-intl";
 import { useSelector } from "react-redux";
-import { A11y, Navigation } from "swiper/modules";
-import {
-  Swiper as SwiperComponent,
-  type SwiperRef,
-  SwiperSlide,
-} from "swiper/react";
+import type { SwiperRef } from "swiper/react";
 import type { Swiper as SwiperClass } from "swiper/types";
 
 import { useLanguagePack } from "../../../hooks/useLanguagePack";
@@ -29,8 +24,65 @@ import {
 } from "../../../../../types/state/AppState";
 const ChevronLeft = carbonIconToReact(ChevronLeft16);
 const ChevronRight = carbonIconToReact(ChevronRight16);
+interface SwiperCarouselProps {
+  swiperRef?: MutableRefObject<SwiperRef>;
+  initialSlide?: number;
+  previousButton?: HTMLElement;
+  nextButton?: HTMLElement;
+  chatWidthBreakpoint: ChatWidthBreakpoint;
+  onSlideChangeInternal: (swiper: SwiperClass) => void;
+  children?: ReactElement[];
+}
 
-const SWIPER_MODULES = [A11y, Navigation];
+// Create a component that uses lazy-loaded Swiper
+const SwiperCarousel = React.lazy(async () => {
+  const [{ Swiper: SwiperComponent, SwiperSlide }, { A11y, Navigation }] =
+    await Promise.all([import("swiper/react"), import("swiper/modules")]);
+
+  const SWIPER_MODULES = [A11y, Navigation];
+
+  return {
+    default: ({
+      swiperRef,
+      initialSlide,
+      previousButton,
+      nextButton,
+      chatWidthBreakpoint,
+      onSlideChangeInternal,
+      children,
+    }: SwiperCarouselProps) => (
+      <SwiperComponent
+        ref={swiperRef}
+        initialSlide={initialSlide}
+        modules={SWIPER_MODULES}
+        navigation={{
+          prevEl: previousButton,
+          nextEl: nextButton,
+        }}
+        slidesPerView="auto"
+        spaceBetween={
+          MESSAGE_RECEIVED_LEFT_MARGIN_BY_BREAKPOINT[chatWidthBreakpoint]
+        }
+        onSlideChange={onSlideChangeInternal}
+        slidesOffsetBefore={
+          MESSAGE_RECEIVED_LEFT_MARGIN_BY_BREAKPOINT[chatWidthBreakpoint]
+        }
+        slidesOffsetAfter={16}
+        rewind
+      >
+        {React.Children.map(children, (child) => (
+          <SwiperSlide
+            key={child.key}
+            className={`WACCarouselContainer__Slide--${chatWidthBreakpoint}`}
+          >
+            {child}
+          </SwiperSlide>
+        ))}
+      </SwiperComponent>
+    ),
+  };
+});
+
 // This object holds the left margin value for received messages.
 const MESSAGE_RECEIVED_LEFT_MARGIN_BY_BREAKPOINT = {
   [ChatWidthBreakpoint.NARROW]: 16,
@@ -69,7 +121,7 @@ function Carousel({
   const intl = useIntl();
   const { carousel_prevNavButton, carousel_nextNavButton } = useLanguagePack();
   const chatWidthBreakpoint = useSelector(
-    (state: AppState) => state.chatWidthBreakpoint
+    (state: AppState) => state.chatWidthBreakpoint,
   );
   const [nextButton, setNextButton] = useState<HTMLElement>();
   const [previousButton, setPreviousButton] = useState<HTMLElement>();
@@ -83,7 +135,7 @@ function Carousel({
   const totalSlideCount = React.Children.count(children);
   const currentLabel = intl.formatMessage(
     { id: "components_swiper_currentLabel" },
-    { currentSlideNumber, totalSlideCount }
+    { currentSlideNumber, totalSlideCount },
   );
 
   if (totalSlideCount <= 1) {
@@ -97,35 +149,18 @@ function Carousel({
   return (
     <div className="WACCarouselContainer">
       {nextButton && (
-        <SwiperComponent
-          ref={swiperRef}
-          initialSlide={initialSlide}
-          modules={SWIPER_MODULES}
-          navigation={{
-            prevEl: previousButton,
-            nextEl: nextButton,
-          }}
-          slidesPerView="auto"
-          spaceBetween={
-            MESSAGE_RECEIVED_LEFT_MARGIN_BY_BREAKPOINT[chatWidthBreakpoint]
-          }
-          onSlideChange={onSlideChangeInternal}
-          // These values account for the left and right gutters present in other messages.
-          slidesOffsetBefore={
-            MESSAGE_RECEIVED_LEFT_MARGIN_BY_BREAKPOINT[chatWidthBreakpoint]
-          }
-          slidesOffsetAfter={16}
-          rewind
-        >
-          {React.Children.map(children, (child) => (
-            <SwiperSlide
-              key={child.key}
-              className={`WACCarouselContainer__Slide--${chatWidthBreakpoint}`}
-            >
-              {child}
-            </SwiperSlide>
-          ))}
-        </SwiperComponent>
+        <Suspense fallback={<div />}>
+          <SwiperCarousel
+            swiperRef={swiperRef}
+            initialSlide={initialSlide}
+            previousButton={previousButton}
+            nextButton={nextButton}
+            chatWidthBreakpoint={chatWidthBreakpoint}
+            onSlideChangeInternal={onSlideChangeInternal}
+          >
+            {children}
+          </SwiperCarousel>
+        </Suspense>
       )}
       <div className={`WACCarouselContainer__Controls--${chatWidthBreakpoint}`}>
         <div className="WACCarouselContainer__Navigation">

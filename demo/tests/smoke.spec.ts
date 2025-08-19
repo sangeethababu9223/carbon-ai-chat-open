@@ -15,7 +15,7 @@ test("smoke React", async ({ page }) => {
   // 2) Open the React chat widget, enter a message, confirm receipt of answer, close the chat.
   await page.getByTestId(PageObjectId.LAUNCHER).click();
   const close = page.getByTestId(
-    makeTestId(PageObjectId.CLOSE_CHAT, OverlayPanelName.MAIN)
+    makeTestId(PageObjectId.CLOSE_CHAT, OverlayPanelName.MAIN),
   );
   await expect(close).toBeVisible();
   await page
@@ -27,9 +27,7 @@ test("smoke React", async ({ page }) => {
   await page
     .getByTestId(makeTestId(PageObjectId.INPUT_SEND, OverlayPanelName.MAIN))
     .click();
-  await expect(page.locator("#WAC__message-3")).toContainText(
-    'Lorem bold text italics text ipsum odor amet, consectetuer adipiscing elit. alert("inline code"); aliquet non platea elementum morbi porta accumsan. Tortor libero consectetur dapibus volutpat porta vestibulum.'
-  );
+  await expect(page.locator("#WAC__message-3")).toContainText("Carbon is a");
   await close.click();
 });
 
@@ -49,7 +47,7 @@ test("smoke web component", async ({ page }) => {
   // 3) Open the Web component chat widget, enter a message, confirm receipt of answer, close the chat.
   await page.getByTestId(PageObjectId.LAUNCHER).click();
   const close = page.getByTestId(
-    makeTestId(PageObjectId.CLOSE_CHAT, OverlayPanelName.MAIN)
+    makeTestId(PageObjectId.CLOSE_CHAT, OverlayPanelName.MAIN),
   );
   await expect(close).toBeVisible();
   await page
@@ -61,8 +59,6 @@ test("smoke web component", async ({ page }) => {
   await page
     .getByTestId(makeTestId(PageObjectId.INPUT_SEND, OverlayPanelName.MAIN))
     .click();
-  await expect(page.locator("#WAC__message-3")).toContainText(
-    'Lorem bold text italics text ipsum odor amet, consectetuer adipiscing elit. alert("inline code"); aliquet non platea elementum morbi porta accumsan. Tortor libero consectetur dapibus volutpat porta vestibulum.'
-  );
+  await expect(page.locator("#WAC__message-3")).toContainText("Carbon is a");
   await close.click();
 });

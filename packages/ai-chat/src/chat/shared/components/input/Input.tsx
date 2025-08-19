@@ -37,7 +37,7 @@ import { StopStreamingButton } from "../../../react/components/stopStreamingButt
 import { HasServiceManager } from "../../hocs/withServiceManager";
 import { useCounter } from "../../hooks/useCounter";
 import actions from "../../store/actions";
-import { selectIsInputToAgent } from "../../store/selectors";
+import { selectIsInputToHumanAgent } from "../../store/selectors";
 import { FileUpload } from "../../../../types/state/AppState";
 import HasLanguagePack from "../../../../types/utilities/HasLanguagePack";
 import { IS_MOBILE } from "../../utils/browserUtils";
@@ -217,7 +217,7 @@ function Input(props: InputProps, ref: Ref<InputFunctions>) {
 
   // An array of functions that will be called when the text value changes.
   const changeListeners = useRef<ListenerList<[string]>>(
-    new ListenerList<[string]>()
+    new ListenerList<[string]>(),
   );
 
   // The last text value that was sent to the change listeners.
@@ -332,11 +332,11 @@ function Input(props: InputProps, ref: Ref<InputFunctions>) {
    * The callback that is called when the user removes a file from the upload area.
    */
   function onRemoveFile(fileID: string) {
-    const isInputToAgent = selectIsInputToAgent(
-      serviceManager.store.getState()
+    const isInputToHumanAgent = selectIsInputToHumanAgent(
+      serviceManager.store.getState(),
     );
     serviceManager.store.dispatch(
-      actions.removeFileUpload(fileID, isInputToAgent)
+      actions.removeFileUpload(fileID, isInputToHumanAgent),
     );
     // After we remove the file, we need to move focus back to the input field.
     textAreaRef.current.takeFocus();
@@ -346,8 +346,8 @@ function Input(props: InputProps, ref: Ref<InputFunctions>) {
    * The callback that is called when the user selects a file using the file input.
    */
   function onFileChange(event: ChangeEvent<HTMLInputElement>) {
-    const isInputToAgent = selectIsInputToAgent(
-      serviceManager.store.getState()
+    const isInputToHumanAgent = selectIsInputToHumanAgent(
+      serviceManager.store.getState(),
     );
     const { dispatch } = serviceManager.store;
     const { files } = event.target;
@@ -359,7 +359,7 @@ function Input(props: InputProps, ref: Ref<InputFunctions>) {
         file: files[index],
       };
       newFiles.push(newFile);
-      dispatch(actions.addInputFile(newFile, isInputToAgent));
+      dispatch(actions.addInputFile(newFile, isInputToHumanAgent));
     }
     onFilesSelectedForUpload?.(newFiles);
 

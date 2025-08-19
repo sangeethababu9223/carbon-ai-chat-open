@@ -1,6 +1,6 @@
-/* 
+/*
  *  Copyright IBM Corp. 2025
- *  
+ *
  *  This source code is licensed under the Apache-2.0 license found in the
  *  LICENSE file in the root directory of this source tree.
  */
@@ -84,6 +84,7 @@
 .WACLauncher__ButtonContainer.WACLauncher__ButtonContainer--round
   .WACLauncher__Button {
   @media screen and (prefers-reduced-motion: reduce) {
+<<<<<<< HEAD
     &:not(.WACLauncher__TourButton) {
       &::part(button) {
         background-color: var(--cds-chat-LAUNCHER-color-background);
@@ -140,42 +141,56 @@
     }
   }
 }
+=======
+    background-color: var(--cds-chat-LAUNCHER-color-background);
+    transition: none;
 
-// If clicking the launcher will open a tour then we want the launcher to have the same background color as the main
-// window and the same icon color as a ghost button within the main window.
-.WACLauncher__ButtonContainer.WACLauncher__ButtonContainer--round
-  .WACLauncher__TourButton {
-  border: var(--cds-chat-BASE-border-width-large) solid transparent;
-  background-color: theme.$background;
-  color: theme.$icon-primary;
-}
+    // Make the focus and active box-shadow one px wider since the default 1px width looks weird with the rounded launcher.
+    &:focus {
+      border-width: var(--cds-chat-BASE-border-width-large);
+      border-color: var(--cds-chat-LAUNCHER-color-background);
+      box-shadow: inset 0 0 0 var(--cds-chat-BASE-border-width-med)
+        var(--cds-chat-LAUNCHER-color-focus-border);
+    }
 
-.WACLauncher__ButtonContainer.WACLauncher__ButtonContainer--round
-  .WACLauncher__TourButton:focus {
-  border-width: var(--cds-chat-BASE-border-width-large);
-  box-shadow: inset 0 0 0 var(--cds-chat-BASE-border-width-med) theme.$focus;
-}
+    &:hover {
+      border-color: var(--cds-chat-LAUNCHER-color-background-hover);
+      background-color: var(--cds-chat-LAUNCHER-color-background-hover);
+    }
 
-.WACLauncher__ButtonContainer.WACLauncher__ButtonContainer--round
-  .WACLauncher__TourButton:active {
-  border-width: var(--cds-chat-BASE-border-width-large);
-  box-shadow: inset 0 0 0 var(--cds-chat-BASE-border-width-med) theme.$focus;
-}
+    &:active {
+      border-width: var(--cds-chat-BASE-border-width-large);
+      border-color: var(--cds-chat-LAUNCHER-color-background-active);
+      background-color: var(--cds-chat-LAUNCHER-color-background-active);
+      box-shadow: inset 0 0 0 var(--cds-chat-BASE-border-width-med)
+        var(--cds-chat-LAUNCHER-color-focus-border);
+    }
+  }
+>>>>>>> upstream/carbon-react-web-components-integration
 
-.WACLauncher__ButtonContainer.WACLauncher__ButtonContainer--round
-  .WACLauncher__TourButton:focus
-  .WACLauncher__svg,
-.WACLauncher__ButtonContainer.WACLauncher__ButtonContainer--round
-  .WACLauncher__TourButton:active
-  .WACLauncher__svg {
-  fill: theme.$focus;
-}
+  background-color: var(--cds-chat-LAUNCHER-color-background);
+  transition: unset;
 
-.WACContainer--render[dir="rtl"]
-  .WACLauncher__ButtonContainer.WACLauncher__ButtonContainer--round
-  .WACLauncher__TourButton
-  .WACLauncher__svg {
-  transform: scaleX(-1);
+  // Make the focus and active box-shadow one px wider since the default 1px width looks weird with the rounded launcher.
+  &:focus {
+    border-width: var(--cds-chat-BASE-border-width-large);
+    border-color: var(--cds-chat-LAUNCHER-color-background);
+    box-shadow: inset 0 0 0 var(--cds-chat-BASE-border-width-med)
+      var(--cds-chat-LAUNCHER-color-focus-border);
+  }
+
+  &:hover {
+    border-color: var(--cds-chat-LAUNCHER-color-background-hover);
+    background-color: var(--cds-chat-LAUNCHER-color-background-hover);
+  }
+
+  &:active {
+    border-width: var(--cds-chat-BASE-border-width-large);
+    border-color: var(--cds-chat-LAUNCHER-color-background-active);
+    background-color: var(--cds-chat-LAUNCHER-color-background-active);
+    box-shadow: inset 0 0 0 var(--cds-chat-BASE-border-width-med)
+      var(--cds-chat-LAUNCHER-color-focus-border);
+  }
 }
 
 .WACLauncher__ButtonContainer.WACLauncher__ButtonContainer--round
@@ -226,7 +241,17 @@
   }
 }
 
+<<<<<<< HEAD
 .WACLauncher__Button::part(button) {
+=======
+button.WACLauncher__Button {
+  svg {
+    block-size: 24px;
+    fill: var(--cds-chat-LAUNCHER-color-avatar);
+    inline-size: 24px;
+  }
+
+>>>>>>> upstream/carbon-react-web-components-integration
   position: static;
   display: flex;
   align-items: center;
@@ -236,18 +261,23 @@
   background-color: var(--cds-chat-LAUNCHER-color-background);
   block-size: var(--cds-chat-LAUNCHER-default-size);
   inline-size: var(--cds-chat-LAUNCHER-default-size);
-  transition: background 250ms ease-in-out, transform 150ms ease;
+  transition:
+    background 250ms ease-in-out,
+    transform 150ms ease;
 }
 
 .WACLauncher__Button:focus {
   border-width: var(--cds-chat-BASE-border-width-large);
 }
 
+<<<<<<< HEAD
 .WACLauncher__Button svg {
   block-size: 24px;
   inline-size: 24px;
 }
 
+=======
+>>>>>>> upstream/carbon-react-web-components-integration
 .WACLauncher__svg {
   fill: currentcolor;
 }
@@ -310,6 +340,7 @@
   font-size: 20px;
   letter-spacing: 0;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   line-height: 1.4;
   opacity: 0;
   overflow-wrap: break-word;
@@ -317,10 +348,10 @@
 
   // Fixes a random bug with multi line line-clamp that caused the line-clamp to be ignored on first render after the
   // component had its visibility set to hidden or inherited it from it's parent. In our case this bug occurs after the
-  // Carbon AI chat has been opened and then closed. When its opened we apply visibility: hidden to the Launcher as a part of
+  // Carbon AI Chat has been opened and then closed. When its opened we apply visibility: hidden to the Launcher as a part of
   // the changes made for this class ".WACLauncher__ButtonContainer--hidden" above. So it's necessary that we apply
   // visibility: visible here as a workaround otherwise the line-clamp is ignored when the launcher renders again after
-  // the Carbon AI chat is closed. src
+  // the Carbon AI Chat is closed. src
   // https://stackoverflow.com/questions/38989475/css-multi-line-line-clamp-ellipsis-doesnt-work
   // This class needs to be removed when the element isn't visible otherwise the content will still show.
   visibility: visible;
@@ -340,9 +371,10 @@
   // of the page. Once all of that has been done move down the height of the launcher container. This way the top of the
   // container always starts 16px above the small launcher before the animation, irrelevant of how tall the container is.
   inset-block-end: calc(
-    #{layout.$spacing-05} + var(--cds-chat-LAUNCHER-default-size) + var(
-        --cds-chat-LAUNCHER-position-bottom
-      ) - var(--cds-chat-LAUNCHER-desktop-expanded-height)
+    #{layout.$spacing-05} + var(--cds-chat-LAUNCHER-default-size) +
+      var(--cds-chat-LAUNCHER-position-bottom) - var(
+        --cds-chat-LAUNCHER-desktop-expanded-height
+      )
   );
 
   // 64px of distance between the right side of the medium container and the right side of the page, so that theres a
@@ -445,6 +477,7 @@
   margin-inline: layout.$spacing-02 unset;
 }
 
+<<<<<<< HEAD
 .WACLauncher__Button:not(.WACLauncher__TourButton) {
   background-color: transparent;
 
@@ -453,6 +486,8 @@
   }
 }
 
+=======
+>>>>>>> upstream/carbon-react-web-components-integration
 @media screen and (prefers-reduced-motion: reduce) {
   .WACLauncherComplex__Container--introAnimation {
     animation: none;
@@ -475,21 +510,6 @@
     .WACLauncherComplex__Text {
       animation: motion.$duration-slow-02 WACAnimLauncherComplex__FadeInText
         forwards;
-    }
-    @media screen and (prefers-reduced-motion: reduce) {
-      .WACLauncherComplex__SmallLauncherContainer,
-      .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-        .WACLauncher__Button {
-        animation: none;
-      }
-    }
-
-    @media screen and (prefers-reduced-motion: reduce) {
-      .WACLauncherComplex__SmallLauncherContainer,
-      .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-        .WACLauncher__Button {
-        animation: none;
-      }
     }
     @media screen and (prefers-reduced-motion: reduce) {
       .WACLauncherComplex__SmallLauncherContainer,
@@ -562,21 +582,6 @@
       animation: none;
     }
   }
-
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__SmallLauncherContainer,
-    .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-      .WACLauncher__Button {
-      animation: none;
-    }
-  }
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__SmallLauncherContainer,
-    .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-      .WACLauncher__Button {
-      animation: none;
-    }
-  }
   @media screen and (prefers-reduced-motion: reduce) {
     .WACLauncherComplex__SmallLauncherContainer,
     .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
@@ -620,21 +625,6 @@
       animation: none;
     }
   }
-
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__SmallLauncherContainer,
-    .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-      .WACLauncher__Button {
-      animation: none;
-    }
-  }
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__SmallLauncherContainer,
-    .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-      .WACLauncher__Button {
-      animation: none;
-    }
-  }
   @media screen and (prefers-reduced-motion: reduce) {
     .WACLauncherComplex__SmallLauncherContainer,
     .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
@@ -667,9 +657,10 @@
     // of the page. Once all of that has been done move down the height of the launcher container. This way the top of the
     // container always starts 16px above the small launcher before the animation, irrelevant of how tall the container is.
     inset-block-end: calc(
-      #{layout.$spacing-05} + var(--cds-chat-LAUNCHER-default-size) + var(
-          --cds-chat-LAUNCHER-position-bottom
-        ) - var(--cds-chat-LAUNCHER-desktop-expanded-height)
+      #{layout.$spacing-05} + var(--cds-chat-LAUNCHER-default-size) +
+        var(--cds-chat-LAUNCHER-position-bottom) - var(
+          --cds-chat-LAUNCHER-desktop-expanded-height
+        )
     );
   }
 
@@ -790,31 +781,6 @@
         inset-inline-end: calc(-1 * #{layout.$spacing-11});
       }
     }
-
-    @media screen and (prefers-reduced-motion: reduce) {
-      .WACLauncherComplex__SmallLauncherContainer,
-      .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-        .WACLauncher__Button {
-        padding: 0 60px 60px 0;
-        border-radius: layout.$spacing-11;
-        animation: none;
-        block-size: layout.$spacing-13;
-        inline-size: layout.$spacing-13;
-        inset-inline-end: calc(-1 * #{layout.$spacing-11});
-      }
-    }
-    @media screen and (prefers-reduced-motion: reduce) {
-      .WACLauncherComplex__SmallLauncherContainer,
-      .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-        .WACLauncher__Button {
-        padding: 0 60px 60px 0;
-        border-radius: layout.$spacing-11;
-        animation: none;
-        block-size: layout.$spacing-13;
-        inline-size: layout.$spacing-13;
-        inset-inline-end: calc(-1 * #{layout.$spacing-11});
-      }
-    }
     @media screen and (prefers-reduced-motion: reduce) {
       .WACLauncherComplex__SmallLauncherContainer,
       .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
@@ -886,31 +852,6 @@
   .WACLauncherComplex__Text {
     animation: motion.$duration-moderate-01 WACAnimLauncherComplex__FadeInText
       forwards;
-  }
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__SmallLauncherContainer,
-    .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-      .WACLauncher__Button {
-      padding: 0 60px 60px 0;
-      border-radius: layout.$spacing-11;
-      animation: none;
-      block-size: layout.$spacing-13;
-      inline-size: layout.$spacing-13;
-      inset-inline-end: calc(-1 * #{layout.$spacing-11});
-    }
-  }
-
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__SmallLauncherContainer,
-    .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-      .WACLauncher__Button {
-      padding: 0 60px 60px 0;
-      border-radius: layout.$spacing-11;
-      animation: none;
-      block-size: layout.$spacing-13;
-      inline-size: layout.$spacing-13;
-      inset-inline-end: calc(-1 * #{layout.$spacing-11});
-    }
   }
   @media screen and (prefers-reduced-motion: reduce) {
     .WACLauncherComplex__SmallLauncherContainer,
@@ -1033,33 +974,6 @@
       inset-inline-end: calc(-1 * #{layout.$spacing-11});
     }
   }
-
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__SmallLauncherContainer,
-    .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-      .WACLauncher__Button {
-      padding: 0 60px 60px 0;
-      border-radius: layout.$spacing-11;
-      animation: none;
-      block-size: layout.$spacing-13;
-      inline-size: layout.$spacing-13;
-      inset-block-end: calc(-1 * #{layout.$spacing-11});
-      inset-inline-end: calc(-1 * #{layout.$spacing-11});
-    }
-  }
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__SmallLauncherContainer,
-    .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-      .WACLauncher__Button {
-      padding: 0 60px 60px 0;
-      border-radius: layout.$spacing-11;
-      animation: none;
-      block-size: layout.$spacing-13;
-      inline-size: layout.$spacing-13;
-      inset-block-end: calc(-1 * #{layout.$spacing-11});
-      inset-inline-end: calc(-1 * #{layout.$spacing-11});
-    }
-  }
   @media screen and (prefers-reduced-motion: reduce) {
     .WACLauncherComplex__SmallLauncherContainer,
     .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
@@ -1123,19 +1037,6 @@
         animation: none;
       }
     }
-
-    @media screen and (prefers-reduced-motion: reduce) {
-      .WACLauncherComplex__Text,
-      .WACLauncher__CloseButton {
-        animation: none;
-      }
-    }
-    @media screen and (prefers-reduced-motion: reduce) {
-      .WACLauncherComplex__Text,
-      .WACLauncher__CloseButton {
-        animation: none;
-      }
-    }
     @media screen and (prefers-reduced-motion: reduce) {
       .WACLauncherComplex__Text,
       .WACLauncher__CloseButton {
@@ -1153,21 +1054,6 @@
     .WACLauncher__CloseButton {
       animation: motion.$duration-slow-01 WACAnimLauncherComplex__FadeOut
         forwards;
-    }
-    @media screen and (prefers-reduced-motion: reduce) {
-      .WACLauncherComplex__SmallLauncherContainer,
-      .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-        .WACLauncher__Button {
-        animation: none;
-      }
-    }
-
-    @media screen and (prefers-reduced-motion: reduce) {
-      .WACLauncherComplex__SmallLauncherContainer,
-      .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-        .WACLauncher__Button {
-        animation: none;
-      }
     }
     @media screen and (prefers-reduced-motion: reduce) {
       .WACLauncherComplex__SmallLauncherContainer,
@@ -1225,49 +1111,10 @@
       animation: none;
     }
   }
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__Text,
-    .WACLauncher__CloseButton {
-      animation: none;
-    }
-  }
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__Text,
-    .WACLauncher__CloseButton {
-      animation: none;
-    }
-  }
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__Text,
-    .WACLauncher__CloseButton {
-      animation: none;
-    }
-  }
 
   .WACLauncherComplex__Text,
   .WACLauncher__CloseButton {
     animation: motion.$duration-slow-01 WACAnimLauncherComplex__FadeOut forwards;
-  }
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__SmallLauncherContainer,
-    .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-      .WACLauncher__Button {
-      animation: none;
-    }
-  }
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__SmallLauncherContainer,
-    .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-      .WACLauncher__Button {
-      animation: none;
-    }
-  }
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__SmallLauncherContainer,
-    .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-      .WACLauncher__Button {
-      animation: none;
-    }
   }
   @media screen and (prefers-reduced-motion: reduce) {
     .WACLauncherComplex__SmallLauncherContainer,
@@ -1308,27 +1155,6 @@
       animation: none;
     }
   }
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__SmallLauncherContainer,
-    .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-      .WACLauncher__Button {
-      animation: none;
-    }
-  }
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__SmallLauncherContainer,
-    .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-      .WACLauncher__Button {
-      animation: none;
-    }
-  }
-  @media screen and (prefers-reduced-motion: reduce) {
-    .WACLauncherComplex__SmallLauncherContainer,
-    .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
-      .WACLauncher__Button {
-      animation: none;
-    }
-  }
 
   .WACLauncherComplex__SmallLauncherContainer,
   .WACLauncher__ButtonContainer.WACLauncherComplex__SmallLauncherContainer
@@ -1354,9 +1180,10 @@
     background: transparent;
     box-shadow: none;
     inset-block-end: calc(
-      #{layout.$spacing-05} + var(--cds-chat-LAUNCHER-default-size) + var(
-          --cds-chat-LAUNCHER-position-bottom
-        ) - var(--cds-chat-LAUNCHER-desktop-expanded-height)
+      #{layout.$spacing-05} + var(--cds-chat-LAUNCHER-default-size) +
+        var(--cds-chat-LAUNCHER-position-bottom) - var(
+          --cds-chat-LAUNCHER-desktop-expanded-height
+        )
     );
   }
 }
@@ -1486,12 +1313,16 @@ button.WACLauncherExtended__Button {
   align-items: center;
   justify-content: center;
   block-size: calc(
-    var(--cds-chat-LAUNCHER-default-size) -
-      var(--cds-chat-BASE-border-width-large) * 2
+    var(--cds-chat-LAUNCHER-default-size) - var(
+        --cds-chat-BASE-border-width-large
+      ) *
+      2
   );
   inline-size: calc(
-    var(--cds-chat-LAUNCHER-default-size) -
-      var(--cds-chat-BASE-border-width-large) * 2
+    var(--cds-chat-LAUNCHER-default-size) - var(
+        --cds-chat-BASE-border-width-large
+      ) *
+      2
   );
   margin-inline-start: auto;
 
@@ -1564,8 +1395,8 @@ button.WACLauncherExtended__Button {
 }
 
 .WACLauncher__ButtonContainer.WACLauncherExtended__Button--extendedAnimation {
-  animation: WACLauncherExtend 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s
-      both,
+  animation:
+    WACLauncherExtend 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s both,
     WACLauncherPartiallyRound 0.3s ease-in 0.5s both;
   @media screen and (prefers-reduced-motion: reduce) {
     button.WACLauncherExtended__Button {
@@ -1612,8 +1443,8 @@ button.WACLauncherExtended__Button {
 }
 
 .WACLauncher__ButtonContainer.WACLauncherExtended__Button--reducedAnimation {
-  animation: WACLauncherReduce 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s
-      both,
+  animation:
+    WACLauncherReduce 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s both,
     WACLauncherCompletelyRound 0.3s ease-out 0.5s both;
   @media screen and (prefers-reduced-motion: reduce) {
     button.WACLauncherExtended__Button {

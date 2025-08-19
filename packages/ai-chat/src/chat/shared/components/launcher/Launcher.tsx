@@ -12,10 +12,8 @@
 import CDSButton from "@carbon/web-components/es-custom/components/button/button.js";
 import ArrowUpLeft24 from "@carbon/icons/es/arrow--up-left/24.js";
 import AiLaunch from "@carbon/icons-react/es/AiLaunch.js";
-// import ArrowUpLeft from "@carbon/icons-react/es/ArrowUpLeft.js";
 import ChatLaunch from "@carbon/icons-react/es/ChatLaunch.js";
 import { carbonIconToReact } from "../../utils/carbonIcon";
-// import { Button } from "@carbon/react";
 import Button, { BUTTON_KIND, BUTTON_TYPE } from "../../../react/carbon/Button";
 import cx from "classnames";
 import React, { forwardRef, Ref, RefObject, useImperativeHandle } from "react";
@@ -39,11 +37,11 @@ interface LauncherProps extends HasClassName, HasIntl {
    * The number of unread messages from a human agent that should be displayed on the launcher. If this is 0, no
    * agent indicator will be shown unless showUnreadIndicator is set.
    */
-  unreadAgentCount: number;
+  unreadHumanAgentCount: number;
 
   /**
    * Indicates if we should show an empty (no number) unread indicator on the launcher. This only applies the first time
-   * in the session before the user has opened the Carbon AI chat and is superseded by the agent unread indicator if there
+   * in the session before the user has opened the Carbon AI Chat and is superseded by the agent unread indicator if there
    * is one.
    */
   showUnreadIndicator: boolean;
@@ -54,33 +52,26 @@ interface LauncherProps extends HasClassName, HasIntl {
   tabIndex?: number;
 
   /**
-   * If the main Carbon AI chat window is open or a tour is visible the launcher should be hidden.
+   * If the main Carbon AI Chat window is open is visible the launcher should be hidden.
    */
   launcherHidden: boolean;
-
-  /**
-   * If there's an active tour a different launcher icon needs to be shown to communicate that clicking on the launcher
-   * will open a tour.
-   */
-  activeTour: boolean;
 }
 
 function Launcher(props: LauncherProps, ref: Ref<HasRequestFocus>) {
   const {
     onToggleOpen,
     languagePack,
-    unreadAgentCount,
+    unreadHumanAgentCount,
     intl,
     showUnreadIndicator,
     className,
     tabIndex,
     launcherHidden,
-    activeTour,
   } = props;
   const launcherAvatarURL = useSelector((state: AppState) =>
     state.theme.useAITheme
       ? undefined
-      : state.launcher.config.desktop.avatar_url_override
+      : state.launcher.config.desktop.avatar_url_override,
   );
   const useAITheme = useSelector((state: AppState) => state.theme.useAITheme);
 
@@ -99,16 +90,12 @@ function Launcher(props: LauncherProps, ref: Ref<HasRequestFocus>) {
     },
   }));
 
-  let ariaLabel = getLauncherButtonAriaLabel(
-    languagePack,
-    launcherHidden,
-    activeTour
-  );
+  let ariaLabel = getLauncherButtonAriaLabel(languagePack, launcherHidden);
 
-  if (unreadAgentCount !== 0) {
+  if (unreadHumanAgentCount !== 0) {
     ariaLabel += `. ${intl.formatMessage(
       { id: "icon_ariaUnreadMessages" },
-      { count: unreadAgentCount }
+      { count: unreadHumanAgentCount },
     )}`;
   }
 
@@ -140,14 +127,12 @@ function Launcher(props: LauncherProps, ref: Ref<HasRequestFocus>) {
         className,
         {
           "WACLauncher__ButtonContainer--hidden": launcherHidden,
-        }
+        },
       )}
     >
       <Button
         aria-label={ariaLabel}
-        className={cx("WACLauncher__Button", {
-          WACLauncher__TourButton: activeTour,
-        })}
+        className="WACLauncher__Button"
         data-testid={PageObjectId.LAUNCHER}
         kind={BUTTON_KIND.PRIMARY}
         type={"button" as BUTTON_TYPE}
@@ -155,15 +140,11 @@ function Launcher(props: LauncherProps, ref: Ref<HasRequestFocus>) {
         ref={buttonRef}
         tabIndex={tabIndex}
       >
-        {activeTour ? (
-          <ArrowUpLeft className="WACLauncher__svg" slot="icon" />
-        ) : (
-          launcherAvatar
-        )}
+        {launcherAvatar}
 
-        {(unreadAgentCount !== 0 || showUnreadIndicator) && (
+        {(unreadHumanAgentCount !== 0 || showUnreadIndicator) && (
           <div className="WAC__countIndicator">
-            {unreadAgentCount !== 0 ? unreadAgentCount : ""}
+            {unreadHumanAgentCount !== 0 ? unreadHumanAgentCount : ""}
           </div>
         )}
       </Button>
