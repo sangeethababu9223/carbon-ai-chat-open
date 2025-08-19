@@ -36,7 +36,6 @@ import { IS_MOBILE, isBrowser } from "../../utils/browserUtils";
 import { doFocusRef } from "../../utils/domUtils";
 import { getLauncherButtonAriaLabel } from "./launcherUtils";
 
-
 interface LauncherExtendedProps extends HasClassName {
   onToggleOpen: () => void;
   launcherConfig: LauncherConfig;

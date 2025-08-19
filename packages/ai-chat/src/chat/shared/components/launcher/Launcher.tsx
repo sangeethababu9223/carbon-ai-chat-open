@@ -10,7 +10,6 @@
 /* eslint-disable react/no-danger */
 
 import CDSButton from "@carbon/web-components/es-custom/components/button/button.js";
-import ArrowUpLeft24 from "@carbon/icons/es/arrow--up-left/24.js";
 import AiLaunch from "@carbon/icons-react/es/AiLaunch.js";
 import ChatLaunch from "@carbon/icons-react/es/ChatLaunch.js";
 import { carbonIconToReact } from "../../utils/carbonIcon";
@@ -28,7 +27,6 @@ import { getLauncherButtonAriaLabel } from "./launcherUtils";
 import { LanguagePack } from "../../../../types/instance/apiTypes";
 import { PageObjectId } from "../../utils/PageObjectId";
 
-const ArrowUpLeft = carbonIconToReact(ArrowUpLeft24);
 interface LauncherProps extends HasClassName, HasIntl {
   languagePack: LanguagePack;
   onToggleOpen: () => void;

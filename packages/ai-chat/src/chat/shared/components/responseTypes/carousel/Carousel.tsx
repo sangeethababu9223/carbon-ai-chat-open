@@ -11,7 +11,12 @@ import Button, { BUTTON_KIND } from "../../../../react/carbon/Button";
 import ChevronLeft16 from "@carbon/icons/es/chevron--left/16.js";
 import ChevronRight16 from "@carbon/icons/es/chevron--right/16.js";
 import { carbonIconToReact } from "../../../utils/carbonIcon";
-import React, { MutableRefObject, ReactElement, useState, Suspense } from "react";
+import React, {
+  MutableRefObject,
+  ReactElement,
+  useState,
+  Suspense,
+} from "react";
 import { useIntl } from "react-intl";
 import { useSelector } from "react-redux";
 import type { SwiperRef } from "swiper/react";

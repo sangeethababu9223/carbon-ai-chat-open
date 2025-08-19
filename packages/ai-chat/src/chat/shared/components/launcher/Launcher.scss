@@ -84,7 +84,6 @@
 .WACLauncher__ButtonContainer.WACLauncher__ButtonContainer--round
   .WACLauncher__Button {
   @media screen and (prefers-reduced-motion: reduce) {
-<<<<<<< HEAD
     &:not(.WACLauncher__TourButton) {
       &::part(button) {
         background-color: var(--cds-chat-LAUNCHER-color-background);
@@ -141,57 +140,6 @@
     }
   }
 }
-=======
-    background-color: var(--cds-chat-LAUNCHER-color-background);
-    transition: none;
-
-    // Make the focus and active box-shadow one px wider since the default 1px width looks weird with the rounded launcher.
-    &:focus {
-      border-width: var(--cds-chat-BASE-border-width-large);
-      border-color: var(--cds-chat-LAUNCHER-color-background);
-      box-shadow: inset 0 0 0 var(--cds-chat-BASE-border-width-med)
-        var(--cds-chat-LAUNCHER-color-focus-border);
-    }
-
-    &:hover {
-      border-color: var(--cds-chat-LAUNCHER-color-background-hover);
-      background-color: var(--cds-chat-LAUNCHER-color-background-hover);
-    }
-
-    &:active {
-      border-width: var(--cds-chat-BASE-border-width-large);
-      border-color: var(--cds-chat-LAUNCHER-color-background-active);
-      background-color: var(--cds-chat-LAUNCHER-color-background-active);
-      box-shadow: inset 0 0 0 var(--cds-chat-BASE-border-width-med)
-        var(--cds-chat-LAUNCHER-color-focus-border);
-    }
-  }
->>>>>>> upstream/carbon-react-web-components-integration
-
-  background-color: var(--cds-chat-LAUNCHER-color-background);
-  transition: unset;
-
-  // Make the focus and active box-shadow one px wider since the default 1px width looks weird with the rounded launcher.
-  &:focus {
-    border-width: var(--cds-chat-BASE-border-width-large);
-    border-color: var(--cds-chat-LAUNCHER-color-background);
-    box-shadow: inset 0 0 0 var(--cds-chat-BASE-border-width-med)
-      var(--cds-chat-LAUNCHER-color-focus-border);
-  }
-
-  &:hover {
-    border-color: var(--cds-chat-LAUNCHER-color-background-hover);
-    background-color: var(--cds-chat-LAUNCHER-color-background-hover);
-  }
-
-  &:active {
-    border-width: var(--cds-chat-BASE-border-width-large);
-    border-color: var(--cds-chat-LAUNCHER-color-background-active);
-    background-color: var(--cds-chat-LAUNCHER-color-background-active);
-    box-shadow: inset 0 0 0 var(--cds-chat-BASE-border-width-med)
-      var(--cds-chat-LAUNCHER-color-focus-border);
-  }
-}
 
 .WACLauncher__ButtonContainer.WACLauncher__ButtonContainer--round
   .WACLauncher__Button
@@ -241,17 +189,7 @@
   }
 }
 
-<<<<<<< HEAD
 .WACLauncher__Button::part(button) {
-=======
-button.WACLauncher__Button {
-  svg {
-    block-size: 24px;
-    fill: var(--cds-chat-LAUNCHER-color-avatar);
-    inline-size: 24px;
-  }
-
->>>>>>> upstream/carbon-react-web-components-integration
   position: static;
   display: flex;
   align-items: center;
@@ -270,14 +208,11 @@ button.WACLauncher__Button {
   border-width: var(--cds-chat-BASE-border-width-large);
 }
 
-<<<<<<< HEAD
 .WACLauncher__Button svg {
   block-size: 24px;
   inline-size: 24px;
 }
 
-=======
->>>>>>> upstream/carbon-react-web-components-integration
 .WACLauncher__svg {
   fill: currentcolor;
 }
@@ -477,7 +412,6 @@ button.WACLauncher__Button {
   margin-inline: layout.$spacing-02 unset;
 }
 
-<<<<<<< HEAD
 .WACLauncher__Button:not(.WACLauncher__TourButton) {
   background-color: transparent;
 
@@ -486,8 +420,6 @@ button.WACLauncher__Button {
   }
 }
 
-=======
->>>>>>> upstream/carbon-react-web-components-integration
 @media screen and (prefers-reduced-motion: reduce) {
   .WACLauncherComplex__Container--introAnimation {
     animation: none;
