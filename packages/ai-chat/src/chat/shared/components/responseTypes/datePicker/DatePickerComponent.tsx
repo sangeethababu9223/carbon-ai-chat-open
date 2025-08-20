@@ -121,8 +121,6 @@ function DatePickerComponent(props: DatePickerComponentProps) {
   const handlerSendDate = useCallback(() => {
     const { ui_state, fullMessageID: responseID } = localMessage;
     const localMessageID = ui_state.id;
-    console.log(userDisplayValue, "userDisplayValue");
-
     const request = createMessageRequestForDate(
       valueForAssistantRef.current,
       userDisplayValue,

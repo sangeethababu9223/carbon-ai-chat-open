@@ -8,15 +8,27 @@
  */
 
 import "@carbon/web-components/es-custom/components/slug/index.js";
+import CDSButton from "@carbon/web-components/es-custom/components/button/button";
+import Button, {BUTTON_KIND, BUTTON_SIZE, BUTTON_TOOLTIP_POSITION} from "../../../react/carbon/Button";
 
 import Close from "@carbon/icons-react/es/Close.js";
-import CloseLarge from "@carbon/icons-react/es/CloseLarge.js";
-import DownToBottom from "@carbon/icons-react/es/DownToBottom.js";
 import Menu from "@carbon/icons-react/es/Menu.js";
-import Restart from "@carbon/icons-react/es/Restart.js";
-import SidePanelClose from "@carbon/icons-react/es/SidePanelClose.js";
-import SubtractLarge from "@carbon/icons-react/es/SubtractLarge.js";
-import { Button, ButtonTooltipPosition, MenuItem } from "@carbon/react";
+// import CloseLarge from "@carbon/icons-react/es/CloseLarge.js";
+// import DownToBottom from "@carbon/icons-react/es/DownToBottom.js";
+// import Restart from "@carbon/icons-react/es/Restart.js";
+// import SidePanelClose from "@carbon/icons-react/es/SidePanelClose.js";
+// import SubtractLarge from "@carbon/icons-react/es/SubtractLarge.js";
+
+// import Close16 from "@carbon/icons/es/close/16.js";
+// import Menu16 from "@carbon/icons/es/menu/16.js";
+import CloseLarge16 from "@carbon/icons/es/close--large/16.js";
+import DownToBottom16 from "@carbon/icons/es/down-to-bottom/16.js";
+import Restart16 from "@carbon/icons/es/restart/16.js";
+import SidePanelClose16 from "@carbon/icons/es/side-panel--close/16.js";
+import SubtractLarge16 from "@carbon/icons/es/subtract--large/16.js";
+
+import { carbonIconToReact } from "../../utils/carbonIcon";
+import { MenuItem } from "@carbon/react";
 import { AI_LABEL_SIZE } from "@carbon/web-components/es-custom/components/ai-label/defs.js";
 import { POPOVER_ALIGNMENT } from "@carbon/web-components/es-custom/components/popover/defs.js";
 import cx from "classnames";
@@ -58,6 +70,14 @@ import {
 import { MinimizeButtonIconType } from "../../../../types/config/PublicConfig";
 import { OverlayPanelName } from "../OverlayPanel";
 import { makeTestId, PageObjectId, TestId } from "../../utils/PageObjectId";
+
+// const Close = carbonIconToReact(Close16);
+// const Menu = carbonIconToReact(Menu16);
+const CloseLarge = carbonIconToReact(CloseLarge16);
+const DownToBottom = carbonIconToReact(DownToBottom16);
+const Restart = carbonIconToReact(Restart16);
+const SidePanelClose = carbonIconToReact(SidePanelClose16);
+const SubtractLarge = carbonIconToReact(SubtractLarge16);
 
 interface HeaderProps {
   /**
@@ -185,10 +205,10 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
     testIdPrefix,
   } = props;
 
-  const backButtonRef = useRef<HTMLButtonElement>();
-  const restartButtonRef = useRef<HTMLButtonElement>();
-  const closeAndRestartButtonRef = useRef<HTMLButtonElement>();
-  const closeButtonRef = useRef<HTMLButtonElement>();
+  const backButtonRef = useRef<CDSButton>();
+  const restartButtonRef = useRef<CDSButton>();
+  const closeAndRestartButtonRef = useRef<CDSButton>();
+  const closeButtonRef = useRef<CDSButton>();
   const overflowRef = useRef<HTMLDivElement>();
   const serviceManager = useServiceManager();
   const languagePack = useLanguagePack();
@@ -236,22 +256,22 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
   const minimizeButtonIconType = headerConfig?.minimizeButtonIconType;
   switch (minimizeButtonIconType) {
     case MinimizeButtonIconType.CLOSE:
-      closeIcon = <CloseLarge className="WACIcon__Close" size={16} />;
+      closeIcon = <CloseLarge slot="icon" className="WACIcon__Close"/>;
       break;
     case MinimizeButtonIconType.MINIMIZE:
-      closeIcon = <SubtractLarge className="WACIcon__Subtract" size={16} />;
+      closeIcon = <SubtractLarge slot="icon" className="WACIcon__Subtract" />;
       break;
     case MinimizeButtonIconType.SIDE_PANEL_LEFT:
       closeIsReversible = false;
-      closeIcon = <SidePanelClose className="WACIcon__SidePanelClose" />;
+      closeIcon = <SidePanelClose slot="icon" className="WACIcon__SidePanelClose" />;
       break;
     case MinimizeButtonIconType.SIDE_PANEL_RIGHT:
       closeIsReversible = false;
       closeReverseIcon = true;
-      closeIcon = <SidePanelClose className="WACIcon__SidePanelClose" />;
+      closeIcon = <SidePanelClose slot="icon" className="WACIcon__SidePanelClose" />;
       break;
     default: {
-      closeIcon = <SubtractLarge className="WACIcon__Subtract" size={16} />;
+      closeIcon = <SubtractLarge slot="icon" className="WACIcon__Subtract" />;
       break;
     }
   }
@@ -337,7 +357,7 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
         buttonKind={backButtonType}
         tooltipPosition={isRTL ? "left" : "right"}
       >
-        {backContent || <DownToBottom />}
+        {backContent || <DownToBottom aria-label={labelBackButton} slot="icon" />}
       </HeaderButton>
     );
   }
@@ -418,7 +438,7 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
               buttonRef={restartButtonRef}
               tooltipPosition={isRTL ? "right" : "left"}
             >
-              <Restart />
+              <Restart aria-label={languagePack.buttons_restart} slot="icon"  />
             </HeaderButton>
           )}
           {!useHideCloseButton && (
@@ -446,7 +466,7 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
               buttonRef={closeAndRestartButtonRef}
               tooltipPosition={isRTL ? "right" : "left"}
             >
-              <CloseLarge className="WACIcon__Close" />
+              <CloseLarge aria-label={languagePack.header_ariaCloseRestart} slot="icon" className="WACIcon__Close" />
             </HeaderButton>
           )}
         </div>
@@ -476,7 +496,7 @@ interface HeaderButtonProps extends HasClassName, HasChildren {
   /**
    * The ref to use for the actual button element.
    */
-  buttonRef: RefObject<HTMLButtonElement>;
+  buttonRef: RefObject<CDSButton>;
 
   /**
    * The aria label to use on the button.
@@ -518,15 +538,14 @@ function HeaderButton({
   tooltipPosition,
   testId,
 }: HeaderButtonProps) {
+  const buttonKindVal  = buttonKind || BUTTON_KIND.GHOST;
   return (
     <Button
       ref={buttonRef}
       className={cx(className, { WACDirectionHasReversibleSVG: isReversible })}
       onClick={onClick}
-      hasIconOnly
-      iconDescription={label}
-      size={ButtonSizeEnum.MEDIUM}
-      kind={buttonKind || ButtonKindEnum.GHOST}
+      size={BUTTON_SIZE.MEDIUM}
+      kind={buttonKindVal as BUTTON_KIND}
       tooltipPosition={tooltipPosition}
       data-testid={testId}
     >
