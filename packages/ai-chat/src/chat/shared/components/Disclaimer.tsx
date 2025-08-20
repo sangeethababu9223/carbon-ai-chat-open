@@ -13,8 +13,8 @@
  * When someone views the Web Chat they must respond to the disclaimer before continuing to the main Web Chat if this
  * is enabled. We drop an item in SESSION storage to not ask them again as they go from page to page.
  */
-
-import { Button } from "@carbon/react";
+import Button from "../../react/carbon/Button";
+import CDSButton from "@carbon/web-components/es-custom/components/button/button";
 import React, { RefObject, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -31,7 +31,7 @@ interface DisclaimerProps {
   onAcceptDisclaimer: () => void;
   disclaimerHTML: string;
   onClose: () => void;
-  disclaimerAcceptButtonRef: RefObject<HTMLButtonElement>;
+  disclaimerAcceptButtonRef: RefObject<CDSButton>;
 }
 
 function Disclaimer({

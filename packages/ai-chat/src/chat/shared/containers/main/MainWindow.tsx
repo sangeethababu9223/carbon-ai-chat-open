@@ -26,6 +26,7 @@ import VisuallyHidden from "../../components/util/VisuallyHidden";
 import { ModalPortalRootContext } from "../../contexts/ModalPortalRootContext";
 import { HasServiceManager } from "../../hocs/withServiceManager";
 import actions from "../../store/actions";
+import CDSButton from "@carbon/web-components/es-custom/components/button/button";
 import {
   selectHumanAgentDisplayState,
   selectInputState,
@@ -180,7 +181,7 @@ class MainWindow
   /**
    * A React ref to the bot {@link Disclaimer} component.
    */
-  private disclaimerRef: RefObject<HTMLButtonElement> = React.createRef();
+  private disclaimerRef: RefObject<CDSButton> = React.createRef();
 
   /**
    * A React ref to the animation container element.
