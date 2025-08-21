@@ -42,6 +42,11 @@ interface LauncherExtendedProps extends HasClassName {
   launcherConfig: LauncherConfig;
 
   /**
+   * Indicates if this launcher is being used on mobile.
+   */
+  isMobile?: boolean;
+
+  /**
    * Indicates if the mobile launcher should be in the extended state.
    */
   isExtended: boolean;
@@ -129,6 +134,7 @@ function LauncherExtended(
     unreadHumanAgentCount,
     showUnreadIndicator,
     launcherConfig,
+    isMobile,
     isExtended,
     playExtendAnimation,
     onToggleOpen,
@@ -299,6 +305,7 @@ function LauncherExtended(
         "WACLauncher__ButtonContainer WACLauncher__ButtonContainer--round WACLauncherExtended__Container",
         className,
         {
+          "WACLauncher__ButtonContainer--mobile": isMobile,
           "WACLauncher__ButtonContainer--hidden": launcherHidden,
           "WACLauncherExtended__Button--extended": extendWithoutAnimation,
           "WACLauncherExtended__Button--extendedAnimation": extendWithAnimation,
