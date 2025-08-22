@@ -78,6 +78,7 @@
   .WAC__disclaimer-buttons cds-custom-button.WAC__disclaimer-acceptButton {
     inline-size: 100%;
     max-inline-size: unset;
+
     &::part(button) {
       border-end-end-radius: var(--cds-chat-CONTAINER-border-radius);
       border-end-start-radius: var(--cds-chat-CONTAINER-border-radius);

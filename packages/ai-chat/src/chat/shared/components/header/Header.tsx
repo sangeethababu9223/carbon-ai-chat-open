@@ -9,7 +9,11 @@
 
 import "@carbon/web-components/es-custom/components/slug/index.js";
 import CDSButton from "@carbon/web-components/es-custom/components/button/button";
-import Button, {BUTTON_KIND, BUTTON_SIZE, BUTTON_TOOLTIP_POSITION} from "../../../react/carbon/Button";
+import Button, {
+  BUTTON_KIND,
+  BUTTON_SIZE,
+  BUTTON_TOOLTIP_POSITION,
+} from "../../../react/carbon/Button";
 
 import Close from "@carbon/icons-react/es/Close.js";
 import Menu from "@carbon/icons-react/es/Menu.js";
@@ -63,10 +67,6 @@ import { ConfirmModal } from "../modals/ConfirmModal";
 import WriteableElement from "../WriteableElement";
 // The React AI Slug from @carbon/react doesn't work in ShadowRoot, so we need to use the web component one.
 import { AISlug } from "./AISlug";
-import {
-  ButtonKindEnum,
-  ButtonSizeEnum,
-} from "../../../../types/utilities/carbonTypes";
 import { MinimizeButtonIconType } from "../../../../types/config/PublicConfig";
 import { OverlayPanelName } from "../OverlayPanel";
 import { makeTestId, PageObjectId, TestId } from "../../utils/PageObjectId";
@@ -125,7 +125,7 @@ interface HeaderProps {
   /**
    * The type of button class to use on the back button.
    */
-  backButtonType?: ButtonKindEnum;
+  backButtonType?: BUTTON_KIND;
 
   /**
    * The brand color type to use for the header. This will default to "primary".
@@ -256,22 +256,52 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
   const minimizeButtonIconType = headerConfig?.minimizeButtonIconType;
   switch (minimizeButtonIconType) {
     case MinimizeButtonIconType.CLOSE:
-      closeIcon = <CloseLarge slot="icon" className="WACIcon__Close"/>;
+      closeIcon = (
+        <CloseLarge
+          aria-label={languagePack.launcher_isOpen}
+          slot="icon"
+          className="WACIcon__Close"
+        />
+      );
       break;
     case MinimizeButtonIconType.MINIMIZE:
-      closeIcon = <SubtractLarge slot="icon" className="WACIcon__Subtract" />;
+      closeIcon = (
+        <SubtractLarge
+          aria-label={languagePack.launcher_isOpen}
+          slot="icon"
+          className="WACIcon__Subtract"
+        />
+      );
       break;
     case MinimizeButtonIconType.SIDE_PANEL_LEFT:
       closeIsReversible = false;
-      closeIcon = <SidePanelClose slot="icon" className="WACIcon__SidePanelClose" />;
+      closeIcon = (
+        <SidePanelClose
+          aria-label={languagePack.launcher_isOpen}
+          slot="icon"
+          className="WACIcon__SidePanelClose"
+        />
+      );
       break;
     case MinimizeButtonIconType.SIDE_PANEL_RIGHT:
       closeIsReversible = false;
       closeReverseIcon = true;
-      closeIcon = <SidePanelClose slot="icon" className="WACIcon__SidePanelClose" />;
+      closeIcon = (
+        <SidePanelClose
+          aria-label={languagePack.launcher_isOpen}
+          slot="icon"
+          className="WACIcon__SidePanelClose"
+        />
+      );
       break;
     default: {
-      closeIcon = <SubtractLarge slot="icon" className="WACIcon__Subtract" />;
+      closeIcon = (
+        <SubtractLarge
+          aria-label={languagePack.launcher_isOpen}
+          slot="icon"
+          className="WACIcon__Subtract"
+        />
+      );
       break;
     }
   }
@@ -318,7 +348,9 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
         iconDescription={languagePack.header_overflowMenu_options}
         ariaLabel={languagePack.components_overflow_ariaLabel}
         containerRef={overflowRef}
-        tooltipPosition={isRTL ? "left" : "right"}
+        tooltipPosition={
+          isRTL ? BUTTON_TOOLTIP_POSITION.LEFT : BUTTON_TOOLTIP_POSITION.RIGHT
+        }
         menuAlignment="bottom-start"
         onOpen={() => {
           // This requires a setTimeout because of an apparent bug in the Carbon components. If the icon changes
@@ -355,9 +387,13 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
         onClick={onClickBack}
         buttonRef={backButtonRef}
         buttonKind={backButtonType}
-        tooltipPosition={isRTL ? "left" : "right"}
+        tooltipPosition={
+          isRTL ? BUTTON_TOOLTIP_POSITION.LEFT : BUTTON_TOOLTIP_POSITION.RIGHT
+        }
       >
-        {backContent || <DownToBottom aria-label={labelBackButton} slot="icon" />}
+        {backContent || (
+          <DownToBottom aria-label={labelBackButton} slot="icon" />
+        )}
       </HeaderButton>
     );
   }
@@ -436,9 +472,13 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
               label={languagePack.buttons_restart}
               onClick={onClickRestart}
               buttonRef={restartButtonRef}
-              tooltipPosition={isRTL ? "right" : "left"}
+              tooltipPosition={
+                isRTL
+                  ? BUTTON_TOOLTIP_POSITION.RIGHT
+                  : BUTTON_TOOLTIP_POSITION.LEFT
+              }
             >
-              <Restart aria-label={languagePack.buttons_restart} slot="icon"  />
+              <Restart aria-label={languagePack.buttons_restart} slot="icon" />
             </HeaderButton>
           )}
           {!useHideCloseButton && (
@@ -452,7 +492,11 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
                 onClickClose();
               }}
               buttonRef={closeButtonRef}
-              tooltipPosition={isRTL ? "right" : "left"}
+              tooltipPosition={
+                isRTL
+                  ? BUTTON_TOOLTIP_POSITION.RIGHT
+                  : BUTTON_TOOLTIP_POSITION.LEFT
+              }
               testId={makeTestId(PageObjectId.CLOSE_CHAT, testIdPrefix)}
             >
               {closeIcon}
@@ -464,9 +508,17 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
               label={languagePack.header_ariaCloseRestart}
               onClick={() => setConfirmModelOpen(true)}
               buttonRef={closeAndRestartButtonRef}
-              tooltipPosition={isRTL ? "right" : "left"}
+              tooltipPosition={
+                isRTL
+                  ? BUTTON_TOOLTIP_POSITION.RIGHT
+                  : BUTTON_TOOLTIP_POSITION.LEFT
+              }
             >
-              <CloseLarge aria-label={languagePack.header_ariaCloseRestart} slot="icon" className="WACIcon__Close" />
+              <CloseLarge
+                aria-label={languagePack.header_ariaCloseRestart}
+                slot="icon"
+                className="WACIcon__Close"
+              />
             </HeaderButton>
           )}
         </div>
@@ -506,7 +558,7 @@ interface HeaderButtonProps extends HasClassName, HasChildren {
   /**
    * The carbon button kind to use.
    */
-  buttonKind?: ButtonKindEnum;
+  buttonKind?: BUTTON_KIND;
 
   /**
    * Indicates if the icon should be reversible based on the document direction.
@@ -516,7 +568,7 @@ interface HeaderButtonProps extends HasClassName, HasChildren {
   /**
    * Specify the alignment of the tooltip to the icon-only button. Can be one of: start, center, or end.
    */
-  tooltipPosition?: ButtonTooltipPosition;
+  tooltipPosition?: BUTTON_TOOLTIP_POSITION;
 
   /**
    * Testing id used for e2e tests.
@@ -530,7 +582,6 @@ interface HeaderButtonProps extends HasClassName, HasChildren {
 function HeaderButton({
   onClick,
   buttonRef,
-  label,
   className,
   children,
   buttonKind,
@@ -538,7 +589,7 @@ function HeaderButton({
   tooltipPosition,
   testId,
 }: HeaderButtonProps) {
-  const buttonKindVal  = buttonKind || BUTTON_KIND.GHOST;
+  const buttonKindVal = buttonKind || BUTTON_KIND.GHOST;
   return (
     <Button
       ref={buttonRef}
