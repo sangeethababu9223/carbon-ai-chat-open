@@ -7,10 +7,7 @@
  *  @license
  */
 import CDSButton from "@carbon/web-components/es-custom/components/button/button.js";
-import Button, {
-  BUTTON_KIND,
-  BUTTON_TYPE,
-} from "../../../react/carbon/Button";
+import Button, { BUTTON_KIND, BUTTON_TYPE } from "../../../react/carbon/Button";
 import ChatLaunch from "@carbon/icons-react/es/ChatLaunch.js";
 import cx from "classnames";
 import React, {
