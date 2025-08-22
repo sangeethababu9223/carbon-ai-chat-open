@@ -10,7 +10,7 @@
 import Checkmark32 from "@carbon/icons/es/checkmark/32.js";
 import { carbonIconToReact } from "../../../utils/carbonIcon";
 import Button from "../../../../react/carbon/Button";
-import { DatePicker, DatePickerInput, Layer } from "@carbon/react";
+import { DatePicker, DatePickerInput } from "@carbon/react";
 import dayjs from "dayjs";
 import { BaseOptions } from "flatpickr/dist/types/options";
 import React, { useCallback, useRef, useState } from "react";
