@@ -10,8 +10,8 @@
 import "@carbon/web-components/es/components/slug/index.js";
 import CDSMenu from "@carbon/web-components/es/components/menu/menu";
 import MenuItem from "../../../react/carbon/MenuItem";
-import Close from "@carbon/icons-react/es/Close.js";
-import Menu from "@carbon/icons-react/es/Menu.js";
+import Menu16 from "@carbon/icons/es/menu/16.js";
+import Close16 from "@carbon/icons/es/close/16.js";
 import CloseLarge from "@carbon/icons-react/es/CloseLarge.js";
 import DownToBottom from "@carbon/icons-react/es/DownToBottom.js";
 import Restart from "@carbon/icons-react/es/Restart.js";
@@ -33,7 +33,7 @@ import React, {
   useState,
 } from "react";
 import { useSelector } from "react-redux";
-
+import { carbonIconToReact } from "../../utils/carbonIcon";
 import { ChatHeaderAvatarConfig } from "../../../../types/instance/ChatInstance";
 import { ChatHeaderAvatar } from "../../../react/components/chatHeader/ChatHeaderAvatar";
 import { ChatHeaderOverflowMenu } from "../../../react/components/chatHeader/ChatHeaderOverflowMenu";
@@ -60,6 +60,8 @@ import { MinimizeButtonIconType } from "../../../../types/config/PublicConfig";
 import { OverlayPanelName } from "../OverlayPanel";
 import { makeTestId, PageObjectId, TestId } from "../../utils/PageObjectId";
 
+const Close = carbonIconToReact(Close16);
+const Menu = carbonIconToReact(Menu16);
 interface HeaderProps {
   /**
    * The name to display.
