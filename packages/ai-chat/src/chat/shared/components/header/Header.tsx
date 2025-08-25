@@ -7,18 +7,26 @@
  *  @license
  */
 
-import "@carbon/web-components/es/components/slug/index.js";
+import "@carbon/web-components/es-custom/components/slug/index.js";
+import CDSButton from "@carbon/web-components/es-custom/components/button/button";
+import Button, {
+  BUTTON_KIND,
+  BUTTON_SIZE,
+  BUTTON_TOOLTIP_POSITION,
+} from "../../../react/carbon/Button";
 
 import Close from "@carbon/icons-react/es/Close.js";
-import CloseLarge from "@carbon/icons-react/es/CloseLarge.js";
-import DownToBottom from "@carbon/icons-react/es/DownToBottom.js";
 import Menu from "@carbon/icons-react/es/Menu.js";
-import Restart from "@carbon/icons-react/es/Restart.js";
-import SidePanelClose from "@carbon/icons-react/es/SidePanelClose.js";
-import SubtractLarge from "@carbon/icons-react/es/SubtractLarge.js";
-import { Button, ButtonTooltipPosition, MenuItem } from "@carbon/react";
-import { AI_LABEL_SIZE } from "@carbon/web-components/es/components/ai-label/defs.js";
-import { POPOVER_ALIGNMENT } from "@carbon/web-components/es/components/popover/defs.js";
+import CloseLarge16 from "@carbon/icons/es/close--large/16.js";
+import DownToBottom16 from "@carbon/icons/es/down-to-bottom/16.js";
+import Restart16 from "@carbon/icons/es/restart/16.js";
+import SidePanelClose16 from "@carbon/icons/es/side-panel--close/16.js";
+import SubtractLarge16 from "@carbon/icons/es/subtract--large/16.js";
+
+import { carbonIconToReact } from "../../utils/carbonIcon";
+import { MenuItem } from "@carbon/react";
+import { AI_LABEL_SIZE } from "@carbon/web-components/es-custom/components/ai-label/defs.js";
+import { POPOVER_ALIGNMENT } from "@carbon/web-components/es-custom/components/popover/defs.js";
 import cx from "classnames";
 import React, {
   forwardRef,
@@ -51,13 +59,15 @@ import { ConfirmModal } from "../modals/ConfirmModal";
 import WriteableElement from "../WriteableElement";
 // The React AI Slug from @carbon/react doesn't work in ShadowRoot, so we need to use the web component one.
 import { AISlug } from "./AISlug";
-import {
-  ButtonKindEnum,
-  ButtonSizeEnum,
-} from "../../../../types/utilities/carbonTypes";
 import { MinimizeButtonIconType } from "../../../../types/config/PublicConfig";
 import { OverlayPanelName } from "../OverlayPanel";
 import { makeTestId, PageObjectId, TestId } from "../../utils/PageObjectId";
+
+const CloseLarge = carbonIconToReact(CloseLarge16);
+const DownToBottom = carbonIconToReact(DownToBottom16);
+const Restart = carbonIconToReact(Restart16);
+const SidePanelClose = carbonIconToReact(SidePanelClose16);
+const SubtractLarge = carbonIconToReact(SubtractLarge16);
 
 interface HeaderProps {
   /**
@@ -105,7 +115,7 @@ interface HeaderProps {
   /**
    * The type of button class to use on the back button.
    */
-  backButtonType?: ButtonKindEnum;
+  backButtonType?: BUTTON_KIND;
 
   /**
    * The brand color type to use for the header. This will default to "primary".
@@ -185,10 +195,10 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
     testIdPrefix,
   } = props;
 
-  const backButtonRef = useRef<HTMLButtonElement>();
-  const restartButtonRef = useRef<HTMLButtonElement>();
-  const closeAndRestartButtonRef = useRef<HTMLButtonElement>();
-  const closeButtonRef = useRef<HTMLButtonElement>();
+  const backButtonRef = useRef<CDSButton>();
+  const restartButtonRef = useRef<CDSButton>();
+  const closeAndRestartButtonRef = useRef<CDSButton>();
+  const closeButtonRef = useRef<CDSButton>();
   const overflowRef = useRef<HTMLDivElement>();
   const serviceManager = useServiceManager();
   const languagePack = useLanguagePack();
@@ -236,22 +246,52 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
   const minimizeButtonIconType = headerConfig?.minimizeButtonIconType;
   switch (minimizeButtonIconType) {
     case MinimizeButtonIconType.CLOSE:
-      closeIcon = <CloseLarge className="WACIcon__Close" size={16} />;
+      closeIcon = (
+        <CloseLarge
+          aria-label={languagePack.launcher_isOpen}
+          slot="icon"
+          className="WACIcon__Close"
+        />
+      );
       break;
     case MinimizeButtonIconType.MINIMIZE:
-      closeIcon = <SubtractLarge className="WACIcon__Subtract" size={16} />;
+      closeIcon = (
+        <SubtractLarge
+          aria-label={languagePack.launcher_isOpen}
+          slot="icon"
+          className="WACIcon__Subtract"
+        />
+      );
       break;
     case MinimizeButtonIconType.SIDE_PANEL_LEFT:
       closeIsReversible = false;
-      closeIcon = <SidePanelClose className="WACIcon__SidePanelClose" />;
+      closeIcon = (
+        <SidePanelClose
+          aria-label={languagePack.launcher_isOpen}
+          slot="icon"
+          className="WACIcon__SidePanelClose"
+        />
+      );
       break;
     case MinimizeButtonIconType.SIDE_PANEL_RIGHT:
       closeIsReversible = false;
       closeReverseIcon = true;
-      closeIcon = <SidePanelClose className="WACIcon__SidePanelClose" />;
+      closeIcon = (
+        <SidePanelClose
+          aria-label={languagePack.launcher_isOpen}
+          slot="icon"
+          className="WACIcon__SidePanelClose"
+        />
+      );
       break;
     default: {
-      closeIcon = <SubtractLarge className="WACIcon__Subtract" size={16} />;
+      closeIcon = (
+        <SubtractLarge
+          aria-label={languagePack.launcher_isOpen}
+          slot="icon"
+          className="WACIcon__Subtract"
+        />
+      );
       break;
     }
   }
@@ -298,7 +338,9 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
         iconDescription={languagePack.header_overflowMenu_options}
         ariaLabel={languagePack.components_overflow_ariaLabel}
         containerRef={overflowRef}
-        tooltipPosition={isRTL ? "left" : "right"}
+        tooltipPosition={
+          isRTL ? BUTTON_TOOLTIP_POSITION.LEFT : BUTTON_TOOLTIP_POSITION.RIGHT
+        }
         menuAlignment="bottom-start"
         onOpen={() => {
           // This requires a setTimeout because of an apparent bug in the Carbon components. If the icon changes
@@ -335,9 +377,13 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
         onClick={onClickBack}
         buttonRef={backButtonRef}
         buttonKind={backButtonType}
-        tooltipPosition={isRTL ? "left" : "right"}
+        tooltipPosition={
+          isRTL ? BUTTON_TOOLTIP_POSITION.LEFT : BUTTON_TOOLTIP_POSITION.RIGHT
+        }
       >
-        {backContent || <DownToBottom />}
+        {backContent || (
+          <DownToBottom aria-label={labelBackButton} slot="icon" />
+        )}
       </HeaderButton>
     );
   }
@@ -416,9 +462,13 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
               label={languagePack.buttons_restart}
               onClick={onClickRestart}
               buttonRef={restartButtonRef}
-              tooltipPosition={isRTL ? "right" : "left"}
+              tooltipPosition={
+                isRTL
+                  ? BUTTON_TOOLTIP_POSITION.RIGHT
+                  : BUTTON_TOOLTIP_POSITION.LEFT
+              }
             >
-              <Restart />
+              <Restart aria-label={languagePack.buttons_restart} slot="icon" />
             </HeaderButton>
           )}
           {!useHideCloseButton && (
@@ -432,7 +482,11 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
                 onClickClose();
               }}
               buttonRef={closeButtonRef}
-              tooltipPosition={isRTL ? "right" : "left"}
+              tooltipPosition={
+                isRTL
+                  ? BUTTON_TOOLTIP_POSITION.RIGHT
+                  : BUTTON_TOOLTIP_POSITION.LEFT
+              }
               testId={makeTestId(PageObjectId.CLOSE_CHAT, testIdPrefix)}
             >
               {closeIcon}
@@ -444,9 +498,17 @@ function Header(props: HeaderProps, ref: Ref<HasRequestFocus>) {
               label={languagePack.header_ariaCloseRestart}
               onClick={() => setConfirmModelOpen(true)}
               buttonRef={closeAndRestartButtonRef}
-              tooltipPosition={isRTL ? "right" : "left"}
+              tooltipPosition={
+                isRTL
+                  ? BUTTON_TOOLTIP_POSITION.RIGHT
+                  : BUTTON_TOOLTIP_POSITION.LEFT
+              }
             >
-              <CloseLarge className="WACIcon__Close" />
+              <CloseLarge
+                aria-label={languagePack.header_ariaCloseRestart}
+                slot="icon"
+                className="WACIcon__Close"
+              />
             </HeaderButton>
           )}
         </div>
@@ -476,7 +538,7 @@ interface HeaderButtonProps extends HasClassName, HasChildren {
   /**
    * The ref to use for the actual button element.
    */
-  buttonRef: RefObject<HTMLButtonElement>;
+  buttonRef: RefObject<CDSButton>;
 
   /**
    * The aria label to use on the button.
@@ -486,7 +548,7 @@ interface HeaderButtonProps extends HasClassName, HasChildren {
   /**
    * The carbon button kind to use.
    */
-  buttonKind?: ButtonKindEnum;
+  buttonKind?: BUTTON_KIND;
 
   /**
    * Indicates if the icon should be reversible based on the document direction.
@@ -496,7 +558,7 @@ interface HeaderButtonProps extends HasClassName, HasChildren {
   /**
    * Specify the alignment of the tooltip to the icon-only button. Can be one of: start, center, or end.
    */
-  tooltipPosition?: ButtonTooltipPosition;
+  tooltipPosition?: BUTTON_TOOLTIP_POSITION;
 
   /**
    * Testing id used for e2e tests.
@@ -510,7 +572,6 @@ interface HeaderButtonProps extends HasClassName, HasChildren {
 function HeaderButton({
   onClick,
   buttonRef,
-  label,
   className,
   children,
   buttonKind,
@@ -518,15 +579,14 @@ function HeaderButton({
   tooltipPosition,
   testId,
 }: HeaderButtonProps) {
+  const buttonKindVal = buttonKind || BUTTON_KIND.GHOST;
   return (
     <Button
       ref={buttonRef}
       className={cx(className, { WACDirectionHasReversibleSVG: isReversible })}
       onClick={onClick}
-      hasIconOnly
-      iconDescription={label}
-      size={ButtonSizeEnum.MEDIUM}
-      kind={buttonKind || ButtonKindEnum.GHOST}
+      size={BUTTON_SIZE.MEDIUM}
+      kind={buttonKindVal as BUTTON_KIND}
       tooltipPosition={tooltipPosition}
       data-testid={testId}
     >
