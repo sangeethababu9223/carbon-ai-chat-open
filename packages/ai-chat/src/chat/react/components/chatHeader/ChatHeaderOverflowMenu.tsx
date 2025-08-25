@@ -86,9 +86,10 @@ function ChatHeaderOverflowMenu(props: ChatHeaderOverflowMenuProps) {
       }
     },
   });
-  const {
-    getReferenceProps: getMenuReferenceProps,
-  } = useInteractions([useClick(menuContext), useDismiss(menuContext)]);
+  const { getReferenceProps: getMenuReferenceProps } = useInteractions([
+    useClick(menuContext),
+    useDismiss(menuContext),
+  ]);
   const id = useUUID();
 
   return (
