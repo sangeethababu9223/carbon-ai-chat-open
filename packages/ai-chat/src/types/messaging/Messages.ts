@@ -1196,7 +1196,7 @@ interface ButtonItem<TUserDefinedType = Record<string, unknown>>
   /**
    * The style of button to display.
    */
-  kind?: BUTTON_KIND | 'LINK';
+  kind?: BUTTON_KIND | "LINK";
 
   /**
    * The type of button.

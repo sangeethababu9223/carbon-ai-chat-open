@@ -43,7 +43,7 @@ function doImage(instance: ChatInstance) {
         },
         {
           url: "https://v10.carbondesignsystem.com/",
-          kind: 'LINK',
+          kind: "LINK",
           label: "Carbon Design System",
           target: "_blank",
           image_url:

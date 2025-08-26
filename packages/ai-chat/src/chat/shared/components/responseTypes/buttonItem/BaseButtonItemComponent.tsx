@@ -38,7 +38,7 @@ interface BaseButtonComponentProps extends HasClassName {
    * The button style.
    */
   // eslint-disable-next-line react/no-unused-prop-types
-  kind?: BUTTON_KIND | 'LINK';
+  kind?: BUTTON_KIND | "LINK";
 
   /**
    * The url to visit when the button is clicked.
@@ -121,9 +121,9 @@ function BaseButtonItemComponent({
   );
 }
 
-function getButtonKind(style: BUTTON_KIND | 'LINK'): BUTTON_KIND {
+function getButtonKind(style: BUTTON_KIND | "LINK"): BUTTON_KIND {
   switch (style) {
-    case 'LINK':
+    case "LINK":
       return BUTTON_KIND.GHOST;
     default:
       return BUTTON_KIND.PRIMARY;
