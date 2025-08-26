@@ -15,7 +15,6 @@ import React from "react";
 import { LocalMessageItem } from "../../../../../types/messaging/LocalMessageItem";
 import {
   ButtonItem,
-  ButtonItemKind,
 } from "../../../../../types/messaging/Messages";
 import { BaseButtonItemComponent } from "./BaseButtonItemComponent";
 
@@ -34,7 +33,7 @@ function ButtonItemURLComponent({
     localMessageItem.item;
 
   // If no image url is provided and should is a normal link, then render a carbon link.
-  if (!image_url && kind === ButtonItemKind.LINK) {
+  if (!image_url && kind === 'LINK') {
     return (
       <div className="WACButtonItem">
         <Link
