@@ -122,12 +122,10 @@ function BaseButtonItemComponent({
 }
 
 function getButtonKind(style: BUTTON_KIND | "LINK"): BUTTON_KIND {
-  switch (style) {
-    case "LINK":
-      return BUTTON_KIND.GHOST;
-    default:
-      return style;
+  if (style == "LINK") {
+    return BUTTON_KIND.GHOST;
   }
+  return style;
 }
 
 export { BaseButtonItemComponent };
