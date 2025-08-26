@@ -126,7 +126,7 @@ function getButtonKind(style: BUTTON_KIND | "LINK"): BUTTON_KIND {
     case "LINK":
       return BUTTON_KIND.GHOST;
     default:
-      return BUTTON_KIND.PRIMARY;
+      return style;
   }
 }
 
