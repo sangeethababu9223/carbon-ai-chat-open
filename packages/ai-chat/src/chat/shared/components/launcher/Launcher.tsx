@@ -9,9 +9,10 @@
 
 /* eslint-disable react/no-danger */
 
+import CDSButton from "@carbon/web-components/es-custom/components/button/button.js";
 import AiLaunch from "@carbon/icons-react/es/AiLaunch.js";
 import ChatLaunch from "@carbon/icons-react/es/ChatLaunch.js";
-import { Button } from "@carbon/react";
+import Button, { BUTTON_KIND, BUTTON_TYPE } from "../../../react/carbon/Button";
 import cx from "classnames";
 import React, { forwardRef, Ref, RefObject, useImperativeHandle } from "react";
 import { useSelector } from "react-redux";
@@ -23,7 +24,6 @@ import HasIntl from "../../../../types/utilities/HasIntl";
 import { HasRequestFocus } from "../../../../types/utilities/HasRequestFocus";
 import { doFocusRef } from "../../utils/domUtils";
 import { getLauncherButtonAriaLabel } from "./launcherUtils";
-import { ButtonKindEnum } from "../../../../types/utilities/carbonTypes";
 import { LanguagePack } from "../../../../types/instance/apiTypes";
 import { PageObjectId } from "../../utils/PageObjectId";
 
@@ -78,7 +78,7 @@ function Launcher(props: LauncherProps, ref: Ref<HasRequestFocus>) {
   /**
    * A React ref to the button in this component.
    */
-  const buttonRef: RefObject<HTMLButtonElement> = React.createRef();
+  const buttonRef: RefObject<CDSButton> = React.createRef();
 
   useImperativeHandle(ref, () => ({
     /**
@@ -134,8 +134,8 @@ function Launcher(props: LauncherProps, ref: Ref<HasRequestFocus>) {
         aria-label={ariaLabel}
         className="WACLauncher__Button"
         data-testid={PageObjectId.LAUNCHER}
-        kind={ButtonKindEnum.PRIMARY}
-        type="button"
+        kind={BUTTON_KIND.PRIMARY}
+        type={"button" as BUTTON_TYPE}
         onClick={onToggleOpen}
         ref={buttonRef}
         tabIndex={tabIndex}

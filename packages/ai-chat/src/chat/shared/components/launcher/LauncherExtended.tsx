@@ -6,9 +6,9 @@
  *
  *  @license
  */
-
+import CDSButton from "@carbon/web-components/es-custom/components/button/button.js";
+import Button, { BUTTON_KIND, BUTTON_TYPE } from "../../../react/carbon/Button";
 import ChatLaunch from "@carbon/icons-react/es/ChatLaunch.js";
-import { Button } from "@carbon/react";
 import cx from "classnames";
 import React, {
   forwardRef,
@@ -33,7 +33,6 @@ import { animateWithClass } from "../../utils/animationUtils";
 import { IS_MOBILE, isBrowser } from "../../utils/browserUtils";
 import { doFocusRef } from "../../utils/domUtils";
 import { getLauncherButtonAriaLabel } from "./launcherUtils";
-import { ButtonKindEnum } from "../../../../types/utilities/carbonTypes";
 
 interface LauncherExtendedProps extends HasClassName {
   onToggleOpen: () => void;
@@ -153,7 +152,7 @@ function LauncherExtended(
     useState(playExtendAnimation);
   const [showGreetingMessage, setShowGreetingMessage] = useState(false);
   const prevIsExtended = usePrevious(isExtended);
-  const buttonRef = useRef<HTMLButtonElement>();
+  const buttonRef = useRef<CDSButton>();
   const extendedContainerRef = useRef<HTMLDivElement>();
   const greetingMessageRef = useRef<HTMLDivElement>();
   const textHolderRef = useRef<HTMLDivElement>();
@@ -316,8 +315,8 @@ function LauncherExtended(
       <Button
         aria-label={ariaLabel}
         className="WACLauncher__Button WACLauncherExtended__Button"
-        kind={ButtonKindEnum.PRIMARY}
-        type="button"
+        kind={BUTTON_KIND.PRIMARY}
+        type={"button" as BUTTON_TYPE}
         ref={buttonRef}
         onClick={onToggleOpen}
       >

@@ -7,8 +7,9 @@
  *  @license
  */
 
-import Checkmark from "@carbon/icons-react/es/Checkmark.js";
-import { Button } from "@carbon/react";
+import Checkmark32 from "@carbon/icons/es/checkmark/32.js";
+import { carbonIconToReact } from "../../../utils/carbonIcon";
+import Button from "../../../../react/carbon/Button";
 import {
   DatePickerInput,
   DatePicker,
@@ -41,6 +42,8 @@ import {
   MessageResponse,
 } from "../../../../../types/messaging/Messages";
 import { MessageSendSource } from "../../../../../types/events/eventBusTypes";
+
+const Checkmark = carbonIconToReact(Checkmark32);
 
 interface DatePickerComponentProps {
   /**
@@ -226,8 +229,8 @@ function DatePickerComponent(props: DatePickerComponentProps) {
         <Button
           className="WACDatePicker__ConfirmButton"
           onClick={handlerSendDate}
-          renderIcon={(props) => <Checkmark size={32} {...props} />}
         >
+          <Checkmark slot="icon" />
           {confirmButtonLabel}
         </Button>
       )}
