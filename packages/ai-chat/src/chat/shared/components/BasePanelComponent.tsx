@@ -97,7 +97,7 @@ function BasePanelComponent(
   useEffect(() => {
     if (!isOpen) {
       setFocusTrapActive(false);
-      return undefined; // Early return
+      return undefined;
     }
     setFocusTrapActive(true);
     const timer = setTimeout(() => {

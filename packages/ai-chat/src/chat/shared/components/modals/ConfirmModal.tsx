@@ -112,9 +112,8 @@ class ConfirmModal extends Component<ConfirmModalProps, WACConfirmModalState> {
         } catch (error) {
           console.warn("Manual focus failed:", error);
         }
-      }, 100); // Added missing timeout value
+      }, 100);
 
-      // Store timer for cleanup
       this.focusTimer = timer;
     });
   }
@@ -189,7 +188,6 @@ class ConfirmModal extends Component<ConfirmModalProps, WACConfirmModalState> {
   }
 
   componentWillUnmount(): void {
-    // Clear timer on unmount
     if (this.focusTimer) {
       clearTimeout(this.focusTimer);
     }
